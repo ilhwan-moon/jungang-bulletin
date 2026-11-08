@@ -14,11 +14,13 @@
       openOriginal: '{lang} 원본 보기', rawText: '주보 전체 글 보기', findName: '내 이름 찾기', findPh: '이름으로 찾기 (예: 김영희)',
       share: '공유하기', qr: 'QR 코드', qrTitle: '휴대폰 카메라로 찍으면 주보가 열립니다', close: '닫기', toTop: '맨 위로',
       copied: '링크를 복사했습니다', updated: '마지막 업데이트', checked: '마지막 확인',
-      nav: { sermon: '말씀', memory: '암송', news: '소식', schedule: '일정', serve: '봉사', prayer: '기도' },
+      nav: { sermon: '말씀', memory: '암송', readings: '묵상', news: '소식', schedule: '일정', serve: '봉사', prayer: '기도' },
       none: '이번 주에는 내용이 없습니다.', noBulletin: '이번 주 주보가 아직 올라오지 않았습니다. 토요일·주일에 자동으로 업데이트됩니다.',
       fallback: '{lang} 주보가 아직 없어 {other}(으)로 보여 드립니다.', demo: '예시 화면입니다. 실제 주보가 연결되면 자동으로 바뀝니다.',
       offline: '인터넷 연결이 없어 저장된 주보를 보여 드립니다.', loading: '불러오는 중…', noName: '찾는 이름이 없습니다.',
       fromLang: '({lang})', sundayFmt: '{date} 주일',
+      location: '장소', serviceTimes: '예배 시간', fellowship: '예배 후 교제', memoryNext: '다음 주 암송 미리 보기', readings: '이번 주 묵상 말씀',
+      meetings: '정기 모임', thisWeekServe: '이번 주', nextWeekServe: '다음 주', today: '오늘',
     },
     en: {
       bulletin: 'Sunday Mobile Bulletin', textSize: 'Large text', textSizeN: ['Normal text', 'Large text', 'Extra large'],
@@ -29,11 +31,13 @@
       openOriginal: 'Open {lang} original', rawText: 'Show full bulletin text', findName: 'Find my name', findPh: 'Search by name',
       share: 'Share', qr: 'QR code', qrTitle: 'Scan with your phone camera to open', close: 'Close', toTop: 'Top',
       copied: 'Link copied', updated: 'Last updated', checked: 'Last checked',
-      nav: { sermon: 'Message', memory: 'Memory', news: 'News', schedule: 'Schedule', serve: 'Serve', prayer: 'Prayer' },
+      nav: { sermon: 'Message', memory: 'Memory', readings: 'Reading', news: 'News', schedule: 'Schedule', serve: 'Serve', prayer: 'Prayer' },
       none: 'Nothing this week.', noBulletin: "This week's bulletin isn't posted yet. It updates automatically on Saturday and Sunday.",
       fallback: 'No {lang} bulletin yet — showing {other}.', demo: 'Sample preview. It will switch to the real bulletin once connected.',
       offline: "You're offline — showing the saved bulletin.", loading: 'Loading…', noName: 'No matching name.',
       fromLang: '({lang})', sundayFmt: '{date}',
+      location: 'Location', serviceTimes: 'Service times', fellowship: 'After service', memoryNext: 'Preview next week’s verse', readings: 'This Week’s Meditation Chapters',
+      meetings: 'Regular meetings', thisWeekServe: 'This week', nextWeekServe: 'Next week', today: 'Today',
     },
     es: {
       bulletin: 'Boletín Dominical Móvil', textSize: 'Letra grande', textSizeN: ['Letra normal', 'Letra grande', 'Letra muy grande'],
@@ -44,11 +48,13 @@
       openOriginal: 'Ver original en {lang}', rawText: 'Ver todo el texto del boletín', findName: 'Buscar mi nombre', findPh: 'Buscar por nombre',
       share: 'Compartir', qr: 'Código QR', qrTitle: 'Escanea con la cámara del teléfono', close: 'Cerrar', toTop: 'Arriba',
       copied: 'Enlace copiado', updated: 'Última actualización', checked: 'Última revisión',
-      nav: { sermon: 'Mensaje', memory: 'Memorizar', news: 'Anuncios', schedule: 'Calendario', serve: 'Servir', prayer: 'Oración' },
+      nav: { sermon: 'Mensaje', memory: 'Memorizar', readings: 'Lectura', news: 'Anuncios', schedule: 'Calendario', serve: 'Servir', prayer: 'Oración' },
       none: 'Nada esta semana.', noBulletin: 'El boletín de esta semana aún no está publicado. Se actualiza automáticamente sábado y domingo.',
       fallback: 'Aún no hay boletín en {lang}; se muestra en {other}.', demo: 'Vista de ejemplo. Cambiará al boletín real cuando esté conectado.',
       offline: 'Sin conexión: se muestra el boletín guardado.', loading: 'Cargando…', noName: 'No se encontró el nombre.',
       fromLang: '({lang})', sundayFmt: '{date}',
+      location: 'Lugar', serviceTimes: 'Horario', fellowship: 'Después del culto', memoryNext: 'Ver versículo de la próxima semana', readings: 'Lectura de la semana',
+      meetings: 'Reuniones regulares', thisWeekServe: 'Esta semana', nextWeekServe: 'Próxima semana', today: 'Hoy',
     },
   };
 
@@ -63,12 +69,14 @@
     file: '<svg viewBox="0 0 24 24"><path d="M14 3H6.5A2.5 2.5 0 0 0 4 5.5v13A2.5 2.5 0 0 0 6.5 21h11a2.5 2.5 0 0 0 2.5-2.5V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg>',
     share: '<svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>',
     qr: '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 20h4v-3"/></svg>',
+    clock: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+    book: '<svg viewBox="0 0 24 24"><path d="M2 5.5c3-1.5 7-1.5 10 1 3-2.5 7-2.5 10-1V19c-3-1.5-7-1.5-10 1-3-2.5-7-2.5-10-1z"/><path d="M12 6.5V20"/></svg>',
     up: '<svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>',
     ext: '<svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v4.5A1.5 1.5 0 0 1 16.5 20h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6H10"/></svg>',
   };
 
   var NAV = [
-    ['sermon', 'sec-sermon', 'bible'], ['memory', 'sec-memory', 'heart'], ['news', 'sec-news', 'bell'],
+    ['sermon', 'sec-sermon', 'bible'], ['memory', 'sec-memory', 'heart'], ['readings', 'sec-readings', 'book'], ['news', 'sec-news', 'bell'],
     ['schedule', 'sec-schedule', 'calendar'], ['serve', 'sec-serve', 'hands'], ['prayer', 'sec-prayer', 'pray'],
   ];
 
@@ -87,6 +95,8 @@
     demo: false,
     offline: false,
     practice: false,
+    serveWeek: 'this',
+    view: null,
     sample: null,
   };
 
@@ -157,30 +167,51 @@
     state.resp = data;
     state.weeks = data.weeks || [];
     if (data.bulletin) state.week = data.bulletin.date;
+    state.view = buildView(data);
     if (fresh) document.body.classList.remove('loading');
     render();
   }
 
-  /* ── 언어별 값 고르기 (없으면 다른 언어로 대체) ── */
+  /* ── 언어별 데이터 만들기 ──
+   * 1) LA 중앙교회 주보 양식이면 원문(raw)을 이 페이지에서 직접 분석 (lacc-parser.js)
+   * 2) apiVersion >= 2 이면 시트에 사람이 직접 입력한 값이 우선
+   * 3) 양식이 아니면 시트(Apps Script)가 보낸 값 그대로 사용 */
+  function buildView(data) {
+    var b = data && data.bulletin;
+    if (!b) return null;
+    var parsed = window.LACCParser ? window.LACCParser.fromBulletin(b) : null;
+    var manual = (data.apiVersion || 0) >= 2;
+    var view = {};
+    LANGS.forEach(function (l) {
+      var base = parsed ? parsed[l] || null : b[l] || null;
+      if (parsed && manual && b[l]) {
+        base = base ? Object.assign({}, base) : {};
+        Object.keys(b[l]).forEach(function (k) { if (has(b[l][k]) && k !== 'raw') base[k] = b[l][k]; });
+      }
+      view[l] = base;
+    });
+    view.date = b.date;
+    return view;
+  }
   function langData() {
-    var b = state.resp && state.resp.bulletin;
-    if (!b) return { data: null, lang: state.lang, fallback: false };
-    if (b[state.lang]) return { data: b[state.lang], lang: state.lang, fallback: false };
-    var order = state.lang === 'ko' ? ['ko', 'en', 'es'] : state.lang === 'es' ? ['es', 'en', 'ko'] : ['en', 'ko', 'es'];
-    for (var i = 0; i < order.length; i++) if (b[order[i]]) return { data: b[order[i]], lang: order[i], fallback: true };
+    var v = state.view;
+    if (!v) return { data: null, lang: state.lang, fallback: false };
+    if (v[state.lang]) return { data: v[state.lang], lang: state.lang, fallback: false };
+    var order = state.lang === 'ko' ? ['ko', 'es', 'en'] : state.lang === 'es' ? ['es', 'en', 'ko'] : ['en', 'ko', 'es'];
+    for (var i = 0; i < order.length; i++) if (v[order[i]]) return { data: v[order[i]], lang: order[i], fallback: true };
     return { data: null, lang: state.lang, fallback: false };
   }
   function field(key) {
-    var b = state.resp && state.resp.bulletin;
+    var v = state.view;
     var ld = langData();
-    var v = ld.data && ld.data[key];
-    if (has(v)) return { v: v, from: ld.fallback ? ld.lang : null };
-    if (!b) return { v: Array.isArray(v) ? [] : '', from: null };
+    var val = ld.data && ld.data[key];
+    if (has(val)) return { v: val, from: ld.fallback ? ld.lang : null };
+    if (!v || ld.fallback) return { v: Array.isArray(val) ? [] : '', from: null };
     for (var i = 0; i < LANGS.length; i++) {
-      var o = b[LANGS[i]];
+      var o = v[LANGS[i]];
       if (o && has(o[key])) return { v: o[key], from: LANGS[i] };
     }
-    return { v: Array.isArray(v) ? [] : '', from: null };
+    return { v: Array.isArray(val) ? [] : '', from: null };
   }
   function has(v) { return Array.isArray(v) ? v.length > 0 : !!(v && String(v).trim()); }
   function fromTag(from) { return from && from !== state.lang ? ' <small class="from">' + esc(fmt(t('fromLang'), { lang: LANG_NAME[from] })) + '</small>' : ''; }
@@ -237,13 +268,24 @@
     $('scriptureRow').hidden = !has(scr.v);
     $('preacher').innerHTML = esc(pre.v) + fromTag(pre.from);
     $('preacherRow').hidden = !has(pre.v);
+    var loc = field('sermonLocation'), fel = field('fellowship'), tm = field('serviceTimes');
+    $('sermonLocation').innerHTML = esc(loc.v) + fromTag(loc.from);
+    $('locationRow').hidden = !has(loc.v);
+    $('fellowship').innerHTML = esc(fel.v) + fromTag(fel.from);
+    $('fellowshipRow').hidden = !has(fel.v);
+    $('timesBlock').hidden = !has(tm.v);
+    $('serviceTimes').innerHTML = (tm.v || []).map(function (x) {
+      var p = String(x).split(/\s+:\s+/);
+      return '<li><span class="t-k">' + esc(p[0]) + '</span><span class="t-v">' + esc(p.slice(1).join(' : ')) + '</span></li>';
+    }).join('');
     $('scriptureText').hidden = !has(scrText.v);
+
     $('scriptureText').textContent = scrText.v || '';
 
     var hy = field('hymns');
     $('hymnsBlock').hidden = !has(hy.v);
     $('hymns').innerHTML = (hy.v || []).map(function (h) {
-      var m = String(h).match(/^(?:새\s*)?(?:찬송가?|찬양|hymn(?:al)?|himno|no\.?|#)?\s*(?:no\.?|#)?\s*(\d{1,4})\s*(장|번)?\s*[.:\-–]?\s*(.*)$/i);
+      var m = String(h).match(/^(?:새\s*)?(?:찬송가?|찬양|hymn(?:al)?|himnario|himno|no\.?|#)?\s*(?:no\.?|#)?\s*(\d{1,4})\s*(장|번)?\s*[.:\-–]?\s*(.*)$/i);
       if (m) {
         var num = L === 'ko' || m[2] ? m[1] + (m[2] || '장') : '#' + m[1];
         return '<li><span class="hymn-num">' + esc(num) + '</span><span>' + esc(m[3] || '') + '</span></li>';
@@ -265,6 +307,26 @@
     renderVerse(mt.v || '');
     $('memoryRef').innerHTML = has(mr.v) ? '— ' + esc(nbh(mr.v)) + fromTag(mr.from || mt.from) : '';
     $('practiceBtn').hidden = !has(mt.v);
+    var th = field('memoryVerseTheme');
+    $('memoryTheme').textContent = th.v || '';
+    $('memoryTheme').hidden = !has(th.v);
+    var nt = field('memoryNextText'), nr = field('memoryNextRef');
+    $('memoryNextBlock').hidden = !has(nt.v);
+    $('memoryNextText').textContent = nt.v || '';
+    $('memoryNextRef').textContent = has(nr.v) ? '— ' + nbh(nr.v) : '';
+
+    // 이번 주 묵상 말씀: 주보 주일부터 토요일까지, 오늘 요일 강조
+    var laNow = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }));
+    var todayIdx = laNow.getDay();
+    var weekStart = b ? new Date(b.date + 'T00:00:00') : null;
+    var diff = weekStart ? Math.floor((new Date(laNow.getFullYear(), laNow.getMonth(), laNow.getDate()) - weekStart) / 86400000) : -1;
+    var inWeek = diff >= 0 && diff < 7;
+    list('readings', 'readings', 'sec-readings', function (s, i) {
+      var p = split(s);
+      var cur = inWeek && i === todayIdx;
+      return '<li' + (cur ? ' class="today"' : '') + '><span class="r-day">' + esc(p[0]) + (cur ? ' <em>' + esc(t('today')) + '</em>' : '') + '</span><span class="r-txt">' + esc(p.slice(1).join(' ')) + '</span></li>';
+    });
+
 
     // 소식 / 일정 / 봉사 / 기도
     list('news', 'announcements', 'sec-news', function (s) { return '<li>' + linkify(esc(s)) + '</li>'; });
@@ -273,20 +335,37 @@
       return p.length > 1 ? '<li><span class="sched-when">' + esc(p[0]) + '</span><span class="sched-what">' + esc(p.slice(1).join(' · ')) + '</span></li>'
         : '<li><span class="sched-what">' + esc(s) + '</span></li>';
     });
-    list('serve', 'volunteers', 'sec-serve', function (s) {
+    var mt2 = field('meetings');
+    $('meetingsBlock').hidden = !has(mt2.v);
+    $('meetings').innerHTML = (mt2.v || []).map(function (s) {
+      var p = split(s);
+      return '<li><span class="m-name">' + esc(p[0]) + '</span><span class="m-time">' + esc(p.slice(1).join(' ')) + '</span></li>';
+    }).join('');
+    if (has(mt2.v)) $('sec-schedule').hidden = false;
+
+    var hasNext = has(field('volunteersNext').v);
+    $('serveTabs').hidden = !hasNext;
+    if (!hasNext) state.serveWeek = 'this';
+    document.querySelectorAll('#serveTabs button').forEach(function (bt) { bt.setAttribute('aria-selected', String(bt.getAttribute('data-week') === state.serveWeek)); });
+    list('serve', state.serveWeek === 'next' ? 'volunteersNext' : 'volunteers', 'sec-serve', function (s) {
       var p = split(s);
       return p.length > 1 ? '<li data-s="' + esc(s.toLowerCase()) + '"><span class="serve-role">' + esc(p[0]) + '</span><span class="serve-names">' + esc(p.slice(1).join(', ')) + '</span></li>'
         : '<li class="full" data-s="' + esc(s.toLowerCase()) + '"><span class="serve-names">' + esc(s) + '</span></li>';
     });
     $('serveSearchWrap').hidden = (field('volunteers').v || []).length < 5;
+    if (has(field('volunteers').v)) $('sec-serve').hidden = false;
     filterServe();
     list('prayer', 'prayer', 'sec-prayer', function (s) { return '<li>' + esc(s) + '</li>'; });
 
     // 원본
     var btns = '';
-    if (b) LANGS.forEach(function (l) {
-      var o = b[l];
-      if (o && o.fileUrl) btns += '<a class="btn' + (l === state.lang ? ' primary' : '') + '" href="' + esc(o.fileUrl) + '" target="_blank" rel="noopener">' + ico('ext') + esc(fmt(t('openOriginal'), { lang: LANG_NAME[l] })) + '</a>';
+    var seenUrl = {};
+    if (state.view) LANGS.forEach(function (l) {
+      var o = state.view[l];
+      if (!o || !o.fileUrl || seenUrl[o.fileUrl]) return;
+      seenUrl[o.fileUrl] = true;
+      if (o.sourceMode === 'bi') { btns += '<a class="btn' + (state.lang !== 'en' ? ' primary' : '') + '" href="' + esc(o.fileUrl) + '" target="_blank" rel="noopener">' + ico('ext') + esc(fmt(t('openOriginal'), { lang: '한국어 · Español' })) + '</a>'; return; }
+      if (o.fileUrl) btns += '<a class="btn' + (l === state.lang ? ' primary' : '') + '" href="' + esc(o.fileUrl) + '" target="_blank" rel="noopener">' + ico('ext') + esc(fmt(t('openOriginal'), { lang: LANG_NAME[l] })) + '</a>';
     });
     $('origBtns').innerHTML = btns;
     var raw = ld.data && ld.data.raw;
@@ -303,7 +382,9 @@
     var r = state.resp || {};
     var upd = r.lastUpdated ? new Date(r.lastUpdated) : null;
     $('updated').textContent = upd && !isNaN(upd) ? t('updated') + ': ' + upd.toLocaleString({ ko: 'ko-KR', en: 'en-US', es: 'es-US' }[L], { dateStyle: 'medium', timeStyle: 'short' }) : '';
-    $('churchInfo').innerHTML = [CFG.ADDRESS, CFG.PHONE ? '<a href="tel:' + esc(CFG.PHONE.replace(/[^\d+]/g, '')) + '">' + esc(CFG.PHONE) + '</a>' : '', CFG.WEBSITE ? '<a href="' + esc(CFG.WEBSITE) + '" target="_blank" rel="noopener">' + esc(CFG.WEBSITE.replace(/^https?:\/\//, '')) + '</a>' : ''].filter(Boolean).join(' · ');
+    var ldd = langData().data || {};
+    var addr = CFG.ADDRESS || ldd.address, phone = CFG.PHONE || ldd.phone;
+    $('churchInfo').innerHTML = [addr, phone ? '<a href="tel:' + esc(phone.replace(/[^\d+]/g, '')) + '">' + esc(phone) + '</a>' : '', CFG.WEBSITE ? '<a href="' + esc(CFG.WEBSITE) + '" target="_blank" rel="noopener">' + esc(CFG.WEBSITE.replace(/^https?:\/\//, '')) + '</a>' : ''].filter(Boolean).join(' · ');
 
     syncUrl();
     measure();
@@ -394,6 +475,9 @@
   $('memoryText').addEventListener('click', function (e) { if (e.target.classList.contains('h')) e.target.classList.remove('h'); });
   $('memoryText').addEventListener('keydown', function (e) { if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('h')) { e.preventDefault(); e.target.classList.remove('h'); } });
   $('serveSearch').addEventListener('input', filterServe);
+  document.querySelectorAll('#serveTabs button').forEach(function (bt) {
+    bt.addEventListener('click', function () { state.serveWeek = bt.getAttribute('data-week'); render(); });
+  });
   $('shareBtn').addEventListener('click', function () {
     var url = shareUrl();
     var title = document.title;
