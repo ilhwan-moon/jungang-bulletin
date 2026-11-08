@@ -235,7 +235,7 @@
   function renderStatic() {
     var L = state.lang;
     document.documentElement.lang = L;
-    var church = (state.resp && state.resp.church) || CFG.CHURCH_NAME || {};
+    var church = CFG.CHURCH_NAME || (state.resp && state.resp.church) || {};
     var cname = church[L] || church.ko || '';
     document.title = cname + ' · ' + T[L].bulletin;
     document.querySelectorAll('[data-church]').forEach(function (el) { el.textContent = cname; });
