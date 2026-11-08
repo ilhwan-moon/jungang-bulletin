@@ -300,3 +300,6 @@ html[data-size="2"] .bottomnav a, html[data-size="3"] .bottomnav a { font-size: 
 .toast { bottom: calc(88px + env(safe-area-inset-bottom)); }
 @media print { .bottomnav, .theme-btn { display: none !important; } body { padding-bottom: 0; } }
 @media (max-width: 380px) { .brand img { display: none; } }
+/* 위쪽 바로가기는 아래 고정 메뉴로 대체 (다시 쓰려면 이 줄 삭제) */
+.quicknav { display: none !important; }
+.grid { margin-top: 14px; }
