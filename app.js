@@ -40,7 +40,7 @@
       offline: "You're offline — showing the saved newsletter.", loading: 'Loading…', noName: 'No matching name.',
       fromLang: '({lang})', sundayFmt: '{date}',
       location: 'Location', serviceTimes: 'Service times', fellowship: 'After service', memoryNext: 'Preview next week’s verse', memoryLast: 'Review last week’s verse', readings: 'This Week’s Meditation Chapters',
-      meetings: 'Regular meetings', installTitle: 'Add bulletin to Home Screen', installSub: 'Open it like an app, in one tap', installed: 'Added to Home Screen',
+      meetings: 'Regular meetings', installTitle: 'Add newsletter to Home Screen', installSub: 'Open it like an app, in one tap', installed: 'Added to Home Screen',
       iosTitle: 'Add to iPhone Home Screen', iosSteps: ['Tap the <b>Share button</b> {share} at the bottom (or top)', 'Scroll and tap <b>“Add to Home Screen”</b>', 'Tap <b>“Add”</b> at the top right. Done!'],
       andTitle: 'Add to Home Screen', andSteps: ['Tap the <b>menu ⋮</b> at the top right', 'Tap <b>“Add to Home screen”</b> or <b>“Install app”</b>', 'Tap <b>“Add”</b>. Done!'],
       inappTitle: 'Please open in Safari/Chrome first', inappSteps: ['Tap the <b>menu</b> at the top (or bottom) right', 'Tap <b>“Open in browser”</b> or <b>“Open in Safari”</b>', 'Then tap this button again'], watchVideo: 'Watch the sermon', watchLive: 'Watch live now', ytChannel: 'Church YouTube channel', ytOpen: 'Opens in YouTube', monthlyServe: 'This month', thisWeekServe: 'This week', nextWeekServe: 'Next week', today: 'Today',
