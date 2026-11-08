@@ -139,15 +139,15 @@
 
         <section class="card" id="sec-serve" aria-labelledby="h-serve">
           <h2 class="eyebrow" id="h-serve"><span class="ico" data-ico="hands"></span><span data-i18n="serve"></span></h2>
-          <div class="tabs" role="tablist" id="serveTabs">
-            <button type="button" role="tab" data-week="this" aria-selected="true" data-i18n="thisWeekServe"></button>
-            <button type="button" role="tab" data-week="next" aria-selected="false" data-i18n="nextWeekServe"></button>
-          </div>
           <div class="serve-search" id="serveSearchWrap">
             <label for="serveSearch" class="sr" data-i18n="findName"></label>
             <input id="serveSearch" type="search" autocomplete="off">
           </div>
           <ul class="serve-list" id="serve"></ul>
+          <div id="serveMonthlyBlock">
+            <h3 class="sub2" data-i18n="monthlyServe"></h3>
+            <ul class="serve-month" id="serveMonthly"></ul>
+          </div>
         </section>
 
         <section class="card" id="sec-prayer" aria-labelledby="h-prayer">

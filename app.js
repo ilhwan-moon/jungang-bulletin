@@ -20,7 +20,7 @@
       offline: '인터넷 연결이 없어 저장된 주보를 보여 드립니다.', loading: '불러오는 중…', noName: '찾는 이름이 없습니다.',
       fromLang: '({lang})', sundayFmt: '{date} 주일',
       location: '장소', serviceTimes: '예배 시간', fellowship: '예배 후 교제', memoryNext: '다음 주 암송 미리 보기', memoryLast: '지난주 암송 다시 보기', readings: '이번 주 묵상 말씀',
-      meetings: '정기 모임', thisWeekServe: '이번 주', nextWeekServe: '다음 주', today: '오늘',
+      meetings: '정기 모임', monthlyServe: '이달의 봉사', thisWeekServe: '이번 주', nextWeekServe: '다음 주', today: '오늘',
     },
     en: {
       bulletin: 'Sunday Mobile Bulletin', textSize: 'Large text', textSizeN: ['Normal text', 'Large text', 'Extra large'],
@@ -37,7 +37,7 @@
       offline: "You're offline — showing the saved bulletin.", loading: 'Loading…', noName: 'No matching name.',
       fromLang: '({lang})', sundayFmt: '{date}',
       location: 'Location', serviceTimes: 'Service times', fellowship: 'After service', memoryNext: 'Preview next week’s verse', memoryLast: 'Review last week’s verse', readings: 'This Week’s Meditation Chapters',
-      meetings: 'Regular meetings', thisWeekServe: 'This week', nextWeekServe: 'Next week', today: 'Today',
+      meetings: 'Regular meetings', monthlyServe: 'This month', thisWeekServe: 'This week', nextWeekServe: 'Next week', today: 'Today',
     },
     es: {
       bulletin: 'Boletín Dominical Móvil', textSize: 'Letra grande', textSizeN: ['Letra normal', 'Letra grande', 'Letra muy grande'],
@@ -54,7 +54,7 @@
       offline: 'Sin conexión: se muestra el boletín guardado.', loading: 'Cargando…', noName: 'No se encontró el nombre.',
       fromLang: '({lang})', sundayFmt: '{date}',
       location: 'Lugar', serviceTimes: 'Horario', fellowship: 'Después del culto', memoryNext: 'Ver versículo de la próxima semana', memoryLast: 'Repasar versículo de la semana pasada', readings: 'Lectura de la semana',
-      meetings: 'Reuniones regulares', thisWeekServe: 'Esta semana', nextWeekServe: 'Próxima semana', today: 'Hoy',
+      meetings: 'Reuniones regulares', monthlyServe: 'Este mes', thisWeekServe: 'Esta semana', nextWeekServe: 'Próxima semana', today: 'Hoy',
     },
   };
 
@@ -359,18 +359,7 @@
     }).join('');
     if (has(mt2.v)) $('sec-schedule').hidden = false;
 
-    var hasNext = has(field('volunteersNext').v);
-    $('serveTabs').hidden = !hasNext;
-    if (!hasNext) state.serveWeek = 'this';
-    document.querySelectorAll('#serveTabs button').forEach(function (bt) { bt.setAttribute('aria-selected', String(bt.getAttribute('data-week') === state.serveWeek)); });
-    list('serve', state.serveWeek === 'next' ? 'volunteersNext' : 'volunteers', 'sec-serve', function (s) {
-      var p = split(s);
-      return p.length > 1 ? '<li data-s="' + esc(s.toLowerCase()) + '"><span class="serve-role">' + esc(p[0]) + '</span><span class="serve-names">' + esc(p.slice(1).join(', ')) + '</span></li>'
-        : '<li class="full" data-s="' + esc(s.toLowerCase()) + '"><span class="serve-names">' + esc(s) + '</span></li>';
-    });
-    $('serveSearchWrap').hidden = (field('volunteers').v || []).length < 5;
-    if (has(field('volunteers').v)) $('sec-serve').hidden = false;
-    filterServe();
+    renderServe(b);
     list('prayer', 'prayer', 'sec-prayer', function (s) { return '<li>' + esc(s) + '</li>'; });
 
     // 원본
@@ -438,13 +427,55 @@
     }).join('');
   }
 
+  /* ── 봉사 안내: 역할마다 이번 주 / 다음 주를 함께 표시 ── */
+  function shortDate(iso, add) {
+    if (!iso) return '';
+    var d = new Date(iso + 'T00:00:00Z'); d.setUTCDate(d.getUTCDate() + add);
+    return (d.getUTCMonth() + 1) + '/' + d.getUTCDate();
+  }
+  function renderServe(b) {
+    var cur = field('volunteers').v || [], nxt = field('volunteersNext').v || [], mon = field('volunteersMonthly').v || [];
+    var order = [], map = {};
+    function add(list, which) {
+      list.forEach(function (s) {
+        var p = split(s);
+        var role = p.length > 1 ? p[0] : '', names = p.length > 1 ? p.slice(1).join(', ') : s;
+        if (!map[role]) { map[role] = { cur: '', nxt: '' }; order.push(role); }
+        map[role][which] = map[role][which] ? map[role][which] + ', ' + names : names;
+      });
+    }
+    add(cur, 'cur'); add(nxt, 'nxt');
+    var hasNext = nxt.length > 0;
+    var dCur = b ? shortDate(b.date, 0) : '', dNxt = b ? shortDate(b.date, 7) : '';
+    var lblCur = esc(t('thisWeekServe')) + (dCur ? ' <b>' + dCur + '</b>' : '');
+    var lblNxt = esc(t('nextWeekServe')) + (dNxt ? ' <b>' + dNxt + '</b>' : '');
+    $('serve').innerHTML = order.map(function (role) {
+      var m = map[role];
+      var s = (role + ' ' + m.cur + ' ' + m.nxt).toLowerCase();
+      return '<li class="serve-item" data-s="' + esc(s) + '">' +
+        (role ? '<div class="si-role hl">' + esc(role) + '</div>' : '') +
+        '<div class="si-weeks' + (hasNext ? '' : ' one') + '">' +
+        '<div class="si-row cur"><span class="wk">' + lblCur + '</span><span class="si-names hl">' + esc(m.cur || '—') + '</span></div>' +
+        (hasNext ? '<div class="si-row nxt"><span class="wk">' + lblNxt + '</span><span class="si-names hl">' + esc(m.nxt || '—') + '</span></div>' : '') +
+        '</div></li>';
+    }).join('');
+    $('serveMonthlyBlock').hidden = !mon.length;
+    $('serveMonthly').innerHTML = mon.map(function (s) {
+      var p = split(s);
+      return '<li data-s="' + esc(s.toLowerCase()) + '"><span class="serve-role hl">' + esc(p[0]) + '</span><span class="serve-names hl">' + esc(p.slice(1).join(', ')) + '</span></li>';
+    }).join('');
+    $('sec-serve').hidden = !order.length && !mon.length;
+    $('serveSearchWrap').hidden = order.length + mon.length < 5;
+    filterServe();
+  }
+
   function filterServe() {
     var q = ($('serveSearch').value || '').trim().toLowerCase();
     var any = false;
-    document.querySelectorAll('#serve li').forEach(function (li) {
+    document.querySelectorAll('#serve > li, #serveMonthly > li').forEach(function (li) {
       var hit = !q || li.getAttribute('data-s').indexOf(q) !== -1;
       li.hidden = !hit; if (hit) any = true;
-      li.querySelectorAll('span').forEach(function (sp) {
+      li.querySelectorAll('.hl').forEach(function (sp) {
         var txt = sp.textContent;
         sp.innerHTML = q && hit ? esc(txt).replace(new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi'), '<mark>$&</mark>') : esc(txt);
       });
@@ -491,9 +522,6 @@
   $('memoryText').addEventListener('click', function (e) { if (e.target.classList.contains('h')) e.target.classList.remove('h'); });
   $('memoryText').addEventListener('keydown', function (e) { if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('h')) { e.preventDefault(); e.target.classList.remove('h'); } });
   $('serveSearch').addEventListener('input', filterServe);
-  document.querySelectorAll('#serveTabs button').forEach(function (bt) {
-    bt.addEventListener('click', function () { state.serveWeek = bt.getAttribute('data-week'); render(); });
-  });
   $('shareBtn').addEventListener('click', function () {
     var url = shareUrl();
     var title = document.title;
