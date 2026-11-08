@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>LA 중앙교회 주보</title>
+  <meta name="description" content="LA 중앙교회 주일 모바일 주보 — 주일 말씀, 암송, 교회 소식, 일정, 봉사 안내">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#1f4e5f">
+  <meta property="og:title" content="LA 중앙교회 주일 모바일 주보">
+  <meta property="og:description" content="주일 말씀 · 찬양 · 암송 · 교회 소식 · 봉사 안내">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="config.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">본문으로</a>
+
+  <header class="topbar" id="top">
+    <div class="topbar-inner">
+      <div class="brand">
+        <img src="icon.svg" alt="" width="36" height="36">
+        <div>
+          <div class="brand-name" data-church></div>
+          <div class="brand-sub" data-i18n="bulletin"></div>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="seg" role="group" aria-label="Language" id="langSeg">
+          <button type="button" data-lang="ko" lang="ko">한국어</button>
+          <button type="button" data-lang="en" lang="en">EN</button>
+          <button type="button" data-lang="es" lang="es">ES</button>
+        </div>
+        <button type="button" class="size-btn" id="sizeBtn" aria-live="polite">
+          <span class="size-glyph" aria-hidden="true">가</span><span class="size-label" data-i18n="textSize"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="weekbar">
+    <button type="button" class="wk-arrow" id="prevWeek"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg><span data-i18n="prev"></span></button>
+    <div class="wk-center">
+      <div class="wk-date" id="weekDate">&nbsp;</div>
+      <div class="wk-tag" id="weekTag"></div>
+    </div>
+    <button type="button" class="wk-arrow" id="nextWeek"><span data-i18n="next"></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+  </div>
+
+  <main id="main" class="wrap">
+    <div id="notice" class="notice" hidden></div>
+
+    <nav class="quicknav" aria-label="Sections" id="quicknav"></nav>
+
+    <div class="grid">
+      <div class="col-main">
+        <!-- 가장 중요한 주일 말씀 -->
+        <section class="card hero" id="sec-sermon" aria-labelledby="h-sermon">
+          <h2 class="eyebrow" id="h-sermon"><span class="ico" data-ico="bible"></span><span data-i18n="sermon"></span></h2>
+          <p class="sermon-title" id="sermonTitle"></p>
+          <div class="sermon-meta">
+            <div class="meta-row" id="scriptureRow">
+              <span class="meta-k" data-i18n="scripture"></span>
+              <span class="meta-v scripture" id="scripture"></span>
+            </div>
+            <div class="meta-row" id="preacherRow">
+              <span class="meta-k" data-i18n="preacher"></span>
+              <span class="meta-v" id="preacher"></span>
+            </div>
+          </div>
+          <p class="scripture-text" id="scriptureText" hidden></p>
+          <div class="hymns" id="hymnsBlock">
+            <h3 class="sub"><span class="ico" data-ico="music"></span><span data-i18n="hymns"></span></h3>
+            <ol class="hymn-list" id="hymns"></ol>
+          </div>
+          <details class="order" id="orderBlock">
+            <summary><span data-i18n="order"></span></summary>
+            <ol class="order-list" id="order"></ol>
+          </details>
+        </section>
+
+        <!-- 암송 -->
+        <section class="card memory" id="sec-memory" aria-labelledby="h-memory">
+          <div class="card-head">
+            <h2 class="eyebrow" id="h-memory"><span class="ico" data-ico="heart"></span><span data-i18n="memory"></span></h2>
+            <button type="button" class="chip-btn" id="practiceBtn" aria-pressed="false" data-i18n="practice"></button>
+          </div>
+          <blockquote class="verse" id="memoryText"></blockquote>
+          <p class="verse-ref" id="memoryRef"></p>
+          <p class="hint" id="practiceHint" hidden data-i18n="practiceHint"></p>
+        </section>
+      </div>
+
+      <div class="col-side">
+        <section class="card" id="sec-news" aria-labelledby="h-news">
+          <h2 class="eyebrow" id="h-news"><span class="ico" data-ico="bell"></span><span data-i18n="news"></span></h2>
+          <ol class="news-list" id="news"></ol>
+        </section>
+
+        <section class="card" id="sec-schedule" aria-labelledby="h-schedule">
+          <h2 class="eyebrow" id="h-schedule"><span class="ico" data-ico="calendar"></span><span data-i18n="schedule"></span></h2>
+          <ul class="sched-list" id="schedule"></ul>
+        </section>
+
+        <section class="card" id="sec-serve" aria-labelledby="h-serve">
+          <h2 class="eyebrow" id="h-serve"><span class="ico" data-ico="hands"></span><span data-i18n="serve"></span></h2>
+          <div class="serve-search" id="serveSearchWrap">
+            <label for="serveSearch" class="sr" data-i18n="findName"></label>
+            <input id="serveSearch" type="search" autocomplete="off">
+          </div>
+          <ul class="serve-list" id="serve"></ul>
+        </section>
+
+        <section class="card" id="sec-prayer" aria-labelledby="h-prayer">
+          <h2 class="eyebrow" id="h-prayer"><span class="ico" data-ico="pray"></span><span data-i18n="prayer"></span></h2>
+          <ul class="prayer-list" id="prayer"></ul>
+        </section>
+
+        <section class="card" id="sec-original" aria-labelledby="h-original">
+          <h2 class="eyebrow" id="h-original"><span class="ico" data-ico="file"></span><span data-i18n="original"></span></h2>
+          <div class="orig-btns" id="origBtns"></div>
+          <details class="raw" id="rawBlock">
+            <summary data-i18n="rawText"></summary>
+            <pre id="rawText"></pre>
+          </details>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot-inner">
+      <div class="foot-actions">
+        <button type="button" class="btn" id="shareBtn"><span class="ico" data-ico="share"></span><span data-i18n="share"></span></button>
+        <button type="button" class="btn" id="qrBtn"><span class="ico" data-ico="qr"></span><span data-i18n="qr"></span></button>
+        <a class="btn" href="#top"><span class="ico" data-ico="up"></span><span data-i18n="toTop"></span></a>
+      </div>
+      <p class="foot-meta" id="updated"></p>
+      <p class="foot-meta" id="churchInfo"></p>
+    </div>
+  </footer>
+
+  <dialog id="qrDialog">
+    <div class="qr-box">
+      <p class="qr-title" data-i18n="qrTitle"></p>
+      <div id="qrCode"></div>
+      <p class="qr-url" id="qrUrl"></p>
+      <button type="button" class="btn" id="qrClose" data-i18n="close"></button>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
