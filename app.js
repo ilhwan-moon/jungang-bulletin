@@ -100,11 +100,23 @@
     sample: null,
   };
 
-  function pickLang() {
-    var p = params.get('lang');
-    if (LANGS.indexOf(p) !== -1) return p;
+  // 언어 기억: localStorage + 쿠키(1년) 두 곳에 저장. 하나가 지워져도 기억합니다.
+  function saveLang(l) {
+    store('bb_lang', l);
+    try { document.cookie = 'bb_lang=' + l + '; max-age=31536000; path=/; SameSite=Lax'; } catch (e) {}
+  }
+  function savedLang() {
     var s = store('bb_lang');
     if (LANGS.indexOf(s) !== -1) return s;
+    var m = (document.cookie || '').match(/(?:^|;\s*)bb_lang=(ko|en|es)/);
+    return m ? m[1] : null;
+  }
+  // 우선순위: ① 내가 전에 고른 언어 → ② 링크의 ?lang= (처음 방문) → ③ 설정 → ④ 휴대폰 언어
+  function pickLang() {
+    var s = savedLang();
+    if (s) { saveLang(s); return s; }
+    var p = params.get('lang');
+    if (LANGS.indexOf(p) !== -1) { saveLang(p); return p; }
     if (CFG.DEFAULT_LANG && CFG.DEFAULT_LANG !== 'auto') return CFG.DEFAULT_LANG;
     var n = (navigator.language || 'ko').slice(0, 2).toLowerCase();
     return LANGS.indexOf(n) !== -1 ? n : 'ko';
@@ -439,10 +451,11 @@
 
   function syncUrl() {
     var p = new URLSearchParams(location.search);
-    p.set('lang', state.lang);
+    p.delete('lang');
     if (state.week && state.weeks[0] !== state.week) p.set('week', state.week); else p.delete('week');
     p.delete('size');
-    var u = location.pathname + '?' + p.toString() + location.hash;
+    var q = p.toString();
+    var u = location.pathname + (q ? '?' + q : '') + location.hash;
     try { history.replaceState(null, '', u); } catch (e) {}
   }
 
@@ -457,13 +470,12 @@
   }
 
   function shareUrl() {
-    var p = new URLSearchParams(); p.set('lang', state.lang);
-    return location.origin + location.pathname + '?' + p.toString();
+    return location.origin + location.pathname;
   }
 
   /* ── 이벤트 ── */
   document.querySelectorAll('#langSeg button').forEach(function (b) {
-    b.addEventListener('click', function () { state.lang = b.getAttribute('data-lang'); store('bb_lang', state.lang); render(); });
+    b.addEventListener('click', function () { state.lang = b.getAttribute('data-lang'); saveLang(state.lang); render(); });
   });
   $('sizeBtn').addEventListener('click', function () {
     state.size = state.size % 3 + 1; store('bb_size', String(state.size)); renderStatic(); measure();
