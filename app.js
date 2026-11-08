@@ -566,6 +566,7 @@
   // 처음 방문한 분께만 글씨 크기 안내를 한 번 보여 줌
   if (!store('bb_hint') && state.size === 1) {
     $('sizeHint').hidden = false;
+    setTimeout(function () { store('bb_hint', '1'); }, 5000);   // 5초 이상 보였으면 읽은 것으로 기억
     setTimeout(function () { $('sizeHint').hidden = true; }, 12000);
   }
   $('sizeHintClose').addEventListener('click', function () { $('sizeHint').hidden = true; store('bb_hint', '1'); });
