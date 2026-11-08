@@ -6,7 +6,7 @@
 
   var T = {
     ko: {
-      bulletin: '주일 모바일 주보', textSize: '큰 글씨', themeN: { auto: '화면: 자동', light: '화면: 밝게', dark: '화면: 어둡게' }, textSizeN: ['보통 글씨', '큰 글씨', '아주 큰 글씨'],
+      bulletin: '주일 모바일 주보', textSize: '글씨 크기', sizeHint: '글씨가 작으면 오른쪽 위 「가 가 가」에서 큰 글씨를 누르세요', ok: '알겠어요', themeN: { auto: '화면: 자동', light: '화면: 밝게', dark: '화면: 어둡게' }, textSizeN: ['보통 글씨', '큰 글씨', '아주 큰 글씨'],
       prev: '지난주', next: '다음주', latest: '최신 주보', thisWeek: '이번 주일',
       sermon: '주일 말씀', scripture: '본문', preacher: '설교', hymns: '찬양', order: '예배 순서 전체 보기',
       memory: '이번 주 암송 말씀', practice: '암송 연습', practiceHint: '가려진 단어를 눌러서 확인해 보세요.',
@@ -23,7 +23,7 @@
       meetings: '정기 모임', monthlyServe: '이달의 봉사', thisWeekServe: '이번 주', nextWeekServe: '다음 주', today: '오늘',
     },
     en: {
-      bulletin: 'Sunday Mobile Bulletin', textSize: 'Large text', themeN: { auto: 'Theme: Auto', light: 'Theme: Light', dark: 'Theme: Dark' }, textSizeN: ['Normal text', 'Large text', 'Extra large'],
+      bulletin: 'Sunday Mobile Bulletin', textSize: 'Text size', sizeHint: 'Text too small? Tap a bigger “A” at the top right.', ok: 'Got it', themeN: { auto: 'Theme: Auto', light: 'Theme: Light', dark: 'Theme: Dark' }, textSizeN: ['Normal text', 'Large text', 'Extra large'],
       prev: 'Prev', next: 'Next', latest: 'Latest bulletin', thisWeek: 'This Sunday',
       sermon: "Sunday Message", scripture: 'Scripture', preacher: 'Speaker', hymns: 'Hymns & Songs', order: 'Full order of worship',
       memory: 'Memory Verse of the Week', practice: 'Practice', practiceHint: 'Tap a hidden word to reveal it.',
@@ -40,7 +40,7 @@
       meetings: 'Regular meetings', monthlyServe: 'This month', thisWeekServe: 'This week', nextWeekServe: 'Next week', today: 'Today',
     },
     es: {
-      bulletin: 'Boletín Dominical Móvil', textSize: 'Letra grande', themeN: { auto: 'Tema: automático', light: 'Tema: claro', dark: 'Tema: oscuro' }, textSizeN: ['Letra normal', 'Letra grande', 'Letra muy grande'],
+      bulletin: 'Boletín Dominical Móvil', textSize: 'Tamaño de letra', sizeHint: '¿Letra pequeña? Toque una “A” más grande arriba a la derecha.', ok: 'Entendido', themeN: { auto: 'Tema: automático', light: 'Tema: claro', dark: 'Tema: oscuro' }, textSizeN: ['Letra normal', 'Letra grande', 'Letra muy grande'],
       prev: 'Anterior', next: 'Siguiente', latest: 'Boletín más reciente', thisWeek: 'Este domingo',
       sermon: 'Mensaje Dominical', scripture: 'Texto', preacher: 'Predicador', hymns: 'Himnos y alabanzas', order: 'Orden del culto completo',
       memory: 'Versículo para memorizar', practice: 'Practicar', practiceHint: 'Toca una palabra oculta para verla.',
@@ -276,11 +276,15 @@
     document.querySelectorAll('[data-ico]').forEach(function (el) { el.innerHTML = ICONS[el.getAttribute('data-ico')] || ''; el.setAttribute('aria-hidden', 'true'); });
     document.querySelectorAll('#langSeg button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-lang') === L)); });
     $('serveSearch').placeholder = t('findPh');
-    var sb = $('sizeBtn');
-    sb.querySelector('.size-glyph').setAttribute('data-plus', state.size === 1 ? '' : state.size === 2 ? '+' : '++');
-    sb.querySelector('.size-glyph').textContent = L === 'ko' ? '가' : 'A';
-    sb.querySelector('.size-label').textContent = T[L].textSizeN[state.size % 3];
-    sb.setAttribute('aria-label', T[L].textSizeN[state.size - 1] + ' → ' + T[L].textSizeN[state.size % 3]);
+    $('sizeSeg').setAttribute('aria-label', T[L].textSize);
+    $('sizeSeg').setAttribute('title', T[L].textSize);
+    document.querySelectorAll('#sizeSeg button').forEach(function (bt) {
+      var n = Number(bt.getAttribute('data-size'));
+      bt.setAttribute('aria-pressed', String(n === state.size));
+      bt.setAttribute('aria-label', T[L].textSizeN[n - 1]);
+      bt.querySelector('.g').textContent = L === 'ko' ? '가' : 'A';
+    });
+    $('sizeHintText').textContent = T[L].sizeHint;
     document.documentElement.setAttribute('data-size', String(state.size));
   }
 
@@ -550,10 +554,21 @@
   document.querySelectorAll('#langSeg button').forEach(function (b) {
     b.addEventListener('click', function () { state.lang = b.getAttribute('data-lang'); saveLang(state.lang); render(); });
   });
-  $('sizeBtn').addEventListener('click', function () {
-    state.size = state.size % 3 + 1; store('bb_size', String(state.size)); renderStatic(); measure();
-    toast(T[state.lang].textSizeN[state.size - 1]);
+  document.querySelectorAll('#sizeSeg button').forEach(function (bt) {
+    bt.addEventListener('click', function () {
+      state.size = Number(bt.getAttribute('data-size'));
+      store('bb_size', String(state.size));
+      store('bb_hint', '1'); $('sizeHint').hidden = true;
+      renderStatic(); measure();
+      toast(T[state.lang].textSizeN[state.size - 1]);
+    });
   });
+  // 처음 방문한 분께만 글씨 크기 안내를 한 번 보여 줌
+  if (!store('bb_hint') && state.size === 1) {
+    $('sizeHint').hidden = false;
+    setTimeout(function () { $('sizeHint').hidden = true; }, 12000);
+  }
+  $('sizeHintClose').addEventListener('click', function () { $('sizeHint').hidden = true; store('bb_hint', '1'); });
   $('prevWeek').addEventListener('click', function () { var i = state.weeks.indexOf(state.week); if (i < state.weeks.length - 1) load(state.weeks[i + 1]); });
   $('nextWeek').addEventListener('click', function () { var i = state.weeks.indexOf(state.week); if (i > 0) load(state.weeks[i - 1]); });
   $('practiceBtn').addEventListener('click', function () { state.practice = !state.practice; renderVerse(field('memoryVerseText').v || ''); });
