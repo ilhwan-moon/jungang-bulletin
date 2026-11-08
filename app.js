@@ -6,7 +6,7 @@
 
   var T = {
     ko: {
-      bulletin: '주일 모바일 주보', textSize: '큰 글씨', textSizeN: ['보통 글씨', '큰 글씨', '아주 큰 글씨'],
+      bulletin: '주일 모바일 주보', textSize: '큰 글씨', themeN: { auto: '화면: 자동', light: '화면: 밝게', dark: '화면: 어둡게' }, textSizeN: ['보통 글씨', '큰 글씨', '아주 큰 글씨'],
       prev: '지난주', next: '다음주', latest: '최신 주보', thisWeek: '이번 주일',
       sermon: '주일 말씀', scripture: '본문', preacher: '설교', hymns: '찬양', order: '예배 순서 전체 보기',
       memory: '이번 주 암송 말씀', practice: '암송 연습', practiceHint: '가려진 단어를 눌러서 확인해 보세요.',
@@ -23,7 +23,7 @@
       meetings: '정기 모임', monthlyServe: '이달의 봉사', thisWeekServe: '이번 주', nextWeekServe: '다음 주', today: '오늘',
     },
     en: {
-      bulletin: 'Sunday Mobile Bulletin', textSize: 'Large text', textSizeN: ['Normal text', 'Large text', 'Extra large'],
+      bulletin: 'Sunday Mobile Bulletin', textSize: 'Large text', themeN: { auto: 'Theme: Auto', light: 'Theme: Light', dark: 'Theme: Dark' }, textSizeN: ['Normal text', 'Large text', 'Extra large'],
       prev: 'Prev', next: 'Next', latest: 'Latest bulletin', thisWeek: 'This Sunday',
       sermon: "Sunday Message", scripture: 'Scripture', preacher: 'Speaker', hymns: 'Hymns & Songs', order: 'Full order of worship',
       memory: 'Memory Verse of the Week', practice: 'Practice', practiceHint: 'Tap a hidden word to reveal it.',
@@ -40,7 +40,7 @@
       meetings: 'Regular meetings', monthlyServe: 'This month', thisWeekServe: 'This week', nextWeekServe: 'Next week', today: 'Today',
     },
     es: {
-      bulletin: 'Boletín Dominical Móvil', textSize: 'Letra grande', textSizeN: ['Letra normal', 'Letra grande', 'Letra muy grande'],
+      bulletin: 'Boletín Dominical Móvil', textSize: 'Letra grande', themeN: { auto: 'Tema: automático', light: 'Tema: claro', dark: 'Tema: oscuro' }, textSizeN: ['Letra normal', 'Letra grande', 'Letra muy grande'],
       prev: 'Anterior', next: 'Siguiente', latest: 'Boletín más reciente', thisWeek: 'Este domingo',
       sermon: 'Mensaje Dominical', scripture: 'Texto', preacher: 'Predicador', hymns: 'Himnos y alabanzas', order: 'Orden del culto completo',
       memory: 'Versículo para memorizar', practice: 'Practicar', practiceHint: 'Toca una palabra oculta para verla.',
@@ -71,6 +71,9 @@
     qr: '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 20h4v-3"/></svg>',
     clock: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
     book: '<svg viewBox="0 0 24 24"><path d="M2 5.5c3-1.5 7-1.5 10 1 3-2.5 7-2.5 10-1V19c-3-1.5-7-1.5-10 1-3-2.5-7-2.5-10-1z"/><path d="M12 6.5V20"/></svg>',
+    sun: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8L6 18M18 6l1.8-1.8"/></svg>',
+    moon: '<svg viewBox="0 0 24 24"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg>',
+    auto: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg>',
     up: '<svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>',
     ext: '<svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v4.5A1.5 1.5 0 0 1 16.5 20h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6H10"/></svg>',
   };
@@ -232,8 +235,38 @@
   function split(s) { return String(s).split(/\s*\|\s*/); }
 
   /* ── 화면 그리기 ── */
+  /* ── 화면 모드: 자동(휴대폰 설정 따름) → 밝게 → 어둡게 ── */
+  function themeMode() { var m = store('bb_theme') || ((document.cookie.match(/(?:^|;\s*)bb_theme=(light|dark|auto)/) || [])[1]); return m === 'light' || m === 'dark' ? m : 'auto'; }
+  function applyTheme(m) {
+    if (m === 'auto') document.documentElement.removeAttribute('data-theme'); else document.documentElement.setAttribute('data-theme', m);
+    var dark = m === 'dark' || (m === 'auto' && window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches);
+    var meta = document.querySelector('meta[name="theme-color"]'); if (meta) meta.setAttribute('content', dark ? '#17394a' : '#1f4e5f');
+    $('themeIco').innerHTML = ICONS[m === 'light' ? 'sun' : m === 'dark' ? 'moon' : 'auto'];
+    $('themeLabel').textContent = T[state.lang].themeN[m];
+    $('themeBtn').setAttribute('title', T[state.lang].themeN[m]);
+    $('themeBtn').setAttribute('aria-label', T[state.lang].themeN[m]);
+  }
+
+  /* ── 아래 메뉴: 지금 보고 있는 칸 표시 ── */
+  var activeSec = 'sec-sermon', secObserver = null;
+  function observeSections(items) {
+    if (!('IntersectionObserver' in window)) return;
+    if (secObserver) secObserver.disconnect();
+    secObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        activeSec = en.target.id;
+        document.querySelectorAll('#bottomnav a').forEach(function (a) {
+          if (a.getAttribute('data-sec') === activeSec) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+        });
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    items.forEach(function (n) { secObserver.observe($(n[1])); });
+  }
+
   function renderStatic() {
     var L = state.lang;
+    applyTheme(themeMode());
     document.documentElement.lang = L;
     var church = CFG.CHURCH_NAME || (state.resp && state.resp.church) || {};
     var cname = church[L] || church.ko || '';
@@ -378,10 +411,15 @@
     $('rawText').textContent = raw || '';
     $('sec-original').hidden = !btns && !raw;
 
-    // 바로가기
-    $('quicknav').innerHTML = NAV.filter(function (n) { return !$(n[1]).hidden; }).map(function (n) {
+    // 바로가기 (위쪽 + 아래쪽 메뉴)
+    var navItems = NAV.filter(function (n) { return !$(n[1]).hidden; });
+    $('quicknav').innerHTML = navItems.map(function (n) {
       return '<a href="#' + n[1] + '">' + ico(n[2]) + '<span>' + esc(T[L].nav[n[0]]) + '</span></a>';
     }).join('');
+    $('bottomnav').innerHTML = navItems.map(function (n) {
+      return '<a href="#' + n[1] + '" data-sec="' + n[1] + '"' + (n[1] === activeSec ? ' aria-current="true"' : '') + '>' + ico(n[2]) + '<span>' + esc(T[L].nav[n[0]]) + '</span></a>';
+    }).join('');
+    observeSections(navItems);
 
     // 하단
     var r = state.resp || {};
@@ -522,6 +560,14 @@
   $('memoryText').addEventListener('click', function (e) { if (e.target.classList.contains('h')) e.target.classList.remove('h'); });
   $('memoryText').addEventListener('keydown', function (e) { if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('h')) { e.preventDefault(); e.target.classList.remove('h'); } });
   $('serveSearch').addEventListener('input', filterServe);
+  $('themeBtn').addEventListener('click', function () {
+    var next = { auto: 'light', light: 'dark', dark: 'auto' }[themeMode()];
+    store('bb_theme', next);
+    try { document.cookie = 'bb_theme=' + next + '; max-age=31536000; path=/; SameSite=Lax'; } catch (e) {}
+    applyTheme(next);
+    toast(T[state.lang].themeN[next]);
+  });
+  if (window.matchMedia) { var mq = matchMedia('(prefers-color-scheme: dark)'); if (mq.addEventListener) mq.addEventListener('change', function () { applyTheme(themeMode()); }); }
   $('shareBtn').addEventListener('click', function () {
     var url = shareUrl();
     var title = document.title;

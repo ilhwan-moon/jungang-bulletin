@@ -283,3 +283,20 @@ dialog::backdrop { background: rgba(0,0,0,.5); }
   .si-row { grid-template-columns: 1fr; gap: .15rem; }
   .si-row .wk b { display: inline; margin-left: .3em; }
 }
+
+/* ── 화면 모드 버튼 ── */
+.theme-btn { display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface-2); color: var(--ink); cursor: pointer; flex: none; }
+.theme-btn .ico svg { width: 22px; height: 22px; }
+
+/* ── 아래쪽 고정 메뉴 (글씨 크기와 상관없이 한 줄에 맞도록 px 사용) ── */
+body { padding-bottom: calc(72px + env(safe-area-inset-bottom)); }
+.bottomnav { position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; display: flex; justify-content: center; background: var(--surface); border-top: 1px solid var(--line); box-shadow: 0 -4px 16px rgba(0,0,0,.08); padding: 4px 4px calc(4px + env(safe-area-inset-bottom)); }
+.bottomnav:empty { display: none; }
+.bottomnav a { flex: 1 1 0; max-width: 120px; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 60px; padding: 4px 2px; border-radius: 12px; text-decoration: none; color: var(--muted); font-size: 12.5px; font-weight: 700; line-height: 1.15; text-align: center; }
+.bottomnav a span { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bottomnav a .ico svg { width: 25px; height: 25px; }
+.bottomnav a[aria-current="true"] { color: var(--primary); background: color-mix(in srgb, var(--primary) 12%, transparent); }
+html[data-size="2"] .bottomnav a, html[data-size="3"] .bottomnav a { font-size: 13.5px; }
+.toast { bottom: calc(88px + env(safe-area-inset-bottom)); }
+@media print { .bottomnav, .theme-btn { display: none !important; } body { padding-bottom: 0; } }
+@media (max-width: 380px) { .brand img { display: none; } }
