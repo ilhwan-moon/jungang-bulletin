@@ -41,18 +41,65 @@ def rel_to_iso(txt):
     secs = {"second": 1, "minute": 60, "hour": 3600, "day": 86400, "week": 604800, "month": 2592000, "year": 31536000}[unit]
     return (datetime.now(timezone.utc) - timedelta(seconds=n * secs)).replace(microsecond=0).isoformat()
 
+def _walk(o, found):
+    if isinstance(o, dict):
+        if "lockupViewModel" in o:
+            found.append(("lockup", o["lockupViewModel"]))
+        if "videoRenderer" in o:
+            found.append(("renderer", o["videoRenderer"]))
+        for v in o.values():
+            _walk(v, found)
+    elif isinstance(o, list):
+        for v in o:
+            _walk(v, found)
+
+def _texts(o, acc):
+    if isinstance(o, dict):
+        for k, v in o.items():
+            if k in ("accessibilityLabel", "content", "simpleText") and isinstance(v, str):
+                acc.append(v)
+            else:
+                _texts(v, acc)
+    elif isinstance(o, list):
+        for v in o:
+            _texts(v, acc)
+    return acc
+
 def from_page():
     out = []
+    now = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
     for tab in ("streams", "videos"):
         try:
             html = get(f"https://www.youtube.com/@{HANDLE}/{tab}").decode("utf-8", "replace")
+            m = re.search(r"var ytInitialData\s*=\s*(\{.*?\});\s*</script>", html, re.S)
+            data = json.loads(m.group(1))
         except Exception as ex:
             print(f"page {tab} failed: {ex}", file=sys.stderr)
             continue
-        for m in re.finditer(r'"videoRenderer":\{"videoId":"([\w-]{11})".*?"title":\{"runs":\[\{"text":"(.*?)"\}\].*?"publishedTimeText":\{"simpleText":"(.*?)"\}', html):
-            vid, title, when = m.group(1), json.loads('"' + m.group(2) + '"'), m.group(3)
-            iso = rel_to_iso(when)
-            if iso and not any(v["id"] == vid for v in out):
+        found = []
+        _walk(data, found)
+        for kind, o in found:
+            if kind == "lockup":
+                if o.get("contentType") != "LOCKUP_CONTENT_TYPE_VIDEO":
+                    continue
+                vid = o.get("contentId")
+                md = (o.get("metadata") or {}).get("lockupMetadataViewModel") or {}
+                title = ((md.get("title") or {}).get("content") or "").strip()
+                texts = _texts(md.get("metadata"), [])
+            else:
+                vid = o.get("videoId")
+                title = "".join(r.get("text", "") for r in (o.get("title") or {}).get("runs", []))
+                texts = _texts(o.get("publishedTimeText"), []) + _texts(o.get("viewCountText"), [])
+            if not vid or any(v["id"] == vid for v in out):
+                continue
+            iso = None
+            for t in texts:
+                iso = rel_to_iso(t)
+                if iso:
+                    break
+            if not iso and any(re.search(r"watching|streaming now|live", t, re.I) for t in texts):
+                iso = now   # 지금 라이브 중
+            if iso:
                 out.append({"id": vid, "title": title, "published": iso, "approx": True})
     out.sort(key=lambda v: v["published"], reverse=True)
     return out[:20]
