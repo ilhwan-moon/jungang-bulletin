@@ -9,7 +9,7 @@ window.BULLETIN_CONFIG = {
   // 처음 열었을 때 기본 언어: 'auto'(휴대폰 언어 따라감) | 'ko' | 'en' | 'es'
   DEFAULT_LANG: 'auto',
 
-  CHURCH_NAME: { ko: 'LA 중앙교회', en: 'LA Central Church', es: 'Iglesia Central de LA' },
+  CHURCH_NAME: { ko: 'LA 중앙교회', en: 'LA Central Church', es: 'LA Central Church' },
 
   // 하단에 보일 교회 정보 (비워 두면 숨김)
   ADDRESS: '',

@@ -15,7 +15,7 @@ const CONFIG = {
   FOLDER_ID: '19HEEkhf4BLC8tjOvx7Lg3dJsVbKHyFn9', // 주보 폴더
   START_DATE: '2026-11-08',                       // 이 날짜(주일)부터 표시
   TIMEZONE: 'America/Los_Angeles',
-  CHURCH_NAME: { ko: 'LA 중앙교회', en: 'LA Central Church', es: 'Iglesia Central de LA' },
+  CHURCH_NAME: { ko: 'LA 중앙교회', en: 'LA Central Church', es: 'LA Central Church' },
   SHARE_FILES_PUBLICLY: true, // 원본 주보 파일을 "링크가 있는 모든 사용자 보기"로 공유 (원본 보기 버튼용)
   CHECK_DAYS: [6, 0],         // 확인 요일: 6=토, 0=일
   CACHE_SECONDS: 120,
