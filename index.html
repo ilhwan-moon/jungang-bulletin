@@ -41,12 +41,19 @@
           <button type="button" data-lang="es" lang="es">ES</button>
         </div>
         <button type="button" class="theme-btn" id="themeBtn"><span class="ico" id="themeIco" aria-hidden="true"></span><span class="sr" id="themeLabel"></span></button>
-        <button type="button" class="size-btn" id="sizeBtn" aria-live="polite">
-          <span class="size-glyph" aria-hidden="true">가</span><span class="size-label" data-i18n="textSize"></span>
-        </button>
+        <div class="sizeseg" role="group" id="sizeSeg">
+          <button type="button" data-size="1"><span class="g g1" aria-hidden="true">가</span></button>
+          <button type="button" data-size="2"><span class="g g2" aria-hidden="true">가</span></button>
+          <button type="button" data-size="3"><span class="g g3" aria-hidden="true">가</span></button>
+        </div>
       </div>
     </div>
   </header>
+
+  <div class="size-hint" id="sizeHint" hidden>
+    <span id="sizeHintText"></span>
+    <button type="button" id="sizeHintClose" data-i18n="ok"></button>
+  </div>
 
   <div class="weekbar">
     <button type="button" class="wk-arrow" id="prevWeek"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg><span data-i18n="prev"></span></button>

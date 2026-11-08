@@ -303,3 +303,20 @@ html[data-size="2"] .bottomnav a, html[data-size="3"] .bottomnav a { font-size: 
 /* 위쪽 바로가기는 아래 고정 메뉴로 대체 (다시 쓰려면 이 줄 삭제) */
 .quicknav { display: none !important; }
 .grid { margin-top: 14px; }
+
+/* ── 글씨 크기: 가 가 가 (작게·보통·크게) — 머리 부분은 px 고정이라 글씨를 키워도 한 줄 유지 ── */
+.controls { flex-wrap: nowrap; }
+.seg button { font-size: 15px; }
+.sizeseg { display: inline-flex; align-items: stretch; background: var(--surface-2); border: 2px solid var(--primary); border-radius: 14px; padding: 2px; gap: 2px; }
+.sizeseg button { display: grid; place-items: center; width: 42px; min-height: 44px; border: 0; border-radius: 10px; background: transparent; color: var(--primary); cursor: pointer; font-weight: 800; line-height: 1; padding: 0; }
+.sizeseg .g1 { font-size: 14px; }
+.sizeseg .g2 { font-size: 19px; }
+.sizeseg .g3 { font-size: 25px; }
+.sizeseg button[aria-pressed="true"] { background: var(--primary); color: var(--primary-ink); }
+.theme-btn { width: 44px; height: 44px; }
+.size-hint { position: sticky; top: var(--topbar-h, 66px); z-index: 18; display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 0; padding: 10px 16px; background: #fff3c4; color: #3b2f00; font-weight: 700; font-size: 16px; line-height: 1.4; border-bottom: 1px solid #e6d58a; }
+.size-hint button { flex: none; min-height: 40px; padding: 0 14px; border-radius: 10px; border: 0; background: #3b2f00; color: #fff3c4; font-weight: 800; cursor: pointer; }
+@media (max-width: 400px) { .seg button { padding: .4rem .5rem; font-size: 14px; } .sizeseg button { width: 38px; } .controls { gap: 6px; } }
+@media (max-width: 360px) { .seg button { padding: .4rem .4rem; font-size: 13px; } .sizeseg button { width: 33px; } .theme-btn { width: 40px; height: 40px; } .controls { gap: 4px; } .topbar-inner { padding: 8px 10px; } }
+.brand-name { font-size: 18px; } .brand-sub { font-size: 12.5px; }
+html, body { overflow-x: clip; }
