@@ -19,7 +19,7 @@
       fallback: '{lang} 주보가 아직 없어 {other}(으)로 보여 드립니다.', demo: '예시 화면입니다. 실제 주보가 연결되면 자동으로 바뀝니다.',
       offline: '인터넷 연결이 없어 저장된 주보를 보여 드립니다.', loading: '불러오는 중…', noName: '찾는 이름이 없습니다.',
       fromLang: '({lang})', sundayFmt: '{date} 주일',
-      location: '장소', serviceTimes: '예배 시간', fellowship: '예배 후 교제', memoryNext: '다음 주 암송 미리 보기', readings: '이번 주 묵상 말씀',
+      location: '장소', serviceTimes: '예배 시간', fellowship: '예배 후 교제', memoryNext: '다음 주 암송 미리 보기', memoryLast: '지난주 암송 다시 보기', readings: '이번 주 묵상 말씀',
       meetings: '정기 모임', thisWeekServe: '이번 주', nextWeekServe: '다음 주', today: '오늘',
     },
     en: {
@@ -36,7 +36,7 @@
       fallback: 'No {lang} bulletin yet — showing {other}.', demo: 'Sample preview. It will switch to the real bulletin once connected.',
       offline: "You're offline — showing the saved bulletin.", loading: 'Loading…', noName: 'No matching name.',
       fromLang: '({lang})', sundayFmt: '{date}',
-      location: 'Location', serviceTimes: 'Service times', fellowship: 'After service', memoryNext: 'Preview next week’s verse', readings: 'This Week’s Meditation Chapters',
+      location: 'Location', serviceTimes: 'Service times', fellowship: 'After service', memoryNext: 'Preview next week’s verse', memoryLast: 'Review last week’s verse', readings: 'This Week’s Meditation Chapters',
       meetings: 'Regular meetings', thisWeekServe: 'This week', nextWeekServe: 'Next week', today: 'Today',
     },
     es: {
@@ -53,7 +53,7 @@
       fallback: 'Aún no hay boletín en {lang}; se muestra en {other}.', demo: 'Vista de ejemplo. Cambiará al boletín real cuando esté conectado.',
       offline: 'Sin conexión: se muestra el boletín guardado.', loading: 'Cargando…', noName: 'No se encontró el nombre.',
       fromLang: '({lang})', sundayFmt: '{date}',
-      location: 'Lugar', serviceTimes: 'Horario', fellowship: 'Después del culto', memoryNext: 'Ver versículo de la próxima semana', readings: 'Lectura de la semana',
+      location: 'Lugar', serviceTimes: 'Horario', fellowship: 'Después del culto', memoryNext: 'Ver versículo de la próxima semana', memoryLast: 'Repasar versículo de la semana pasada', readings: 'Lectura de la semana',
       meetings: 'Reuniones regulares', thisWeekServe: 'Esta semana', nextWeekServe: 'Próxima semana', today: 'Hoy',
     },
   };
@@ -322,6 +322,10 @@
     var th = field('memoryVerseTheme');
     $('memoryTheme').textContent = th.v || '';
     $('memoryTheme').hidden = !has(th.v);
+    var lt = field('memoryLastText'), lr = field('memoryLastRef');
+    $('memoryLastBlock').hidden = !has(lt.v);
+    $('memoryLastText').textContent = lt.v || '';
+    $('memoryLastRef').textContent = has(lr.v) ? '— ' + nbh(lr.v) : '';
     var nt = field('memoryNextText'), nr = field('memoryNextRef');
     $('memoryNextBlock').hidden = !has(nt.v);
     $('memoryNextText').textContent = nt.v || '';
