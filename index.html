@@ -16,6 +16,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script>
+    // 화면 깜빡임 없이 저장된 화면 모드(밝게/어둡게) 먼저 적용
+    (function () { try { var m = localStorage.getItem('bb_theme') || ((document.cookie.match(/(?:^|;\s*)bb_theme=(light|dark)/) || [])[1]); if (m === 'light' || m === 'dark') document.documentElement.setAttribute('data-theme', m); } catch (e) {} })();
+  </script>
   <script src="config.js"></script>
 </head>
 <body>
@@ -36,6 +40,7 @@
           <button type="button" data-lang="en" lang="en">EN</button>
           <button type="button" data-lang="es" lang="es">ES</button>
         </div>
+        <button type="button" class="theme-btn" id="themeBtn"><span class="ico" id="themeIco" aria-hidden="true"></span><span class="sr" id="themeLabel"></span></button>
         <button type="button" class="size-btn" id="sizeBtn" aria-live="polite">
           <span class="size-glyph" aria-hidden="true">가</span><span class="size-label" data-i18n="textSize"></span>
         </button>
@@ -187,6 +192,8 @@
       <button type="button" class="btn" id="qrClose" data-i18n="close"></button>
     </div>
   </dialog>
+
+  <nav class="bottomnav" id="bottomnav" aria-label="Menu"></nav>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
