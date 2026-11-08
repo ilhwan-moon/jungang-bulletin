@@ -11,7 +11,11 @@
   <meta property="og:description" content="주일 말씀 · 찬양 · 암송 · 교회 소식 · 봉사 안내">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="icon.svg">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="중앙교회 주보">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet">
@@ -182,6 +186,10 @@
 
   <footer class="foot">
     <div class="wrap foot-inner">
+      <button type="button" class="install-btn" id="installBtn" hidden>
+        <span class="ico" data-ico="phone"></span>
+        <span class="install-txt"><b data-i18n="installTitle"></b><small data-i18n="installSub"></small></span>
+      </button>
       <div class="foot-actions">
         <button type="button" class="btn" id="shareBtn"><span class="ico" data-ico="share"></span><span data-i18n="share"></span></button>
         <button type="button" class="btn" id="qrBtn"><span class="ico" data-ico="qr"></span><span data-i18n="qr"></span></button>
@@ -202,6 +210,14 @@
   </dialog>
 
   <nav class="bottomnav" id="bottomnav" aria-label="Menu"></nav>
+
+  <dialog id="installDialog">
+    <div class="ins-box">
+      <p class="ins-title" id="insTitle"></p>
+      <ol class="ins-steps" id="insSteps"></ol>
+      <button type="button" class="btn primary" id="insClose" data-i18n="ok"></button>
+    </div>
+  </dialog>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
