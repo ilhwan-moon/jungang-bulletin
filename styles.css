@@ -256,3 +256,4 @@ dialog::backdrop { background: rgba(0,0,0,.5); }
   .serve-list li { grid-template-columns: 1fr; gap: .1rem; }
   .serve-role { font-size: .92rem; }
 }
+.next-verse + .next-verse { margin-top: 0; }

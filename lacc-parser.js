@@ -56,7 +56,7 @@
   function empty() {
     return {
       sermonTitle: '', scripture: '', preacher: '', sermonLocation: '', fellowship: '', serviceTimes: [], hymns: [],
-      memoryVerseRef: '', memoryVerseText: '', memoryVerseTheme: '', memoryNextRef: '', memoryNextText: '',
+      memoryVerseRef: '', memoryVerseText: '', memoryVerseTheme: '', memoryNextRef: '', memoryNextText: '', memoryLastRef: '', memoryLastText: '',
       announcements: [], schedule: [], meetings: [], volunteers: [], volunteersNext: [], readings: [],
       address: '', phone: '',
     };
@@ -355,7 +355,8 @@
       return { text: clean(text), ref: refLine ? refLine.replace(/^\(|\)$/g, '') : '' };
     }
     each(out, function (o, lang) {
-      var t = verse(blocks['this'], lang), n = verse(blocks['next'], lang);
+      var t = verse(blocks['this'], lang), n = verse(blocks['next'], lang), p = verse(blocks['last'], lang);
+      o.memoryLastText = p.text; o.memoryLastRef = p.ref;
       o.memoryVerseText = t.text; o.memoryVerseRef = t.ref;
       o.memoryNextText = n.text; o.memoryNextRef = n.ref;
       if (blocks['this']) o.memoryVerseTheme = theme(blocks['this'].head, lang);
