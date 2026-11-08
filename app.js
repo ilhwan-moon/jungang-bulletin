@@ -20,7 +20,10 @@
       offline: '인터넷 연결이 없어 저장된 주보를 보여 드립니다.', loading: '불러오는 중…', noName: '찾는 이름이 없습니다.',
       fromLang: '({lang})', sundayFmt: '{date} 주일',
       location: '장소', serviceTimes: '예배 시간', fellowship: '예배 후 교제', memoryNext: '다음 주 암송 미리 보기', memoryLast: '지난주 암송 다시 보기', readings: '이번 주 묵상 말씀',
-      meetings: '정기 모임', watchVideo: '주일말씀 영상 보기', watchLive: '지금 라이브로 보기', ytChannel: '교회 유튜브 채널 보기', ytOpen: '누르면 유튜브로 연결됩니다', monthlyServe: '이달의 봉사', thisWeekServe: '이번 주', nextWeekServe: '다음 주', today: '오늘',
+      meetings: '정기 모임', installTitle: '휴대폰 홈 화면에 주보 추가', installSub: '앱처럼 한 번에 열 수 있어요', installed: '홈 화면에 추가되었습니다',
+      iosTitle: '아이폰 홈 화면에 추가하기', iosSteps: ['화면 아래(또는 위)의 <b>공유 버튼</b> {share} 을 누르세요', '목록을 올려서 <b>「홈 화면에 추가」</b>를 누르세요', '오른쪽 위 <b>「추가」</b>를 누르면 끝!'],
+      andTitle: '홈 화면에 추가하기', andSteps: ['오른쪽 위 <b>메뉴 ⋮</b> 를 누르세요', '<b>「홈 화면에 추가」</b> 또는 <b>「앱 설치」</b>를 누르세요', '<b>「추가」</b>를 누르면 끝!'],
+      inappTitle: '먼저 사파리/크롬으로 열어 주세요', inappSteps: ['오른쪽 위(또는 아래) <b>메뉴</b>를 누르세요', '<b>「다른 브라우저로 열기」</b> 또는 <b>「Safari로 열기」</b>를 누르세요', '열린 화면에서 이 버튼을 다시 누르세요'], watchVideo: '주일말씀 영상 보기', watchLive: '지금 라이브로 보기', ytChannel: '교회 유튜브 채널 보기', ytOpen: '누르면 유튜브로 연결됩니다', monthlyServe: '이달의 봉사', thisWeekServe: '이번 주', nextWeekServe: '다음 주', today: '오늘',
     },
     en: {
       bulletin: 'Sunday Mobile Bulletin', textSize: 'Text size', sizeHint: 'Text too small? Tap a bigger “A” at the top right.', ok: 'Got it', themeN: { auto: 'Theme: Auto', light: 'Theme: Light', dark: 'Theme: Dark' }, textSizeN: ['Normal text', 'Large text', 'Extra large'],
@@ -37,7 +40,10 @@
       offline: "You're offline — showing the saved bulletin.", loading: 'Loading…', noName: 'No matching name.',
       fromLang: '({lang})', sundayFmt: '{date}',
       location: 'Location', serviceTimes: 'Service times', fellowship: 'After service', memoryNext: 'Preview next week’s verse', memoryLast: 'Review last week’s verse', readings: 'This Week’s Meditation Chapters',
-      meetings: 'Regular meetings', watchVideo: 'Watch the sermon', watchLive: 'Watch live now', ytChannel: 'Church YouTube channel', ytOpen: 'Opens in YouTube', monthlyServe: 'This month', thisWeekServe: 'This week', nextWeekServe: 'Next week', today: 'Today',
+      meetings: 'Regular meetings', installTitle: 'Add bulletin to Home Screen', installSub: 'Open it like an app, in one tap', installed: 'Added to Home Screen',
+      iosTitle: 'Add to iPhone Home Screen', iosSteps: ['Tap the <b>Share button</b> {share} at the bottom (or top)', 'Scroll and tap <b>“Add to Home Screen”</b>', 'Tap <b>“Add”</b> at the top right. Done!'],
+      andTitle: 'Add to Home Screen', andSteps: ['Tap the <b>menu ⋮</b> at the top right', 'Tap <b>“Add to Home screen”</b> or <b>“Install app”</b>', 'Tap <b>“Add”</b>. Done!'],
+      inappTitle: 'Please open in Safari/Chrome first', inappSteps: ['Tap the <b>menu</b> at the top (or bottom) right', 'Tap <b>“Open in browser”</b> or <b>“Open in Safari”</b>', 'Then tap this button again'], watchVideo: 'Watch the sermon', watchLive: 'Watch live now', ytChannel: 'Church YouTube channel', ytOpen: 'Opens in YouTube', monthlyServe: 'This month', thisWeekServe: 'This week', nextWeekServe: 'Next week', today: 'Today',
     },
     es: {
       bulletin: 'Boletín Dominical Móvil', textSize: 'Tamaño de letra', sizeHint: '¿Letra pequeña? Toque una “A” más grande arriba a la derecha.', ok: 'Entendido', themeN: { auto: 'Tema: automático', light: 'Tema: claro', dark: 'Tema: oscuro' }, textSizeN: ['Letra normal', 'Letra grande', 'Letra muy grande'],
@@ -54,7 +60,10 @@
       offline: 'Sin conexión: se muestra el boletín guardado.', loading: 'Cargando…', noName: 'No se encontró el nombre.',
       fromLang: '({lang})', sundayFmt: '{date}',
       location: 'Lugar', serviceTimes: 'Horario', fellowship: 'Después del culto', memoryNext: 'Ver versículo de la próxima semana', memoryLast: 'Repasar versículo de la semana pasada', readings: 'Lectura de la semana',
-      meetings: 'Reuniones regulares', watchVideo: 'Ver el sermón', watchLive: 'Ver en vivo ahora', ytChannel: 'Canal de YouTube de la iglesia', ytOpen: 'Se abre en YouTube', monthlyServe: 'Este mes', thisWeekServe: 'Esta semana', nextWeekServe: 'Próxima semana', today: 'Hoy',
+      meetings: 'Reuniones regulares', installTitle: 'Agregar boletín a la pantalla de inicio', installSub: 'Ábralo como una app, con un toque', installed: 'Agregado a la pantalla de inicio',
+      iosTitle: 'Agregar a la pantalla de inicio del iPhone', iosSteps: ['Toque el <b>botón Compartir</b> {share} abajo (o arriba)', 'Deslice y toque <b>«Agregar a inicio»</b>', 'Toque <b>«Agregar»</b> arriba a la derecha. ¡Listo!'],
+      andTitle: 'Agregar a la pantalla de inicio', andSteps: ['Toque el <b>menú ⋮</b> arriba a la derecha', 'Toque <b>«Agregar a la pantalla principal»</b> o <b>«Instalar app»</b>', 'Toque <b>«Agregar»</b>. ¡Listo!'],
+      inappTitle: 'Primero ábralo en Safari/Chrome', inappSteps: ['Toque el <b>menú</b> arriba (o abajo) a la derecha', 'Toque <b>«Abrir en el navegador»</b> o <b>«Abrir en Safari»</b>', 'Luego toque este botón otra vez'], watchVideo: 'Ver el sermón', watchLive: 'Ver en vivo ahora', ytChannel: 'Canal de YouTube de la iglesia', ytOpen: 'Se abre en YouTube', monthlyServe: 'Este mes', thisWeekServe: 'Esta semana', nextWeekServe: 'Próxima semana', today: 'Hoy',
     },
   };
 
@@ -75,6 +84,8 @@
     moon: '<svg viewBox="0 0 24 24"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg>',
     auto: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg>',
     play: '<svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor" stroke="none"/></svg>',
+    phone: '<svg viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M12 8v6M9 11l3 3 3-3M10.5 18.5h3"/></svg>',
+    iosShare: '<svg viewBox="0 0 24 24"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M7 10H5.5v10.5h13V10H17"/></svg>',
     up: '<svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>',
     ext: '<svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v4.5A1.5 1.5 0 0 1 16.5 20h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6H10"/></svg>',
   };
@@ -657,6 +668,40 @@
     // 앱을 다시 열면 최신 주보 확인
     if (!document.hidden && (!state.week || state.weeks[0] === state.week)) load('');
   });
+
+  /* ── 홈 화면에 추가 ── */
+  var deferredPrompt = null;
+  var UA = navigator.userAgent || '';
+  var isIOS = /iPhone|iPad|iPod/.test(UA) || (/Macintosh/.test(UA) && navigator.maxTouchPoints > 1);
+  var isKakao = /KAKAOTALK/i.test(UA);
+  var isInApp = isKakao || /FBAN|FBAV|Instagram|Line\/|NAVER\(inapp|DaumApps|Band\//i.test(UA);
+  function isStandalone() { return (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; }
+  function updateInstallBtn() { $('installBtn').hidden = isStandalone(); }
+  window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); deferredPrompt = e; updateInstallBtn(); });
+  window.addEventListener('appinstalled', function () { deferredPrompt = null; $('installBtn').hidden = true; toast(t('installed')); });
+  function showGuide(kind) {
+    var L = T[state.lang];
+    $('insTitle').textContent = L[kind + 'Title'];
+    $('insSteps').innerHTML = L[kind + 'Steps'].map(function (s) {
+      return '<li>' + s.replace('{share}', '<span class="ins-ico">' + ICONS.iosShare + '</span>') + '</li>';
+    }).join('');
+    $('installDialog').showModal();
+  }
+  $('installBtn').addEventListener('click', function () {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then(function () { deferredPrompt = null; }).catch(function () {});
+      return;
+    }
+    if (isKakao) { location.href = 'kakaotalk://web/openExternal?url=' + encodeURIComponent(location.href.split('#')[0]); setTimeout(function () { showGuide('inapp'); }, 800); return; }
+    if (isInApp) { showGuide('inapp'); return; }
+    showGuide(isIOS ? 'ios' : 'and');
+  });
+  $('insClose').addEventListener('click', function () { $('installDialog').close(); });
+  updateInstallBtn();
+  if ('serviceWorker' in navigator && location.protocol === 'https:') {
+    window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function () {}); });
+  }
 
   renderStatic();
   load(state.week);

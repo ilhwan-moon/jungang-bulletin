@@ -341,3 +341,17 @@ html, body { overflow-x: clip; }
 @media (max-width: 400px) { .yt-card { flex-direction: column; align-items: stretch; } .yt-thumb { width: 100%; max-width: none; } }
 html[data-size="3"] .yt-card { flex-direction: column; align-items: stretch; }
 html[data-size="3"] .yt-thumb { width: 100%; max-width: none; }
+
+/* ── 홈 화면에 추가 ── */
+.install-btn { display: flex; align-items: center; gap: .8rem; width: 100%; max-width: 520px; margin: 0 auto 14px; padding: .85rem 1.1rem; border: 0; border-radius: 16px; background: var(--primary); color: var(--primary-ink); cursor: pointer; text-align: left; box-shadow: var(--shadow); }
+.install-btn .ico svg { width: 34px; height: 34px; }
+.install-txt { display: grid; gap: .1rem; }
+.install-txt b { font-size: 1.1rem; }
+.install-txt small { opacity: .85; font-size: .9rem; }
+.ins-box { padding: 1.4rem 1.3rem; display: grid; gap: 1rem; }
+.ins-title { margin: 0; font-weight: 800; font-size: 1.2rem; text-align: center; }
+.ins-steps { margin: 0; padding: 0; list-style: none; counter-reset: s; display: grid; gap: .8rem; }
+.ins-steps li { counter-increment: s; position: relative; padding-left: 2.6rem; font-size: 1.05rem; line-height: 1.5; }
+.ins-steps li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 1.9rem; height: 1.9rem; border-radius: 50%; background: var(--primary); color: var(--primary-ink); display: grid; place-items: center; font-weight: 800; }
+.ins-ico { display: inline-grid; place-items: center; vertical-align: middle; width: 1.8em; height: 1.8em; border-radius: 8px; background: var(--surface-2); border: 1px solid var(--line); color: #0a84ff; }
+.ins-ico svg { width: 1.2em; height: 1.2em; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
