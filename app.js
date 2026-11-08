@@ -288,7 +288,7 @@
       titles.forEach(function (x) { if (nt.indexOf(x) !== -1) score += 3; });
       if (last && last.length > 1 && nt.indexOf(last) !== -1) score += 2;
       if (/ - (p|pr|pastor|rev)\.? /.test(nt + ' ')) score += 1;
-      if (score > bestScore) { best = vd; bestScore = score; }
+      if (score >= 2 && score > bestScore) { best = vd; bestScore = score; }
     });
     return best;
   }
@@ -308,7 +308,7 @@
       el.innerHTML = '<a class="yt-live" href="' + YT_CHANNEL + '/live" target="_blank" rel="noopener"><span class="dot"></span>' + esc(t('watchLive')) + ' <small>YouTube ↗</small></a>';
       return;
     }
-    el.innerHTML = b ? '<a class="yt-link" href="' + YT_CHANNEL + '/streams" target="_blank" rel="noopener">' + ICONS.play + esc(t('ytChannel')) + ' ↗</a>' : '';
+    el.innerHTML = '';   // 관련 영상이 없으면 아무것도 표시하지 않음
   }
 
   function renderStatic() {
