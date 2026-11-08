@@ -56,7 +56,7 @@
   function empty() {
     return {
       sermonTitle: '', scripture: '', preacher: '', sermonLocation: '', fellowship: '', serviceTimes: [], hymns: [],
-      memoryVerseRef: '', memoryVerseText: '', memoryVerseTheme: '', memoryNextRef: '', memoryNextText: '', memoryLastRef: '', memoryLastText: '',
+      memoryVerseRef: '', memoryVerseText: '', memoryVerseTheme: '', memoryNextRef: '', memoryNextText: '', memoryLastRef: '', memoryLastText: '', volunteersMonthly: [],
       announcements: [], schedule: [], meetings: [], volunteers: [], volunteersNext: [], readings: [],
       address: '', phone: '',
     };
@@ -268,7 +268,7 @@
     if (iK >= 0 && (iGr < 0 || iK < iGr)) {
       var who = L[iK] + (L[iK + 1] && /^(english|spanish|español)\s*:/i.test(L[iK + 1]) ? ' ' + L[iK + 1] : '');
       who = clean(who).replace(/\s*\/\s*/g, ' / ').replace(/[\s/]+$/, '');
-      each(out, function (o, lang) { o.volunteers.push(mHead[lang] + ' | ' + who); });
+      each(out, function (o, lang) { o.volunteersMonthly.push(mHead[lang] + ' | ' + who); });
     }
     // 이번 달 안내봉사
     if (iGr >= 0) {
@@ -289,7 +289,7 @@
         each(out, function (o, lang) {
           var lab = m[1];
           if (lang === 'ko') lab = { entrada: '정문', santuario: '본당' }[lab.toLowerCase()] || lab;
-          o.volunteers.push(gHead[lang] + ' · ' + lab + ' | ' + tidyList(m[2]));
+          o.volunteersMonthly.push(gHead[lang] + ' · ' + lab + ' | ' + tidyList(m[2]));
         });
       });
     }
