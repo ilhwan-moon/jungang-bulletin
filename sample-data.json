@@ -1,0 +1,74 @@
+{
+  "church": { "ko": "LA 중앙교회", "en": "LA Central Church", "es": "Iglesia Central de LA" },
+  "weeks": ["2026-11-08"],
+  "lastUpdated": "2026-11-07T18:00:00Z",
+  "lastChecked": "2026-11-08T15:00:00Z",
+  "bulletins": {
+    "2026-11-08": {
+      "date": "2026-11-08",
+      "ko": {
+        "sermonTitle": "범사에 감사하라",
+        "scripture": "데살로니가전서 5:16-18",
+        "scriptureText": "항상 기뻐하라 쉬지 말고 기도하라 범사에 감사하라 이것이 그리스도 예수 안에서 너희를 향하신 하나님의 뜻이니라",
+        "preacher": "담임목사",
+        "hymns": ["588장 공중 나는 새를 보라", "589장 넓은 들에 익은 곡식", "찬양: 감사함으로 그 문에 들어가며"],
+        "memoryVerseRef": "시편 100:4",
+        "memoryVerseText": "감사함으로 그의 문에 들어가며 찬송함으로 그의 궁정에 들어가서 그에게 감사하며 그의 이름을 송축할지어다",
+        "announcements": [
+          "오늘은 추수감사절을 준비하는 주일입니다. 감사 제목을 적어 헌금함에 넣어 주세요.",
+          "새가족 환영회가 예배 후 친교실에서 있습니다.",
+          "11월 22일(주일)은 추수감사주일 3개 언어 연합예배로 드립니다.",
+          "겨울 성경공부 등록을 받습니다. 안내 데스크에 신청해 주세요."
+        ],
+        "schedule": ["11/11(수) | 수요기도회 오후 7:30", "11/14(토) | 새벽기도회 오전 6:00", "11/15(주일) | 성가대 특별 연습", "11/22(주일) | 추수감사주일 연합예배"],
+        "volunteers": ["예배 안내 | 김OO, 이OO", "헌금 위원 | 박OO, 최OO", "대표 기도 | 정OO 장로", "주차 안내 | 한OO, 오OO", "친교 | 3구역", "영상·음향 | 윤OO"],
+        "prayer": ["교회와 성도들의 건강을 위하여", "선교지와 선교사님들을 위하여", "새가족들이 잘 정착하도록"],
+        "worshipOrder": ["묵도 | 다같이", "찬송 | 588장 | 다같이", "대표기도 | 정OO 장로", "성경봉독 | 데살로니가전서 5:16-18 | 사회자", "설교 | 범사에 감사하라 | 담임목사", "찬송 | 589장 | 다같이", "축도 | 담임목사"],
+        "fileUrl": "",
+        "raw": ""
+      },
+      "en": {
+        "sermonTitle": "Give Thanks in All Circumstances",
+        "scripture": "1 Thessalonians 5:16-18",
+        "scriptureText": "Rejoice always, pray continually, give thanks in all circumstances; for this is God's will for you in Christ Jesus.",
+        "preacher": "Senior Pastor",
+        "hymns": ["No. 356 Come, Ye Thankful People, Come", "No. 28 Now Thank We All Our God", "Praise: Give Thanks"],
+        "memoryVerseRef": "Psalm 100:4",
+        "memoryVerseText": "Enter his gates with thanksgiving and his courts with praise; give thanks to him and praise his name.",
+        "announcements": [
+          "Today we prepare for Thanksgiving. Please write a note of thanks and place it in the offering box.",
+          "Newcomers' welcome gathering after service in the fellowship hall.",
+          "Nov 22 (Sun): Joint Thanksgiving service in three languages.",
+          "Winter Bible study sign-up is open at the information desk."
+        ],
+        "schedule": ["Wed 11/11 | Prayer meeting 7:30 PM", "Sat 11/14 | Early morning prayer 6:00 AM", "Sun 11/15 | Choir special rehearsal", "Sun 11/22 | Joint Thanksgiving Service"],
+        "volunteers": ["Greeters | Kim, Lee", "Offering | Park, Choi", "Prayer | Elder Jung", "Parking | Han, Oh", "Fellowship | Group 3", "Media & Sound | Yoon"],
+        "prayer": ["For the health of our church family", "For our missionaries and mission fields", "For newcomers to settle in well"],
+        "worshipOrder": ["Call to Worship | All", "Hymn | No. 356 | All", "Prayer | Elder Jung", "Scripture | 1 Thessalonians 5:16-18 | Leader", "Sermon | Give Thanks in All Circumstances | Senior Pastor", "Hymn | No. 28 | All", "Benediction | Senior Pastor"],
+        "fileUrl": "",
+        "raw": ""
+      },
+      "es": {
+        "sermonTitle": "Den gracias en todo",
+        "scripture": "1 Tesalonicenses 5:16-18",
+        "scriptureText": "Estén siempre alegres, oren sin cesar, den gracias a Dios en toda situación, porque esta es su voluntad para ustedes en Cristo Jesús.",
+        "preacher": "Pastor principal",
+        "hymns": ["Himno 25 Cuán grande es Él", "Himno 40 Gracias, Señor", "Alabanza: Te doy gracias"],
+        "memoryVerseRef": "Salmo 100:4",
+        "memoryVerseText": "Entren por sus puertas con acción de gracias; vengan a sus atrios con himnos de alabanza; denle gracias, alaben su nombre.",
+        "announcements": [
+          "Hoy nos preparamos para el Día de Acción de Gracias. Escriba un motivo de gratitud y colóquelo en la caja de ofrendas.",
+          "Bienvenida a los nuevos visitantes después del culto en el salón de compañerismo.",
+          "Domingo 22 de noviembre: culto unido de Acción de Gracias en tres idiomas.",
+          "Inscripción abierta para el estudio bíblico de invierno."
+        ],
+        "schedule": ["Mié 11/11 | Reunión de oración 7:30 PM", "Sáb 11/14 | Oración de madrugada 6:00 AM", "Dom 11/15 | Ensayo especial del coro", "Dom 11/22 | Culto unido de Acción de Gracias"],
+        "volunteers": ["Bienvenida | Kim, Lee", "Ofrenda | Park, Choi", "Oración | Anciano Jung", "Estacionamiento | Han, Oh", "Compañerismo | Grupo 3", "Audio y video | Yoon"],
+        "prayer": ["Por la salud de nuestra familia de la iglesia", "Por nuestros misioneros", "Por los nuevos visitantes"],
+        "worshipOrder": ["Llamado a la adoración | Todos", "Himno | 25 | Todos", "Oración | Anciano Jung", "Lectura | 1 Tesalonicenses 5:16-18 | Líder", "Sermón | Den gracias en todo | Pastor principal", "Himno | 40 | Todos", "Bendición | Pastor principal"],
+        "fileUrl": "",
+        "raw": ""
+      }
+    }
+  }
+}

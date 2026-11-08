@@ -1,0 +1,11 @@
+{
+  "name": "LA 중앙교회 주보",
+  "short_name": "중앙교회 주보",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f6f2ea",
+  "theme_color": "#1f4e5f",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
