@@ -1,0 +1,38 @@
+name: 유튜브 주일말씀 영상 목록 갱신
+
+on:
+  schedule:
+    # 주일(LA) 오전 9시 ~ 월요일 새벽: 20분마다 / 그 외: 하루 한 번 (시간은 UTC)
+    - cron: "*/20 16-23 * * 0"
+    - cron: "*/30 0-10 * * 1"
+    - cron: "23 13 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: youtube-videos
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Fetch channel feed
+        run: python3 scripts/fetch_videos.py videos.json
+      - name: Commit and publish
+        run: |
+          if git diff --quiet -- videos.json && git ls-files --error-unmatch videos.json >/dev/null 2>&1; then
+            echo "no change"; exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add videos.json
+          git commit -m "유튜브 영상 목록 갱신"
+          git push origin HEAD:main
+          git push -f origin HEAD:gh-pages

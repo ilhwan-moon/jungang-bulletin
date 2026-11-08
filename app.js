@@ -20,7 +20,7 @@
       offline: '인터넷 연결이 없어 저장된 주보를 보여 드립니다.', loading: '불러오는 중…', noName: '찾는 이름이 없습니다.',
       fromLang: '({lang})', sundayFmt: '{date} 주일',
       location: '장소', serviceTimes: '예배 시간', fellowship: '예배 후 교제', memoryNext: '다음 주 암송 미리 보기', memoryLast: '지난주 암송 다시 보기', readings: '이번 주 묵상 말씀',
-      meetings: '정기 모임', monthlyServe: '이달의 봉사', thisWeekServe: '이번 주', nextWeekServe: '다음 주', today: '오늘',
+      meetings: '정기 모임', watchVideo: '주일말씀 영상 보기', watchLive: '지금 라이브로 보기', ytChannel: '교회 유튜브 채널 보기', ytOpen: '누르면 유튜브로 연결됩니다', monthlyServe: '이달의 봉사', thisWeekServe: '이번 주', nextWeekServe: '다음 주', today: '오늘',
     },
     en: {
       bulletin: 'Sunday Mobile Bulletin', textSize: 'Text size', sizeHint: 'Text too small? Tap a bigger “A” at the top right.', ok: 'Got it', themeN: { auto: 'Theme: Auto', light: 'Theme: Light', dark: 'Theme: Dark' }, textSizeN: ['Normal text', 'Large text', 'Extra large'],
@@ -37,7 +37,7 @@
       offline: "You're offline — showing the saved bulletin.", loading: 'Loading…', noName: 'No matching name.',
       fromLang: '({lang})', sundayFmt: '{date}',
       location: 'Location', serviceTimes: 'Service times', fellowship: 'After service', memoryNext: 'Preview next week’s verse', memoryLast: 'Review last week’s verse', readings: 'This Week’s Meditation Chapters',
-      meetings: 'Regular meetings', monthlyServe: 'This month', thisWeekServe: 'This week', nextWeekServe: 'Next week', today: 'Today',
+      meetings: 'Regular meetings', watchVideo: 'Watch the sermon', watchLive: 'Watch live now', ytChannel: 'Church YouTube channel', ytOpen: 'Opens in YouTube', monthlyServe: 'This month', thisWeekServe: 'This week', nextWeekServe: 'Next week', today: 'Today',
     },
     es: {
       bulletin: 'Boletín Dominical Móvil', textSize: 'Tamaño de letra', sizeHint: '¿Letra pequeña? Toque una “A” más grande arriba a la derecha.', ok: 'Entendido', themeN: { auto: 'Tema: automático', light: 'Tema: claro', dark: 'Tema: oscuro' }, textSizeN: ['Letra normal', 'Letra grande', 'Letra muy grande'],
@@ -54,7 +54,7 @@
       offline: 'Sin conexión: se muestra el boletín guardado.', loading: 'Cargando…', noName: 'No se encontró el nombre.',
       fromLang: '({lang})', sundayFmt: '{date}',
       location: 'Lugar', serviceTimes: 'Horario', fellowship: 'Después del culto', memoryNext: 'Ver versículo de la próxima semana', memoryLast: 'Repasar versículo de la semana pasada', readings: 'Lectura de la semana',
-      meetings: 'Reuniones regulares', monthlyServe: 'Este mes', thisWeekServe: 'Esta semana', nextWeekServe: 'Próxima semana', today: 'Hoy',
+      meetings: 'Reuniones regulares', watchVideo: 'Ver el sermón', watchLive: 'Ver en vivo ahora', ytChannel: 'Canal de YouTube de la iglesia', ytOpen: 'Se abre en YouTube', monthlyServe: 'Este mes', thisWeekServe: 'Esta semana', nextWeekServe: 'Próxima semana', today: 'Hoy',
     },
   };
 
@@ -74,6 +74,7 @@
     sun: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8L6 18M18 6l1.8-1.8"/></svg>',
     moon: '<svg viewBox="0 0 24 24"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg>',
     auto: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg>',
+    play: '<svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor" stroke="none"/></svg>',
     up: '<svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>',
     ext: '<svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v4.5A1.5 1.5 0 0 1 16.5 20h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6H10"/></svg>',
   };
@@ -100,6 +101,7 @@
     practice: false,
     serveWeek: 'this',
     view: null,
+    videos: null,
     sample: null,
   };
 
@@ -264,6 +266,51 @@
     items.forEach(function (n) { secObserver.observe($(n[1])); });
   }
 
+  /* ── 유튜브: 그 주일의 설교 영상 찾기 (videos.json은 GitHub Actions가 자동 갱신) ── */
+  var YT_CHANNEL = 'https://www.youtube.com/@jbchlacentral';
+  function loadVideos() {
+    fetch('videos.json?t=' + Math.floor(Date.now() / 600000)).then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) { if (d && d.videos) { state.videos = d.videos; render(); } }).catch(function () {});
+  }
+  function norm(s) { return String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, ' ').trim(); }
+  function findVideo(b) {
+    if (!b || !state.videos) return null;
+    var start = Date.parse(b.date + 'T00:00:00Z'), end = start + 3 * 86400000;  // 주일 ~ 화요일 사이에 올라온 영상
+    var v = state.view || {};
+    var titles = LANGS.map(function (l) { return v[l] && norm(v[l].sermonTitle); }).filter(function (x) { return x && x.length > 2; });
+    var preacher = norm((v.es || v.en || v.ko || {}).preacher || '').replace(/^p\.\s*/, '');
+    var last = preacher.split(' ').pop();
+    var best = null, bestScore = 0;
+    state.videos.forEach(function (vd) {
+      var t = Date.parse(vd.published);
+      if (!(t >= start && t < end)) return;
+      var nt = norm(vd.title), score = 0;
+      titles.forEach(function (x) { if (nt.indexOf(x) !== -1) score += 3; });
+      if (last && last.length > 1 && nt.indexOf(last) !== -1) score += 2;
+      if (/ - (p|pr|pastor|rev)\.? /.test(nt + ' ')) score += 1;
+      if (score > bestScore) { best = vd; bestScore = score; }
+    });
+    return best;
+  }
+  function renderVideo(b) {
+    var el = $('videoBlock');
+    var vd = findVideo(b);
+    if (vd) {
+      el.innerHTML = '<a class="yt-card" href="https://www.youtube.com/watch?v=' + encodeURIComponent(vd.id) + '" target="_blank" rel="noopener">' +
+        '<span class="yt-thumb"><img src="https://i.ytimg.com/vi/' + encodeURIComponent(vd.id) + '/mqdefault.jpg" alt="" loading="lazy"><span class="yt-play">' + ICONS.play + '</span></span>' +
+        '<span class="yt-text"><b>' + esc(t('watchVideo')) + '</b><span class="yt-title">' + esc(vd.title) + '</span><small>YouTube ↗</small></span></a>';
+      return;
+    }
+    // 주일 예배 시간(LA 오전 10시~오후 2시)에는 라이브 바로가기
+    var la = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }));
+    var todayISO = la.getFullYear() + '-' + String(la.getMonth() + 1).padStart(2, '0') + '-' + String(la.getDate()).padStart(2, '0');
+    if (b && b.date === todayISO && la.getHours() >= 10 && la.getHours() < 14) {
+      el.innerHTML = '<a class="yt-live" href="' + YT_CHANNEL + '/live" target="_blank" rel="noopener"><span class="dot"></span>' + esc(t('watchLive')) + ' <small>YouTube ↗</small></a>';
+      return;
+    }
+    el.innerHTML = b ? '<a class="yt-link" href="' + YT_CHANNEL + '/streams" target="_blank" rel="noopener">' + ICONS.play + esc(t('ytChannel')) + ' ↗</a>' : '';
+  }
+
   function renderStatic() {
     var L = state.lang;
     applyTheme(themeMode());
@@ -327,6 +374,7 @@
       var p = String(x).split(/\s+:\s+/);
       return '<li><span class="t-k">' + esc(p[0]) + '</span><span class="t-v">' + esc(p.slice(1).join(' : ')) + '</span></li>';
     }).join('');
+    renderVideo(b);
     $('scriptureText').hidden = !has(scrText.v);
 
     $('scriptureText').textContent = scrText.v || '';
@@ -612,4 +660,5 @@
 
   renderStatic();
   load(state.week);
+  loadVideos();
 })();
