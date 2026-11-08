@@ -207,3 +207,52 @@ dialog::backdrop { background: rgba(0,0,0,.5); }
   html[data-size="3"] .sermon-title { font-size: 1.7rem; }
 }
 .from { font-size: .7em; font-weight: 500; opacity: .75; }
+
+/* ── 예배 시간 / 교제 ── */
+.time-list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .45rem; }
+.time-list li { display: inline-flex; gap: .45rem; align-items: baseline; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22); border-radius: 999px; padding: .3rem .85rem; }
+.t-k { color: var(--hero-ink-2); font-size: .92rem; font-weight: 600; }
+.t-v { font-weight: 800; }
+.fellow { margin: 1rem 0 0; padding: .7rem .9rem; border-radius: 12px; background: rgba(0,0,0,.14); }
+.fellow-k { display: block; font-size: .85rem; color: var(--hero-ink-2); font-weight: 600; }
+#fellowship { font-weight: 700; font-size: 1.08rem; }
+
+/* ── 암송 주제 / 다음 주 ── */
+.verse-theme { margin: 0 0 .1rem; display: inline-block; padding: .1rem .7rem; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-weight: 700; font-size: .9rem; }
+.next-verse { margin-top: .9rem; border-top: 1px dashed var(--line); padding-top: .4rem; }
+.next-verse summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; font-weight: 700; color: var(--ink-2); }
+.next-text { margin: .2rem 0 .3rem; font-family: var(--serif); font-size: 1.15rem; line-height: 1.7; color: var(--ink-2); }
+
+/* ── 묵상 말씀 ── */
+.read-list { list-style: none; margin: 0; padding: 0; display: grid; gap: .35rem; }
+.read-list li { display: grid; grid-template-columns: 4.2em 1fr; gap: .7rem; align-items: baseline; padding: .5rem .7rem; border-radius: 12px; }
+.read-list li:nth-child(odd) { background: var(--surface-2); }
+.read-list li.today { background: var(--primary); color: var(--primary-ink); }
+.r-day { font-weight: 800; color: var(--primary); }
+.read-list li.today .r-day { color: var(--primary-ink); }
+.r-day em { display: block; font-style: normal; font-size: .75rem; font-weight: 700; opacity: .85; }
+.r-txt { font-weight: 600; }
+
+/* ── 정기 모임 ── */
+.sub2 { margin: 1.1rem 0 .4rem; font-size: .95rem; color: var(--ink-2); font-weight: 800; }
+.meet-list { list-style: none; margin: 0; padding: 0; }
+.meet-list li { display: flex; justify-content: space-between; gap: .8rem; padding: .5rem 0; border-bottom: 1px solid var(--line); }
+.meet-list li:last-child { border-bottom: 0; }
+.m-name { font-weight: 700; }
+.m-time { color: var(--accent); font-weight: 700; text-align: right; }
+
+/* ── 봉사 이번 주/다음 주 탭 ── */
+.tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 14px; margin-bottom: .7rem; }
+.tabs button { border: 0; background: transparent; min-height: 46px; border-radius: 10px; font-weight: 800; cursor: pointer; color: var(--ink-2); }
+.tabs button[aria-selected="true"] { background: var(--primary); color: var(--primary-ink); }
+
+@media (max-width: 640px) {
+  html[data-size="3"] .read-list li { grid-template-columns: 1fr; gap: 0; }
+  html[data-size="3"] .meet-list li { flex-direction: column; gap: 0; }
+  html[data-size="3"] .m-time { text-align: left; }
+}
+@media (min-width: 640px) { .quicknav { grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); } }
+@media (max-width: 560px) {
+  .serve-list li { grid-template-columns: 1fr; gap: .1rem; }
+  .serve-role { font-size: .92rem; }
+}

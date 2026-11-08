@@ -72,12 +72,21 @@
               <span class="meta-k" data-i18n="preacher"></span>
               <span class="meta-v" id="preacher"></span>
             </div>
+            <div class="meta-row" id="locationRow">
+              <span class="meta-k" data-i18n="location"></span>
+              <span class="meta-v" id="sermonLocation"></span>
+            </div>
+          </div>
+          <div class="times" id="timesBlock">
+            <h3 class="sub"><span class="ico" data-ico="clock"></span><span data-i18n="serviceTimes"></span></h3>
+            <ul class="time-list" id="serviceTimes"></ul>
           </div>
           <p class="scripture-text" id="scriptureText" hidden></p>
           <div class="hymns" id="hymnsBlock">
             <h3 class="sub"><span class="ico" data-ico="music"></span><span data-i18n="hymns"></span></h3>
             <ol class="hymn-list" id="hymns"></ol>
           </div>
+          <p class="fellow" id="fellowshipRow"><span class="fellow-k" data-i18n="fellowship"></span> <span id="fellowship"></span></p>
           <details class="order" id="orderBlock">
             <summary><span data-i18n="order"></span></summary>
             <ol class="order-list" id="order"></ol>
@@ -90,9 +99,21 @@
             <h2 class="eyebrow" id="h-memory"><span class="ico" data-ico="heart"></span><span data-i18n="memory"></span></h2>
             <button type="button" class="chip-btn" id="practiceBtn" aria-pressed="false" data-i18n="practice"></button>
           </div>
+          <p class="verse-theme" id="memoryTheme"></p>
           <blockquote class="verse" id="memoryText"></blockquote>
           <p class="verse-ref" id="memoryRef"></p>
           <p class="hint" id="practiceHint" hidden data-i18n="practiceHint"></p>
+          <details class="next-verse" id="memoryNextBlock">
+            <summary data-i18n="memoryNext"></summary>
+            <p class="next-text" id="memoryNextText"></p>
+            <p class="verse-ref" id="memoryNextRef"></p>
+          </details>
+        </section>
+
+        <!-- 이번 주 묵상 말씀 -->
+        <section class="card" id="sec-readings" aria-labelledby="h-readings">
+          <h2 class="eyebrow" id="h-readings"><span class="ico" data-ico="book"></span><span data-i18n="readings"></span></h2>
+          <ul class="read-list" id="readings"></ul>
         </section>
       </div>
 
@@ -105,10 +126,18 @@
         <section class="card" id="sec-schedule" aria-labelledby="h-schedule">
           <h2 class="eyebrow" id="h-schedule"><span class="ico" data-ico="calendar"></span><span data-i18n="schedule"></span></h2>
           <ul class="sched-list" id="schedule"></ul>
+          <div id="meetingsBlock">
+            <h3 class="sub2" data-i18n="meetings"></h3>
+            <ul class="meet-list" id="meetings"></ul>
+          </div>
         </section>
 
         <section class="card" id="sec-serve" aria-labelledby="h-serve">
           <h2 class="eyebrow" id="h-serve"><span class="ico" data-ico="hands"></span><span data-i18n="serve"></span></h2>
+          <div class="tabs" role="tablist" id="serveTabs">
+            <button type="button" role="tab" data-week="this" aria-selected="true" data-i18n="thisWeekServe"></button>
+            <button type="button" role="tab" data-week="next" aria-selected="false" data-i18n="nextWeekServe"></button>
+          </div>
           <div class="serve-search" id="serveSearchWrap">
             <label for="serveSearch" class="sr" data-i18n="findName"></label>
             <input id="serveSearch" type="search" autocomplete="off">
@@ -156,6 +185,7 @@
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+  <script src="lacc-parser.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
