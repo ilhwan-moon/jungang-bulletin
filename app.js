@@ -527,6 +527,19 @@
     var d = new Date(iso + 'T00:00:00Z'); d.setUTCDate(d.getUTCDate() + add);
     return (d.getUTCMonth() + 1) + '/' + d.getUTCDate();
   }
+  // 봉사 종류별 색·아이콘 (한국어·영어·스페인어 이름 모두 인식)
+  var SERVE_CATS = [
+    ['memory', '📖', /암송|memory verse|recitaci|versícul|versicul/i],
+    ['meal', '🍚', /식사|설거지|lunch|dishes|comida|trastes|meal|kitchen|cocina/i],
+    ['child', '👶', /유아|영아|toddler|nursery|child|guarder|niños|ninos/i],
+    ['safety', '🛡️', /안전|주차|security|parking|seguridad|estacionamiento/i],
+    ['guide', '🙋', /안내|정문|본당|greet|usher|entrance|main hall|guía|guia|entrada|santuario|bienvenida/i],
+  ];
+  function serveCat(role) {
+    for (var i = 0; i < SERVE_CATS.length; i++) if (SERVE_CATS[i][2].test(role)) return SERVE_CATS[i];
+    return ['other', '🤝'];
+  }
+
   function renderServe(b) {
     var cur = field('volunteers').v || [], nxt = field('volunteersNext').v || [], mon = field('volunteersMonthly').v || [];
     var order = [], map = {};
@@ -546,8 +559,9 @@
     $('serve').innerHTML = order.map(function (role) {
       var m = map[role];
       var s = (role + ' ' + m.cur + ' ' + m.nxt).toLowerCase();
-      return '<li class="serve-item" data-s="' + esc(s) + '">' +
-        (role ? '<div class="si-role hl">' + esc(role) + '</div>' : '') +
+      var cat = serveCat(role);
+      return '<li class="serve-item sc-' + cat[0] + '" data-s="' + esc(s) + '">' +
+        (role ? '<div class="si-role"><span class="si-emoji" aria-hidden="true">' + cat[1] + '</span><span class="hl">' + esc(role) + '</span></div>' : '') +
         '<div class="si-weeks' + (hasNext ? '' : ' one') + '">' +
         '<div class="si-row cur"><span class="wk">' + lblCur + '</span><span class="si-names hl">' + esc(m.cur || '—') + '</span></div>' +
         (hasNext ? '<div class="si-row nxt"><span class="wk">' + lblNxt + '</span><span class="si-names hl">' + esc(m.nxt || '—') + '</span></div>' : '') +
@@ -556,7 +570,8 @@
     $('serveMonthlyBlock').hidden = !mon.length;
     $('serveMonthly').innerHTML = mon.map(function (s) {
       var p = split(s);
-      return '<li data-s="' + esc(s.toLowerCase()) + '"><span class="serve-role hl">' + esc(p[0]) + '</span><span class="serve-names hl">' + esc(p.slice(1).join(', ')) + '</span></li>';
+      var cat = serveCat(p[0]);
+      return '<li class="sc-' + cat[0] + '" data-s="' + esc(s.toLowerCase()) + '"><span class="serve-role"><span class="si-emoji" aria-hidden="true">' + cat[1] + '</span><span class="hl">' + esc(p[0]) + '</span></span><span class="serve-names hl">' + esc(p.slice(1).join(', ')) + '</span></li>';
     }).join('');
     $('sec-serve').hidden = !order.length && !mon.length;
     $('serveSearchWrap').hidden = order.length + mon.length < 5;
