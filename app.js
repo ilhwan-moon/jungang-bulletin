@@ -465,21 +465,6 @@
     renderServe(b);
     list('prayer', 'prayer', 'sec-prayer', function (s) { return '<li>' + esc(s) + '</li>'; });
 
-    // 원본
-    var btns = '';
-    var seenUrl = {};
-    if (state.view) LANGS.forEach(function (l) {
-      var o = state.view[l];
-      if (!o || !o.fileUrl || seenUrl[o.fileUrl]) return;
-      seenUrl[o.fileUrl] = true;
-      if (o.sourceMode === 'bi') { btns += '<a class="btn' + (state.lang !== 'en' ? ' primary' : '') + '" href="' + esc(o.fileUrl) + '" target="_blank" rel="noopener">' + ico('ext') + esc(fmt(t('openOriginal'), { lang: '한국어 · Español' })) + '</a>'; return; }
-      if (o.fileUrl) btns += '<a class="btn' + (l === state.lang ? ' primary' : '') + '" href="' + esc(o.fileUrl) + '" target="_blank" rel="noopener">' + ico('ext') + esc(fmt(t('openOriginal'), { lang: LANG_NAME[l] })) + '</a>';
-    });
-    $('origBtns').innerHTML = btns;
-    var raw = ld.data && ld.data.raw;
-    $('rawBlock').hidden = !raw;
-    $('rawText').textContent = raw || '';
-    $('sec-original').hidden = !btns && !raw;
 
     // 바로가기 (위쪽 + 아래쪽 메뉴)
     var navItems = NAV.filter(function (n) { return !$(n[1]).hidden; });
