@@ -329,6 +329,13 @@
     var church = CFG.CHURCH_NAME || (state.resp && state.resp.church) || {};
     var cname = church[L] || church.ko || '';
     document.title = cname;
+    // 홈 화면 바로가기 이름도 언어에 맞게: 한국어 → LA 중앙교회 / English·Español → LA Central Church
+    var appName = L === 'ko' ? 'LA 중앙교회' : 'LA Central Church';
+    var mf = document.querySelector('link[rel="manifest"]');
+    var mfHref = L === 'ko' ? 'manifest.webmanifest' : 'manifest.' + L + '.webmanifest';
+    if (mf && mf.getAttribute('href') !== mfHref) mf.setAttribute('href', mfHref);
+    var at = document.querySelector('meta[name="apple-mobile-web-app-title"]');
+    if (at) at.setAttribute('content', appName);
     document.querySelectorAll('[data-church]').forEach(function (el) { el.textContent = cname; });
     document.querySelectorAll('[data-i18n]').forEach(function (el) { el.textContent = t(el.getAttribute('data-i18n')); });
     document.querySelectorAll('[data-ico]').forEach(function (el) { el.innerHTML = ICONS[el.getAttribute('data-ico')] || ''; el.setAttribute('aria-hidden', 'true'); });
