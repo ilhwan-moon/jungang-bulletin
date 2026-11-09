@@ -127,12 +127,13 @@
     var m = (document.cookie || '').match(/(?:^|;\s*)bb_lang=(ko|en|es)/);
     return m ? m[1] : null;
   }
-  // 우선순위: ① 내가 전에 고른 언어 → ② 링크의 ?lang= (처음 방문) → ③ 설정 → ④ 휴대폰 언어
+  // 우선순위: ① 언어 링크(/ko/ /en/ /es/ 또는 ?lang=) → ② 내가 전에 고른 언어 → ③ 설정 → ④ 휴대폰 언어
+  // 언어 링크로 들어오면 그 언어를 기억합니다. 주소창의 lang 표시는 바로 지워서 북마크가 언어를 고정하지 않게 합니다.
   function pickLang() {
-    var s = savedLang();
-    if (s) { saveLang(s); return s; }
     var p = params.get('lang');
     if (LANGS.indexOf(p) !== -1) { saveLang(p); return p; }
+    var s = savedLang();
+    if (s) { saveLang(s); return s; }
     if (CFG.DEFAULT_LANG && CFG.DEFAULT_LANG !== 'auto') return CFG.DEFAULT_LANG;
     var n = (navigator.language || 'ko').slice(0, 2).toLowerCase();
     return LANGS.indexOf(n) !== -1 ? n : 'ko';
