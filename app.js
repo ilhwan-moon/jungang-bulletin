@@ -328,7 +328,7 @@
     document.documentElement.lang = L;
     var church = CFG.CHURCH_NAME || (state.resp && state.resp.church) || {};
     var cname = church[L] || church.ko || '';
-    document.title = cname + ' · ' + T[L].bulletin;
+    document.title = cname;
     document.querySelectorAll('[data-church]').forEach(function (el) { el.textContent = cname; });
     document.querySelectorAll('[data-i18n]').forEach(function (el) { el.textContent = t(el.getAttribute('data-i18n')); });
     document.querySelectorAll('[data-ico]').forEach(function (el) { el.innerHTML = ICONS[el.getAttribute('data-ico')] || ''; el.setAttribute('aria-hidden', 'true'); });
