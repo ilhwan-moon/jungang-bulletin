@@ -355,3 +355,34 @@ html[data-size="3"] .yt-thumb { width: 100%; max-width: none; }
 .ins-steps li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 1.9rem; height: 1.9rem; border-radius: 50%; background: var(--primary); color: var(--primary-ink); display: grid; place-items: center; font-weight: 800; }
 .ins-ico { display: inline-grid; place-items: center; vertical-align: middle; width: 1.8em; height: 1.8em; border-radius: 8px; background: var(--surface-2); border: 1px solid var(--line); color: #0a84ff; }
 .ins-ico svg { width: 1.2em; height: 1.2em; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ── 봉사 종류별 색 (밝은 화면: 진한 색 + 흰 글씨 / 어두운 화면: 밝은 색 + 검은 글씨) ── */
+:root { --sc-ink: #ffffff;
+  --sc-meal: #b4501f; --sc-meal-soft: #fbe9df;
+  --sc-child: #b0306a; --sc-child-soft: #fbe3ee;
+  --sc-safety: #2f5aa8; --sc-safety-soft: #e3ebfa;
+  --sc-guide: #2e7d4f; --sc-guide-soft: #e1f3e8;
+  --sc-memory: #8a6a12; --sc-memory-soft: #f6eed5;
+  --sc-other: #5b4fa8; --sc-other-soft: #ebe8fa; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --sc-ink: #121212;
+  --sc-meal: #f0a070; --sc-meal-soft: #3a2a20; --sc-child: #f08cbc; --sc-child-soft: #3a2230;
+  --sc-safety: #8fb0f0; --sc-safety-soft: #1f2a3e; --sc-guide: #7fcf9f; --sc-guide-soft: #1d3326;
+  --sc-memory: #e6c26a; --sc-memory-soft: #352d18; --sc-other: #b7aef0; --sc-other-soft: #2a2740; } }
+:root[data-theme="dark"] { --sc-ink: #121212;
+  --sc-meal: #f0a070; --sc-meal-soft: #3a2a20; --sc-child: #f08cbc; --sc-child-soft: #3a2230;
+  --sc-safety: #8fb0f0; --sc-safety-soft: #1f2a3e; --sc-guide: #7fcf9f; --sc-guide-soft: #1d3326;
+  --sc-memory: #e6c26a; --sc-memory-soft: #352d18; --sc-other: #b7aef0; --sc-other-soft: #2a2740; }
+.sc-meal { --c: var(--sc-meal); --cs: var(--sc-meal-soft); }
+.sc-child { --c: var(--sc-child); --cs: var(--sc-child-soft); }
+.sc-safety { --c: var(--sc-safety); --cs: var(--sc-safety-soft); }
+.sc-guide { --c: var(--sc-guide); --cs: var(--sc-guide-soft); }
+.sc-memory { --c: var(--sc-memory); --cs: var(--sc-memory-soft); }
+.sc-other { --c: var(--sc-other); --cs: var(--sc-other-soft); }
+
+.serve-list li.serve-item { border: 1px solid var(--line); border-left: 7px solid var(--c); background: var(--cs); }
+.serve-item .si-role { display: flex; align-items: center; gap: .4rem; color: var(--c); }
+.si-emoji { font-size: 1.25em; line-height: 1; }
+.serve-item .si-row.cur { background: var(--c); color: var(--sc-ink); }
+.serve-item .si-row.nxt { background: var(--surface); border-color: color-mix(in srgb, var(--c) 35%, var(--line)); }
+.serve-month li { border-left: 6px solid var(--c); padding-left: .7rem; border-radius: 4px; margin-bottom: .35rem; background: var(--cs); }
+.serve-month li .serve-role { display: flex; align-items: center; gap: .35rem; color: var(--c); font-weight: 800; }
