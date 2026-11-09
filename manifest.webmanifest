@@ -1,7 +1,7 @@
 {
   "id": "./",
-  "name": "LA 중앙교회 소식지 · LA Central Church",
-  "short_name": "중앙교회 소식지",
+  "name": "LA 중앙교회 소식지",
+  "short_name": "LA 중앙교회 소식지",
   "description": "LA 중앙교회 주일 모바일 소식지 — 말씀 · 암송 · 소식 · 봉사",
   "start_url": "./?source=home",
   "scope": "./",
