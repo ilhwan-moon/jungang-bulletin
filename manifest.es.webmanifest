@@ -2,7 +2,7 @@
   "id": "./",
   "name": "LA Central Church · Boletín",
   "short_name": "LA Central Church",
-  "description": "Boletín dominical móvil de LA Central Church",
+  "description": "LA Central Church · Sunday Newsletter",
   "start_url": "./?source=home",
   "scope": "./",
   "display": "standalone",

@@ -2,7 +2,7 @@
   "id": "./",
   "name": "LA 중앙교회 소식지",
   "short_name": "LA 중앙교회",
-  "description": "LA 중앙교회 주일 모바일 소식지 — 말씀 · 암송 · 소식 · 봉사",
+  "description": "LA Central Church · Sunday Newsletter",
   "start_url": "./?source=home",
   "scope": "./",
   "display": "standalone",
@@ -10,8 +10,23 @@
   "theme_color": "#1f4e5f",
   "lang": "ko",
   "icons": [
-    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
-    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
   ]
 }
