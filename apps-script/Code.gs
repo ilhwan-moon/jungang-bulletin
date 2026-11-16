@@ -17,7 +17,11 @@ const CONFIG = {
   TIMEZONE: 'America/Los_Angeles',
   CHURCH_NAME: { ko: 'LA 중앙교회', en: 'LA Central Church', es: 'LA Central Church' },
   SHARE_FILES_PUBLICLY: true, // 원본 주보 파일을 "링크가 있는 모든 사용자 보기"로 공유 (원본 보기 버튼용)
-  CHECK_DAYS: [6, 0],         // 확인 요일: 6=토, 0=일
+  // 소식지 확인 시간 (LA 시간, 24시간제). 0=일 1=월 ... 6=토
+  CHECK_SCHEDULE: [
+    { day: 6, hours: [19, 20, 21, 23] }, // 토요일 저녁 7·8·9·11시
+    { day: 0, hours: [9, 10] },          // 일요일 오전 9·10시
+  ],
   CACHE_SECONDS: 120,
 };
 
@@ -51,19 +55,39 @@ const LIST_FIELDS = ['hymns', 'announcements', 'schedule', 'volunteers', 'prayer
 
 function setup() {
   getSpreadsheet_(); // 데이터 시트 생성
-  ScriptApp.getProjectTriggers().forEach(t => {
-    if (t.getHandlerFunction() === 'scheduledCheck') ScriptApp.deleteTrigger(t);
-  });
-  ScriptApp.newTrigger('scheduledCheck').timeBased().everyHours(1).create();
+  installTriggers();
   const result = checkForUpdates(true);
   Logger.log('설치 완료. 데이터 시트: ' + getSpreadsheet_().getUrl());
   Logger.log(JSON.stringify(result, null, 2));
 }
 
-/** 매시간 실행되지만, 토·일요일(LA 시간)에만 실제로 확인합니다. */
+/**
+ * 확인 예약 설치: CHECK_SCHEDULE의 요일·시각마다 매주 한 번씩 실행되는 트리거를 만듭니다.
+ * (예전의 '매시간' 트리거는 지웁니다. 시간을 바꾼 뒤에는 이 함수를 한 번 실행하세요.)
+ * 구글 정책상 실제 실행은 지정 시각부터 15분 안에 시작됩니다.
+ */
+function installTriggers() {
+  ScriptApp.getProjectTriggers().forEach(t => {
+    if (t.getHandlerFunction() === 'scheduledCheck') ScriptApp.deleteTrigger(t);
+  });
+  const WD = [ScriptApp.WeekDay.SUNDAY, ScriptApp.WeekDay.MONDAY, ScriptApp.WeekDay.TUESDAY, ScriptApp.WeekDay.WEDNESDAY,
+              ScriptApp.WeekDay.THURSDAY, ScriptApp.WeekDay.FRIDAY, ScriptApp.WeekDay.SATURDAY];
+  const made = [];
+  CONFIG.CHECK_SCHEDULE.forEach(s => s.hours.forEach(h => {
+    ScriptApp.newTrigger('scheduledCheck').timeBased().onWeekDay(WD[s.day]).atHour(h).nearMinute(0)
+      .inTimezone(CONFIG.TIMEZONE).create();
+    made.push(['일', '월', '화', '수', '목', '금', '토'][s.day] + ' ' + h + ':00');
+  }));
+  Logger.log('확인 예약 ' + made.length + '개 설치 (LA 시간): ' + made.join(', '));
+}
+
+/** 예약된 시각에 실행. 혹시 예전 '매시간' 트리거가 남아 있어도 지정된 요일·시각에만 확인합니다. */
 function scheduledCheck() {
-  const day = Number(Utilities.formatDate(new Date(), CONFIG.TIMEZONE, 'u')) % 7; // 1=월..7=일 → 0=일
-  if (CONFIG.CHECK_DAYS.indexOf(day) === -1) return;
+  const now = new Date();
+  const day = Number(Utilities.formatDate(now, CONFIG.TIMEZONE, 'u')) % 7; // 1=월..7=일 → 0=일
+  const hour = Number(Utilities.formatDate(now, CONFIG.TIMEZONE, 'H'));
+  const ok = CONFIG.CHECK_SCHEDULE.some(s => s.day === day && s.hours.indexOf(hour) !== -1);
+  if (!ok) return;
   checkForUpdates(false);
 }
 
