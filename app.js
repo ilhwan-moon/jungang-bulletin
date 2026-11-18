@@ -19,7 +19,7 @@
       fallback: '{lang} 소식지가 아직 없어 {other}(으)로 보여 드립니다.', demo: '예시 화면입니다. 실제 소식지가 연결되면 자동으로 바뀝니다.',
       offline: '인터넷 연결이 없어 저장된 소식지를 보여 드립니다.', loading: '불러오는 중…', noName: '찾는 이름이 없습니다.',
       fromLang: '({lang})', sundayFmt: '{date} 주일',
-      location: '장소', serviceTimes: '예배 시간', fellowship: '예배 후 교제', memoryNext: '다음 주 암송 미리 보기', memoryLast: '지난주 암송 다시 보기', readings: '이번 주 묵상 말씀',
+      location: '장소', serviceTimes: '예배 시간', fellowship: '예배 후 교제', memoryNext: '다음 주 암송 미리 보기', memoryLast: '지난주 암송 다시 보기', readings: '이번 주 묵상 말씀', readHint: '요일을 누르면 그날 말씀 전체를 <b>개역한글</b>로 바로 읽을 수 있어요', readBtn: '읽기', readerClose: '닫기 ✕', readerSource: '성경전서 개역한글판 · 대한성서공회', readerFail: '말씀을 불러오지 못했습니다. 인터넷 연결을 확인해 주세요.', loadingShort: '불러오는 중…',
       meetings: '정기 모임', installTitle: '휴대폰 홈 화면에 소식지 추가', installSub: '앱처럼 한 번에 열 수 있어요', installed: '홈 화면에 추가되었습니다',
       iosTitle: '아이폰 홈 화면에 추가하기', iosSteps: ['화면 아래(또는 위)의 <b>공유 버튼</b> {share} 을 누르세요', '목록을 올려서 <b>「홈 화면에 추가」</b>를 누르세요', '오른쪽 위 <b>「추가」</b>를 누르면 끝!'],
       andTitle: '홈 화면에 추가하기', andSteps: ['오른쪽 위 <b>메뉴 ⋮</b> 를 누르세요', '<b>「홈 화면에 추가」</b> 또는 <b>「앱 설치」</b>를 누르세요', '<b>「추가」</b>를 누르면 끝!'],
@@ -39,7 +39,7 @@
       fallback: 'No {lang} newsletter yet — showing {other}.', demo: 'Sample preview. It will switch to the real newsletter once connected.',
       offline: "You're offline — showing the saved newsletter.", loading: 'Loading…', noName: 'No matching name.',
       fromLang: '({lang})', sundayFmt: '{date}',
-      location: 'Location', serviceTimes: 'Service times', fellowship: 'After service', memoryNext: 'Preview next week’s verse', memoryLast: 'Review last week’s verse', readings: 'This Week’s Meditation Chapters',
+      location: 'Location', serviceTimes: 'Service times', fellowship: 'After service', memoryNext: 'Preview next week’s verse', memoryLast: 'Review last week’s verse', readings: 'This Week’s Meditation Chapters', readHint: 'Tap a day to read all of that day’s chapters (<b>NKJV</b>) on Bible Gateway', readBtn: 'Read', readerClose: 'Close ✕', readerSource: '', readerFail: 'Could not load the passage.', loadingShort: 'Loading…',
       meetings: 'Regular meetings', installTitle: 'Add newsletter to Home Screen', installSub: 'Open it like an app, in one tap', installed: 'Added to Home Screen',
       iosTitle: 'Add to iPhone Home Screen', iosSteps: ['Tap the <b>Share button</b> {share} at the bottom (or top)', 'Scroll and tap <b>“Add to Home Screen”</b>', 'Tap <b>“Add”</b> at the top right. Done!'],
       andTitle: 'Add to Home Screen', andSteps: ['Tap the <b>menu ⋮</b> at the top right', 'Tap <b>“Add to Home screen”</b> or <b>“Install app”</b>', 'Tap <b>“Add”</b>. Done!'],
@@ -59,7 +59,7 @@
       fallback: 'Aún no hay boletín en {lang}; se muestra en {other}.', demo: 'Vista de ejemplo. Cambiará al boletín real cuando esté conectado.',
       offline: 'Sin conexión: se muestra el boletín guardado.', loading: 'Cargando…', noName: 'No se encontró el nombre.',
       fromLang: '({lang})', sundayFmt: '{date}',
-      location: 'Lugar', serviceTimes: 'Horario', fellowship: 'Después del culto', memoryNext: 'Ver versículo de la próxima semana', memoryLast: 'Repasar versículo de la semana pasada', readings: 'Lectura de la semana',
+      location: 'Lugar', serviceTimes: 'Horario', fellowship: 'Después del culto', memoryNext: 'Ver versículo de la próxima semana', memoryLast: 'Repasar versículo de la semana pasada', readings: 'Lectura de la semana', readHint: 'Toque un día para leer todos los capítulos (<b>RVR1960</b>) en Bible Gateway', readBtn: 'Leer', readerClose: 'Cerrar ✕', readerSource: '', readerFail: 'No se pudo cargar el pasaje.', loadingShort: 'Cargando…',
       meetings: 'Reuniones regulares', installTitle: 'Agregar boletín a la pantalla de inicio', installSub: 'Ábralo como una app, con un toque', installed: 'Agregado a la pantalla de inicio',
       iosTitle: 'Agregar a la pantalla de inicio del iPhone', iosSteps: ['Toque el <b>botón Compartir</b> {share} abajo (o arriba)', 'Deslice y toque <b>«Agregar a inicio»</b>', 'Toque <b>«Agregar»</b> arriba a la derecha. ¡Listo!'],
       andTitle: 'Agregar a la pantalla de inicio', andSteps: ['Toque el <b>menú ⋮</b> arriba a la derecha', 'Toque <b>«Agregar a la pantalla principal»</b> o <b>«Instalar app»</b>', 'Toque <b>«Agregar»</b>. ¡Listo!'],
@@ -444,8 +444,16 @@
     list('readings', 'readings', 'sec-readings', function (s, i) {
       var p = split(s);
       var cur = inWeek && i === todayIdx;
-      return '<li' + (cur ? ' class="today"' : '') + '><span class="r-day">' + esc(p[0]) + (cur ? ' <em>' + esc(t('today')) + '</em>' : '') + '</span><span class="r-txt">' + esc(p.slice(1).join(' ')) + '</span></li>';
+      var refsTxt = p.slice(1).join(' ');
+      var refs = window.BibleReader ? BibleReader.parse(refsTxt) : [];
+      var inner = '<span class="r-day">' + esc(p[0]) + (cur ? ' <em>' + esc(t('today')) + '</em>' : '') + '</span><span class="r-txt">' + esc(refsTxt) + '</span>';
+      if (!refs.length) return '<li' + (cur ? ' class="today"' : '') + '>' + inner + '</li>';
+      var go = '<span class="r-go">' + esc(t('readBtn')) + ' ' + (readLang() === 'ko' ? '›' : '↗') + '</span>';
+      return '<li' + (cur ? ' class="today"' : '') + '>' + (readLang() === 'ko'
+        ? '<button type="button" class="r-link" data-day="' + esc(p[0]) + '" data-refs="' + esc(refsTxt) + '">' + inner + go + '</button>'
+        : '<a class="r-link" href="' + esc(BibleReader.gatewayUrl(refs, readLang())) + '" target="_blank" rel="noopener">' + inner + go + '</a>') + '</li>';
     });
+    $('readHint').innerHTML = has(field('readings').v) && window.BibleReader ? t('readHint') : '';
 
 
     // 소식 / 일정 / 봉사 / 기도
@@ -538,6 +546,29 @@
   function serveCat(role) {
     for (var i = 0; i < SERVE_CATS.length; i++) if (SERVE_CATS[i][2].test(role)) return SERVE_CATS[i];
     return ['other', '🤝'];
+  }
+
+  /* ── 묵상 말씀 읽기 ── */
+  function readLang() { var l = langData().lang; return l === 'ko' || l === 'es' ? l : 'en'; }
+  function openReader(day, refsTxt) {
+    var refs = BibleReader.parse(refsTxt);
+    $('readerDay').textContent = day;
+    $('readerRefs').textContent = refs.map(function (r) { return BibleReader.label(r, 'ko'); }).join(' · ');
+    $('readerClose').textContent = t('readerClose');
+    $('readerBody').innerHTML = '<p class="reader-loading">' + esc(t('loadingShort')) + '</p>';
+    $('readerDialog').showModal();
+    $('readerBody').scrollTop = 0;
+    BibleReader.loadKorean(refs).then(function (parts) {
+      var html = parts.map(function (part) {
+        return part.chapters.map(function (ch) {
+          return '<section class="reader-ch"><h3>' + esc(part.book) + ' ' + ch.c + (part.book === '시편' ? '편' : '장') + '</h3><p>' +
+            ch.verses.map(function (v) { return '<span class="vn">' + v.n + '</span>' + esc(v.t); }).join(' ') + '</p></section>';
+        }).join('');
+      }).join('');
+      $('readerBody').innerHTML = html + '<p class="reader-src">' + esc(t('readerSource')) + '</p>';
+    }).catch(function () {
+      $('readerBody').innerHTML = '<p class="reader-loading">' + esc(t('readerFail')) + '</p>';
+    });
   }
 
   function renderServe(b) {
@@ -643,6 +674,12 @@
   $('memoryText').addEventListener('click', function (e) { if (e.target.classList.contains('h')) e.target.classList.remove('h'); });
   $('memoryText').addEventListener('keydown', function (e) { if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('h')) { e.preventDefault(); e.target.classList.remove('h'); } });
   $('serveSearch').addEventListener('input', filterServe);
+  $('readings').addEventListener('click', function (e) {
+    var bt = e.target.closest('button.r-link');
+    if (bt) openReader(bt.getAttribute('data-day'), bt.getAttribute('data-refs'));
+  });
+  $('readerClose').addEventListener('click', function () { $('readerDialog').close(); });
+  $('readerDialog').addEventListener('click', function (e) { if (e.target === $('readerDialog')) $('readerDialog').close(); });
   $('themeBtn').addEventListener('click', function () {
     var next = { auto: 'light', light: 'dark', dark: 'auto' }[themeMode()];
     store('bb_theme', next);

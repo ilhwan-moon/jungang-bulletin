@@ -143,6 +143,7 @@
         <!-- 이번 주 묵상 말씀 -->
         <section class="card" id="sec-readings" aria-labelledby="h-readings">
           <h2 class="eyebrow" id="h-readings"><span class="ico" data-ico="book"></span><span data-i18n="readings"></span></h2>
+          <p class="read-hint" id="readHint"></p>
           <ul class="read-list" id="readings"></ul>
         </section>
       </div>
@@ -211,6 +212,14 @@
 
   <nav class="bottomnav" id="bottomnav" aria-label="Menu"></nav>
 
+  <dialog id="readerDialog" class="reader">
+    <div class="reader-head">
+      <div class="reader-titles"><b id="readerDay"></b><span id="readerRefs"></span></div>
+      <button type="button" class="reader-close" id="readerClose"></button>
+    </div>
+    <div class="reader-body" id="readerBody"></div>
+  </dialog>
+
   <dialog id="installDialog">
     <div class="ins-box">
       <p class="ins-title" id="insTitle"></p>
@@ -222,6 +231,7 @@
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script src="lacc-parser.js"></script>
+  <script src="bible.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
