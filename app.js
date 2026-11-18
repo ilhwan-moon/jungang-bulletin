@@ -19,7 +19,7 @@
       fallback: '{lang} 소식지가 아직 없어 {other}(으)로 보여 드립니다.', demo: '예시 화면입니다. 실제 소식지가 연결되면 자동으로 바뀝니다.',
       offline: '인터넷 연결이 없어 저장된 소식지를 보여 드립니다.', loading: '불러오는 중…', noName: '찾는 이름이 없습니다.',
       fromLang: '({lang})', sundayFmt: '{date} 주일',
-      location: '장소', serviceTimes: '예배 시간', fellowship: '예배 후 교제', memoryNext: '다음 주 암송 미리 보기', memoryLast: '지난주 암송 다시 보기', readings: '이번 주 묵상 말씀', readHint: '요일을 누르면 그날 말씀 전체를 <b>개역한글</b>로 바로 읽을 수 있어요', readBtn: '읽기', readerClose: '닫기 ✕', readerSource: '성경전서 개역한글판 · 대한성서공회', readerFail: '말씀을 불러오지 못했습니다. 인터넷 연결을 확인해 주세요.', loadingShort: '불러오는 중…',
+      location: '장소', serviceTimes: '예배 시간', fellowship: '예배 후 교제', memoryNext: '다음 주 암송 미리 보기', memoryLast: '지난주 암송 다시 보기', readings: '이번 주 묵상 말씀', readHint: '요일을 누르면 그날 말씀 전체를 <b>개역한글</b>로 바로 읽을 수 있어요', readBtn: '읽기', readerClose: '닫기 ✕', readerSource: '성경전서 개역한글판 · 대한성서공회', readerFail: '말씀을 불러오지 못했습니다. 인터넷 연결을 확인해 주세요.', readerTip: '👇 읽을 장을 <b>누르면</b> 말씀이 펼쳐집니다', rcOpen: '눌러서 읽기', rcClose: '접기', rcNext: '다음 읽기', verses: '절', updatedReload: '새 내용으로 바뀌었습니다', loadingShort: '불러오는 중…',
       meetings: '정기 모임', installTitle: '휴대폰 홈 화면에 소식지 추가', installSub: '앱처럼 한 번에 열 수 있어요', installed: '홈 화면에 추가되었습니다',
       iosTitle: '아이폰 홈 화면에 추가하기', iosSteps: ['화면 아래(또는 위)의 <b>공유 버튼</b> {share} 을 누르세요', '목록을 올려서 <b>「홈 화면에 추가」</b>를 누르세요', '오른쪽 위 <b>「추가」</b>를 누르면 끝!'],
       andTitle: '홈 화면에 추가하기', andSteps: ['오른쪽 위 <b>메뉴 ⋮</b> 를 누르세요', '<b>「홈 화면에 추가」</b> 또는 <b>「앱 설치」</b>를 누르세요', '<b>「추가」</b>를 누르면 끝!'],
@@ -39,7 +39,7 @@
       fallback: 'No {lang} newsletter yet — showing {other}.', demo: 'Sample preview. It will switch to the real newsletter once connected.',
       offline: "You're offline — showing the saved newsletter.", loading: 'Loading…', noName: 'No matching name.',
       fromLang: '({lang})', sundayFmt: '{date}',
-      location: 'Location', serviceTimes: 'Service times', fellowship: 'After service', memoryNext: 'Preview next week’s verse', memoryLast: 'Review last week’s verse', readings: 'This Week’s Meditation Chapters', readHint: 'Tap a day to read all of that day’s chapters (<b>NKJV</b>) on Bible Gateway', readBtn: 'Read', readerClose: 'Close ✕', readerSource: '', readerFail: 'Could not load the passage.', loadingShort: 'Loading…',
+      location: 'Location', serviceTimes: 'Service times', fellowship: 'After service', memoryNext: 'Preview next week’s verse', memoryLast: 'Review last week’s verse', readings: 'This Week’s Meditation Chapters', readHint: 'Tap a day to read all of that day’s chapters (<b>NKJV</b>) on Bible Gateway', readBtn: 'Read', readerClose: 'Close ✕', readerSource: '', readerFail: 'Could not load the passage.', readerTip: '', rcOpen: 'Tap to read', rcClose: 'Close', rcNext: 'Next', verses: 'verses', updatedReload: 'Updated to the latest version', loadingShort: 'Loading…',
       meetings: 'Regular meetings', installTitle: 'Add newsletter to Home Screen', installSub: 'Open it like an app, in one tap', installed: 'Added to Home Screen',
       iosTitle: 'Add to iPhone Home Screen', iosSteps: ['Tap the <b>Share button</b> {share} at the bottom (or top)', 'Scroll and tap <b>“Add to Home Screen”</b>', 'Tap <b>“Add”</b> at the top right. Done!'],
       andTitle: 'Add to Home Screen', andSteps: ['Tap the <b>menu ⋮</b> at the top right', 'Tap <b>“Add to Home screen”</b> or <b>“Install app”</b>', 'Tap <b>“Add”</b>. Done!'],
@@ -59,7 +59,7 @@
       fallback: 'Aún no hay boletín en {lang}; se muestra en {other}.', demo: 'Vista de ejemplo. Cambiará al boletín real cuando esté conectado.',
       offline: 'Sin conexión: se muestra el boletín guardado.', loading: 'Cargando…', noName: 'No se encontró el nombre.',
       fromLang: '({lang})', sundayFmt: '{date}',
-      location: 'Lugar', serviceTimes: 'Horario', fellowship: 'Después del culto', memoryNext: 'Ver versículo de la próxima semana', memoryLast: 'Repasar versículo de la semana pasada', readings: 'Lectura de la semana', readHint: 'Toque un día para leer todos los capítulos (<b>RVR1960</b>) en Bible Gateway', readBtn: 'Leer', readerClose: 'Cerrar ✕', readerSource: '', readerFail: 'No se pudo cargar el pasaje.', loadingShort: 'Cargando…',
+      location: 'Lugar', serviceTimes: 'Horario', fellowship: 'Después del culto', memoryNext: 'Ver versículo de la próxima semana', memoryLast: 'Repasar versículo de la semana pasada', readings: 'Lectura de la semana', readHint: 'Toque un día para leer todos los capítulos (<b>RVR1960</b>) en Bible Gateway', readBtn: 'Leer', readerClose: 'Cerrar ✕', readerSource: '', readerFail: 'No se pudo cargar el pasaje.', readerTip: '', rcOpen: 'Toque para leer', rcClose: 'Cerrar', rcNext: 'Siguiente', verses: 'versículos', updatedReload: 'Actualizado a la última versión', loadingShort: 'Cargando…',
       meetings: 'Reuniones regulares', installTitle: 'Agregar boletín a la pantalla de inicio', installSub: 'Ábralo como una app, con un toque', installed: 'Agregado a la pantalla de inicio',
       iosTitle: 'Agregar a la pantalla de inicio del iPhone', iosSteps: ['Toque el <b>botón Compartir</b> {share} abajo (o arriba)', 'Deslice y toque <b>«Agregar a inicio»</b>', 'Toque <b>«Agregar»</b> arriba a la derecha. ¡Listo!'],
       andTitle: 'Agregar a la pantalla de inicio', andSteps: ['Toque el <b>menú ⋮</b> arriba a la derecha', 'Toque <b>«Agregar a la pantalla principal»</b> o <b>«Instalar app»</b>', 'Toque <b>«Agregar»</b>. ¡Listo!'],
@@ -559,13 +559,22 @@
     $('readerDialog').showModal();
     $('readerBody').scrollTop = 0;
     BibleReader.loadKorean(refs).then(function (parts) {
-      var html = parts.map(function (part) {
-        return part.chapters.map(function (ch) {
-          return '<section class="reader-ch"><h3>' + esc(part.book) + ' ' + ch.c + (part.book === '시편' ? '편' : '장') + '</h3><p>' +
-            ch.verses.map(function (v) { return '<span class="vn">' + v.n + '</span>' + esc(v.t); }).join(' ') + '</p></section>';
-        }).join('');
+      // 장마다 접어 두고, 누르면 그 장만 펼침 (한 번에 한 장)
+      var items = [];
+      parts.forEach(function (part) {
+        part.chapters.forEach(function (ch) { items.push({ name: part.book + ' ' + ch.c + (part.book === '시편' ? '편' : '장'), ch: ch }); });
+      });
+      var html = items.map(function (it, i) {
+        var next = items[i + 1];
+        return '<details class="rc" data-i="' + i + '">' +
+          '<summary><span class="rc-num">' + (i + 1) + '</span><span class="rc-name">' + esc(it.name) +
+          '<small>' + it.ch.verses.length + t('verses') + '</small></span>' +
+          '<span class="rc-act"><span class="rc-open">' + esc(t('rcOpen')) + ' ▼</span><span class="rc-close">' + esc(t('rcClose')) + ' ▲</span></span></summary>' +
+          '<div class="rc-body"><p>' + it.ch.verses.map(function (v) { return '<span class="vn">' + v.n + '</span>' + esc(v.t); }).join(' ') + '</p>' +
+          '<div class="rc-foot">' + (next ? '<button type="button" class="rc-next" data-next="' + (i + 1) + '">' + esc(t('rcNext')) + ': ' + esc(next.name) + ' ▶</button>' : '') +
+          '<button type="button" class="rc-fold" data-fold="' + i + '">' + esc(t('rcClose')) + ' ▲</button></div></div></details>';
       }).join('');
-      $('readerBody').innerHTML = html + '<p class="reader-src">' + esc(t('readerSource')) + '</p>';
+      $('readerBody').innerHTML = (t('readerTip') ? '<p class="reader-tip">' + t('readerTip') + '</p>' : '') + html + '<p class="reader-src">' + esc(t('readerSource')) + '</p>';
     }).catch(function () {
       $('readerBody').innerHTML = '<p class="reader-loading">' + esc(t('readerFail')) + '</p>';
     });
@@ -679,6 +688,25 @@
     if (bt) openReader(bt.getAttribute('data-day'), bt.getAttribute('data-refs'));
   });
   $('readerClose').addEventListener('click', function () { $('readerDialog').close(); });
+  function openChapter(i) {
+    var all = $('readerBody').querySelectorAll('details.rc');
+    all.forEach(function (d, k) { d.open = k === i; });
+    var d = all[i];
+    if (d) setTimeout(function () { d.scrollIntoView({ block: 'start', behavior: 'smooth' }); }, 30);
+  }
+  $('readerBody').addEventListener('click', function (e) {
+    var sm = e.target.closest('details.rc > summary');
+    if (sm) {
+      e.preventDefault();
+      var d = sm.parentElement, i = Number(d.getAttribute('data-i'));
+      if (d.open) d.open = false; else openChapter(i);
+      return;
+    }
+    var nx = e.target.closest('.rc-next');
+    if (nx) { openChapter(Number(nx.getAttribute('data-next'))); return; }
+    var fd = e.target.closest('.rc-fold');
+    if (fd) { var dd = $('readerBody').querySelectorAll('details.rc')[Number(fd.getAttribute('data-fold'))]; dd.open = false; dd.scrollIntoView({ block: 'nearest' }); }
+  });
   $('readerDialog').addEventListener('click', function (e) { if (e.target === $('readerDialog')) $('readerDialog').close(); });
   $('themeBtn').addEventListener('click', function () {
     var next = { auto: 'light', light: 'dark', dark: 'auto' }[themeMode()];
@@ -709,10 +737,41 @@
   });
   $('qrClose').addEventListener('click', function () { $('qrDialog').close(); });
   window.addEventListener('resize', measure);
-  document.addEventListener('visibilitychange', function () {
-    // 앱을 다시 열면 최신 주보 확인
-    if (!document.hidden && (!state.week || state.weeks[0] === state.week)) load('');
-  });
+  /* ── 다시 열었을 때 자동 새로고침 ──
+   * 홈 화면 앱은 닫아도 메모리에 남아 있다가 그대로 다시 보여서, 바뀐 내용이 안 보일 수 있습니다.
+   * 앱으로 돌아올 때마다 ① 사이트 파일이 바뀌었는지 확인해 바뀌었으면 페이지를 다시 불러오고
+   * ② 소식지·영상 데이터는 항상 새로 가져옵니다. */
+  var APP_FILES = ['index.html', 'app.js', 'styles.css', 'lacc-parser.js', 'bible.js'];
+  var fileSigs = null, lastResume = Date.now();
+  function readSigs() {
+    return Promise.all(APP_FILES.map(function (f) {
+      return fetch(f + '?v=' + Date.now(), { method: 'HEAD', cache: 'no-store' }).then(function (r) {
+        return r.ok ? (r.headers.get('etag') || r.headers.get('last-modified') || '') : '';
+      }).catch(function () { return ''; });
+    })).then(function (a) { return a.join('|'); });
+  }
+  function checkForNewVersion() {
+    return readSigs().then(function (sig) {
+      if (!sig.replace(/\|/g, '')) return false;            // 오프라인 등
+      if (fileSigs === null) { fileSigs = sig; return false; }
+      if (sig !== fileSigs) { store('bb_updated', '1'); location.reload(); return true; }
+      return false;
+    });
+  }
+  function onResume() {
+    if (document.hidden) return;
+    var away = Date.now() - lastResume; lastResume = Date.now();
+    checkForNewVersion().then(function (reloaded) {
+      if (reloaded) return;
+      if (!state.week || state.weeks[0] === state.week || away > 6 * 3600 * 1000) load(away > 6 * 3600 * 1000 ? '' : state.week === state.weeks[0] ? '' : state.week);
+      loadVideos();
+    });
+  }
+  document.addEventListener('visibilitychange', onResume);
+  window.addEventListener('pageshow', function (e) { if (e.persisted) onResume(); });
+  window.addEventListener('focus', function () { if (Date.now() - lastResume > 60000) onResume(); });
+  setTimeout(function () { readSigs().then(function (s) { fileSigs = s; }); }, 1500);
+  if (store('bb_updated')) { store('bb_updated', ''); try { localStorage.removeItem('bb_updated'); } catch (e) {} setTimeout(function () { toast(t('updatedReload')); }, 600); }
 
   /* ── 홈 화면에 추가 ── */
   var deferredPrompt = null;
@@ -745,7 +804,9 @@
   $('insClose').addEventListener('click', function () { $('installDialog').close(); });
   updateInstallBtn();
   if ('serviceWorker' in navigator && location.protocol === 'https:') {
-    window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function () {}); });
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' }).then(function (reg) { if (reg && reg.update) reg.update(); }).catch(function () {});
+    });
   }
 
   renderStatic();
