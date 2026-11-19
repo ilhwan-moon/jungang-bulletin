@@ -1,0 +1,27 @@
+{
+ "sizeBig": {
+  "x": 287.109375,
+  "y": 62,
+  "w": 38,
+  "h": 44
+ },
+ "installBtn": {
+  "x": 16,
+  "y": 452.8125,
+  "w": 358,
+  "h": 81.5625
+ },
+ "video": {
+  "x": 35.1875,
+  "y": 397.265625,
+  "w": 319.625,
+  "h": 276.96875
+ },
+ "today": {
+  "x": 34.59375,
+  "y": 633.953125,
+  "w": 320.8125,
+  "h": 109.84375
+ },
+ "bgUrl": "https://www.biblegateway.com/passage/?search=Ezekiel%2040-41%3B%20Psalm%2020%3B%20Philippians%202&version=NKJV"
+}

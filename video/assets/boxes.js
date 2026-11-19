@@ -1,4 +1,4 @@
-window.BOXES = {
+window.BOXES_ALL = {ko: {
  "sizeBig": {
   "x": 287.109375,
   "y": 62,
@@ -47,4 +47,56 @@ window.BOXES = {
   "w": 226.078125,
   "h": 52
  }
-};
+}, en: {
+ "sizeBig": {
+  "x": 287.109375,
+  "y": 62,
+  "w": 38,
+  "h": 44
+ },
+ "installBtn": {
+  "x": 16,
+  "y": 452.8125,
+  "w": 358,
+  "h": 81.5625
+ },
+ "video": {
+  "x": 35.1875,
+  "y": 397.265625,
+  "w": 319.625,
+  "h": 276.96875
+ },
+ "today": {
+  "x": 34.59375,
+  "y": 633.953125,
+  "w": 320.8125,
+  "h": 109.84375
+ },
+ "bgUrl": "https://www.biblegateway.com/passage/?search=Ezekiel%2040-41%3B%20Psalm%2020%3B%20Philippians%202&version=NKJV"
+}, es: {
+ "sizeBig": {
+  "x": 287.109375,
+  "y": 62,
+  "w": 38,
+  "h": 44
+ },
+ "installBtn": {
+  "x": 16,
+  "y": 423.328125,
+  "w": 358,
+  "h": 110.578125
+ },
+ "video": {
+  "x": 35.1875,
+  "y": 471.96875,
+  "w": 319.625,
+  "h": 276.96875
+ },
+ "today": {
+  "x": 34.59375,
+  "y": 633.375,
+  "w": 320.8125,
+  "h": 109.84375
+ },
+ "bgUrl": "https://www.biblegateway.com/passage/?search=Ezekiel%2040-41%3B%20Psalm%2020%3B%20Philippians%202&version=RVR1960"
+}};

@@ -145,7 +145,8 @@
 <script src="assets/boxes.js"></script>
 <script>
 // ───────── 장면 정의 ─────────
-const B = BOXES;                      // 실제 화면에서 잰 버튼 위치 (390×844 기준)
+const LANG = (new URLSearchParams(location.search).get('lang') || 'ko');
+const B = BOXES_ALL[LANG];            // 실제 화면에서 잰 버튼 위치 (390×844 기준)
 const K = 640 / 390;                  // 화면 확대 비율
 const C = (b) => b ? { x: (b.x + b.w / 2) * K, y: (b.y + b.h / 2) * K } : { x: 320, y: 700 };
 // 모형 화면 안의 버튼은 실제 위치를 재서 씀
@@ -155,36 +156,143 @@ function posOf(sel) {
   return { x: r.left - sc.left + r.width / 2, y: r.top - sc.top + r.height / 2 };
 }
 
+// ───────── 언어별 문구 ─────────
+const TX = {
+  ko: {
+    name: 'LA 중앙교회', foot: 'LA 중앙교회 · LA Central Church',
+    mock: { rows: ['복사', '읽기 목록에 추가', '북마크 추가', '홈 화면에 추가', '페이지에서 찾기'], cancel: '취소', addTitle: '홈 화면에 추가', add: '추가',
+      note: '홈 화면에 아이콘이 추가되어 이 웹사이트에 빠르게 접근할 수 있습니다.', apps: ['전화', '메시지', '카메라', '캘린더', '사진', '시계', '날씨'],
+      install: '앱을 설치하시겠습니까?', andCancel: '취소', andInstall: '설치' },
+    cards: {
+      title: ['LA 중앙교회<br>모바일 소식지', '휴대폰으로 매주 소식지를 쉽고 크게'],
+      core: ['홈 화면에<br>바로가기 만들기', '한 번만 해 두면, 아이콘 하나로 열려요'],
+      bible: ['날짜별<br>성경 읽기', '요일을 누르면 그날 말씀이 바로'],
+      end: ['📲 홈 화면에 추가하고', '📖 매일 말씀 읽어요'] },
+    s: {
+      open: ['시작', '링크를 누르면 바로 열려요', '카톡으로 받은 링크를 눌러 보세요'],
+      btn: ['⭐ 바로가기 만들기', '맨 아래 이 버튼을 누르세요', '「휴대폰 홈 화면에 소식지 추가」', '여기!'],
+      guide: ['🍎 아이폰', '안내가 나와요', '3단계만 따라 하면 끝!'],
+      ios1: ['🍎 아이폰 ①', '아래 「공유」 버튼 누르기', '네모에 화살표 ↑ 모양', '공유'],
+      ios2: ['🍎 아이폰 ②', '「홈 화면에 추가」 누르기', '목록을 위로 올리면 보여요', '홈 화면에 추가'],
+      ios3: ['🍎 아이폰 ③', '오른쪽 위 「추가」 누르기', '이름은 「LA 중앙교회」', '추가'],
+      and: ['🤖 안드로이드', '버튼을 누르면 설치 창이 떠요', '「설치」만 누르면 끝!', '설치'],
+      done: ['✅ 완성', '홈 화면에 아이콘이 생겼어요', '이제 한 번만 누르면 열려요', '꾹!'],
+      sermon: ['주일 말씀', '설교 제목 · 본문 · 찬송', '설교 영상도 바로 볼 수 있어요', '영상 보기'],
+      r1: ['📖 날짜별 성경 읽기', '오늘 요일을 누르세요', '매일 읽을 말씀이 정리되어 있어요', '오늘'],
+      r2: ['📖 날짜별 성경 읽기', '읽을 장을 누르면 펼쳐져요', '개역한글 본문이 바로 나와요', '눌러서 읽기'],
+      r3: ['📖 날짜별 성경 읽기', '큰 글씨로 편하게 읽어요', '한 장씩 펼쳐서 읽기'],
+      r4: ['📖 날짜별 성경 읽기', '「다음 읽기」로 이어서', '다 읽으면 다음 장으로 ▶', '다음 읽기'],
+      size: ['글씨 크기', '「가 가 가」로 글씨를 크게', '어르신도 편하게 보세요', '크게'],
+      lang: ['3개 언어', '한국어 · English · Español', '고른 언어를 기억해요'],
+      serve: ['봉사 안내', '이번 주 · 다음 주 봉사', '봉사마다 색깔로 구분'] } },
+  en: {
+    name: 'LA Central Church', foot: 'LA Central Church',
+    mock: { rows: ['Copy', 'Add to Reading List', 'Add Bookmark', 'Add to Home Screen', 'Find on Page'], cancel: 'Cancel', addTitle: 'Add to Home Screen', add: 'Add',
+      note: 'An icon will be added to your Home Screen so you can quickly access this website.', apps: ['Phone', 'Messages', 'Camera', 'Calendar', 'Photos', 'Clock', 'Weather'],
+      install: 'Install app?', andCancel: 'Cancel', andInstall: 'Install' },
+    cards: {
+      title: ['LA Central Church<br>Mobile Newsletter', 'Your weekly newsletter, easy to read on your phone'],
+      core: ['Add it to your<br>Home Screen', 'Do it once, then open it with one tap'],
+      bible: ['Daily<br>Bible Reading', 'Tap a day to read that day’s chapters'],
+      end: ['📲 Add it to your Home Screen', '📖 Read the Bible every day'] },
+    s: {
+      open: ['Start', 'Tap the link to open', 'Open the link you received by text'],
+      btn: ['⭐ Home Screen shortcut', 'Tap this button at the bottom', '“Add newsletter to Home Screen”', 'Here!'],
+      guide: ['🍎 iPhone', 'A short guide appears', 'Just 3 easy steps!'],
+      ios1: ['🍎 iPhone ①', 'Tap the Share button', 'The square with an arrow ↑', 'Share'],
+      ios2: ['🍎 iPhone ②', 'Tap “Add to Home Screen”', 'Scroll up the list to find it', 'Add to Home Screen'],
+      ios3: ['🍎 iPhone ③', 'Tap “Add” at the top right', 'Name: “LA Central Church”', 'Add'],
+      and: ['🤖 Android', 'An install window appears', 'Just tap “Install”!', 'Install'],
+      done: ['✅ Done', 'The icon is on your Home Screen', 'Now it opens with one tap', 'Tap!'],
+      sermon: ['Sunday Message', 'Sermon title · Scripture · Hymn', 'Watch the sermon video too', 'Watch'],
+      r1: ['📖 Daily Bible Reading', 'Tap today’s day', 'Readings for every day of the week', 'Today'],
+      r2: ['📖 Daily Bible Reading', 'All chapters on one page', 'NKJV, same as the memory verse'],
+      r3: ['📖 Daily Bible Reading', 'Scroll down to keep reading', 'Ezekiel → Psalm → Philippians'],
+      size: ['Text size', 'Make text bigger with “A A A”', 'Easy to read for everyone', 'Bigger'],
+      lang: ['3 languages', '한국어 · English · Español', 'Your choice is remembered'],
+      serve: ['Volunteers', 'This week · Next week', 'Color-coded by ministry'] } },
+  es: {
+    name: 'LA Central Church', foot: 'LA Central Church',
+    mock: { rows: ['Copiar', 'Añadir a la lista de lectura', 'Añadir marcador', 'Agregar a inicio', 'Buscar en la página'], cancel: 'Cancelar', addTitle: 'Agregar a inicio', add: 'Agregar',
+      note: 'Se agregará un ícono a su pantalla de inicio para acceder rápidamente a este sitio web.', apps: ['Teléfono', 'Mensajes', 'Cámara', 'Calendario', 'Fotos', 'Reloj', 'Clima'],
+      install: '¿Instalar app?', andCancel: 'Cancelar', andInstall: 'Instalar' },
+    cards: {
+      title: ['LA Central Church<br>Boletín móvil', 'Su boletín semanal, fácil de leer en el teléfono'],
+      core: ['Agréguelo a su<br>pantalla de inicio', 'Hágalo una vez y ábralo con un toque'],
+      bible: ['Lectura bíblica<br>diaria', 'Toque un día para leer sus capítulos'],
+      end: ['📲 Agréguelo a su pantalla de inicio', '📖 Lea la Biblia cada día'] },
+    s: {
+      open: ['Inicio', 'Toque el enlace para abrir', 'Abra el enlace que recibió por mensaje'],
+      btn: ['⭐ Acceso directo', 'Toque este botón abajo', '«Agregar boletín a la pantalla de inicio»', '¡Aquí!'],
+      guide: ['🍎 iPhone', 'Aparece una guía', '¡Solo 3 pasos!'],
+      ios1: ['🍎 iPhone ①', 'Toque el botón Compartir', 'El cuadro con una flecha ↑', 'Compartir'],
+      ios2: ['🍎 iPhone ②', 'Toque «Agregar a inicio»', 'Deslice la lista hacia arriba', 'Agregar a inicio'],
+      ios3: ['🍎 iPhone ③', 'Toque «Agregar» arriba', 'Nombre: «LA Central Church»', 'Agregar'],
+      and: ['🤖 Android', 'Aparece una ventana para instalar', '¡Solo toque «Instalar»!', 'Instalar'],
+      done: ['✅ Listo', 'El ícono está en su pantalla', 'Ahora se abre con un toque', '¡Toque!'],
+      sermon: ['Mensaje dominical', 'Título · Texto · Himno', 'También puede ver el video del sermón', 'Ver video'],
+      r1: ['📖 Lectura bíblica diaria', 'Toque el día de hoy', 'Lecturas para cada día de la semana', 'Hoy'],
+      r2: ['📖 Lectura bíblica diaria', 'Todos los capítulos en una página', 'RVR1960, igual que el versículo para memorizar'],
+      r3: ['📖 Lectura bíblica diaria', 'Deslice para seguir leyendo', 'Ezequiel → Salmos → Filipenses'],
+      size: ['Tamaño de letra', 'Agrande la letra con «A A A»', 'Fácil de leer para todos', 'Más grande'],
+      lang: ['3 idiomas', '한국어 · English · Español', 'Se recuerda el idioma elegido'],
+      serve: ['Voluntarios', 'Esta semana · Próxima semana', 'Colores por ministerio'] } },
+}[LANG];
+const P = LANG + '_';
+const sc = (key, extra) => { const a = TX.s[key]; return Object.assign({ step: a[0], title: a[1], sub: a[2] }, extra, extra && extra.tap ? { tap: [extra.tap[0], extra.tap[1], a[3]] } : {}); };
+const others = ['ko', 'en', 'es'].filter((l) => l !== LANG);
+
 const S = [
   { d: 4.6, card: 'title' },
-  { d: 4.2, step: '시작', title: '링크를 누르면 바로 열려요', sub: '카톡으로 받은 링크를 눌러 보세요', img: 'ko_top' },
+  sc('open', { d: 4.2, img: P + 'top' }),
   { d: 4.0, card: 'core' },
-  { d: 4.8, step: '⭐ 바로가기 만들기', title: '맨 아래 이 버튼을 누르세요', sub: '「휴대폰 홈 화면에 소식지 추가」', img: 'ko_install', tap: [1.6, C(B.installBtn), '여기!'] },
-  { d: 4.4, step: '🍎 아이폰', title: '안내가 나와요', sub: '3단계만 따라 하면 끝!', img: 'ko_iosguide' },
-  { d: 4.4, step: '🍎 아이폰 ①', title: '아래 「공유」 버튼 누르기', sub: '네모에 화살표 ↑ 모양', img: 'ko_top', layers: { safari: [0, 99] }, tap: [1.4, SAF_SHARE, '공유'] },
-  { d: 4.6, step: '🍎 아이폰 ②', title: '「홈 화면에 추가」 누르기', sub: '목록을 위로 올리면 보여요', img: 'ko_top', layers: { safari: [0, 99], sheet: [0, 99] }, tap: [1.6, ROW_ADD, '홈 화면에 추가'] },
-  { d: 4.2, step: '🍎 아이폰 ③', title: '오른쪽 위 「추가」 누르기', sub: '이름은 「LA 중앙교회」', layers: { confirm: [0, 99] }, tap: [1.5, CONFIRM_ADD, '추가'] },
-  { d: 4.6, step: '🤖 안드로이드', title: '버튼을 누르면 설치 창이 떠요', sub: '「설치」만 누르면 끝!', img: 'ko_install', layers: { android: [1.2, 99] }, tap: [2.6, AND_INSTALL, '설치'] },
-  { d: 4.8, step: '✅ 완성', title: '홈 화면에 아이콘이 생겼어요', sub: '이제 한 번만 누르면 열려요', layers: { home: [0, 3.4] }, img2: ['ko_top', 3.4], tap: [2.3, HOME_ICON, '꾹!'] },
-  { d: 4.8, step: '주일 말씀', title: '설교 제목 · 본문 · 찬송', sub: '설교 영상도 바로 볼 수 있어요', img: 'ko_sermon', tap: [2.4, C(B.video), '영상 보기'] },
+  sc('btn', { d: 4.8, img: P + 'install', tap: [1.6, C(B.installBtn)] }),
+  sc('guide', { d: 4.4, img: P + 'iosguide' }),
+  sc('ios1', { d: 4.4, img: P + 'top', layers: { safari: [0, 99] }, tap: [1.4, SAF_SHARE] }),
+  sc('ios2', { d: 4.6, img: P + 'top', layers: { safari: [0, 99], sheet: [0, 99] }, tap: [1.6, ROW_ADD] }),
+  sc('ios3', { d: 4.2, layers: { confirm: [0, 99] }, tap: [1.5, CONFIRM_ADD] }),
+  sc('and', { d: 4.6, img: P + 'install', layers: { android: [1.2, 99] }, tap: [2.6, AND_INSTALL] }),
+  sc('done', { d: 4.8, layers: { home: [0, 3.4] }, img2: [P + 'top', 3.4], tap: [2.3, HOME_ICON] }),
+  sc('sermon', { d: 4.8, img: P + 'sermon', tap: [2.4, C(B.video)] }),
   { d: 3.8, card: 'bible' },
-  { d: 4.8, step: '📖 날짜별 성경 읽기', title: '오늘 요일을 누르세요', sub: '매일 읽을 말씀이 정리되어 있어요', img: 'ko_readings', img2: ['ko_reader_list', 3.0], tap: [1.8, C(B.today), '오늘'] },
-  { d: 4.6, step: '📖 날짜별 성경 읽기', title: '읽을 장을 누르면 펼쳐져요', sub: '개역한글 본문이 바로 나와요', img: 'ko_reader_list', img2: ['ko_reader_ch1', 2.9], tap: [1.7, C(B.ch1), '눌러서 읽기'] },
-  { d: 4.6, step: '📖 날짜별 성경 읽기', title: '큰 글씨로 편하게 읽어요', sub: '한 장씩 펼쳐서 읽기', img: 'ko_reader_ch1', pan: [0, -60] },
-  { d: 4.8, step: '📖 날짜별 성경 읽기', title: '「다음 읽기」로 이어서', sub: '다 읽으면 다음 장으로 ▶', img: 'ko_reader_next', img2: ['ko_reader_ch2', 2.9], tap: [1.8, C(B.next), '다음 읽기'] },
-  { d: 4.6, step: '글씨 크기', title: '「가 가 가」로 글씨를 크게', sub: '어르신도 편하게 보세요', img: 'ko_top', img2: ['ko_big', 2.6], tap: [1.6, C(B.sizeBig), '크게'] },
-  { d: 5.4, step: '3개 언어', title: '한국어 · English · Español', sub: '고른 언어를 기억해요', img: 'ko_top', img2: ['en_top', 1.8], img3: ['es_top', 3.6] },
-  { d: 4.4, step: '봉사 안내', title: '이번 주 · 다음 주 봉사', sub: '봉사마다 색깔로 구분', img: 'ko_serve', pan: [0, -40] },
+].concat(LANG === 'ko' ? [
+  sc('r1', { d: 4.8, img: 'ko_readings', img2: ['ko_reader_list', 3.0], tap: [1.8, C(B.today)] }),
+  sc('r2', { d: 4.6, img: 'ko_reader_list', img2: ['ko_reader_ch1', 2.9], tap: [1.7, C(B.ch1)] }),
+  sc('r3', { d: 4.6, img: 'ko_reader_ch1', pan: [0, -60] }),
+  sc('r4', { d: 4.8, img: 'ko_reader_next', img2: ['ko_reader_ch2', 2.9], tap: [1.8, C(B.next)] }),
+] : [
+  sc('r1', { d: 4.8, img: P + 'readings', img2: [P + 'bg1', 3.0], tap: [1.8, C(B.today)] }),
+  sc('r2', { d: 4.8, img: P + 'bg1', pan: [0, -50] }),
+  sc('r3', { d: 4.6, img: P + 'bg2', pan: [0, -40] }),
+]).concat([
+  sc('size', { d: 4.6, img: P + 'top', img2: [P + 'big', 2.6], tap: [1.6, C(B.sizeBig)] }),
+  sc('lang', { d: 5.4, img: P + 'top', img2: [others[0] + '_top', 1.8], img3: [others[1] + '_top', 3.6] }),
+  sc('serve', { d: 4.4, img: P + 'serve', pan: [0, -40] }),
   { d: 6.5, card: 'end' },
-];
+]);
 const TOTAL = S.reduce((a, s) => a + s.d, 0);
 
 const CARDS = {
-  title: `<img src="assets/icon.png"><div class="big">LA 중앙교회<br>모바일 소식지</div><div class="mid">휴대폰으로 매주 소식지를 쉽고 크게</div>`,
-  core: `<div style="font-size:150px">📲</div><div class="big">홈 화면에<br>바로가기 만들기</div><div class="mid">한 번만 해 두면, 아이콘 하나로 열려요</div>`,
-  bible: `<div style="font-size:150px">📖</div><div class="big">날짜별<br>성경 읽기</div><div class="mid">요일을 누르면 그날 말씀이 바로</div>`,
-  end: `<img class="qr" src="assets/qr.png"><div class="link">ilhwan-moon.github.io/jungang-bulletin</div><div class="feat"><div>📲 홈 화면에 추가하고</div><div>📖 매일 말씀 읽어요</div></div>`,
+  title: `<img src="assets/icon.png"><div class="big">${TX.cards.title[0]}</div><div class="mid">${TX.cards.title[1]}</div>`,
+  core: `<div style="font-size:150px">📲</div><div class="big">${TX.cards.core[0]}</div><div class="mid">${TX.cards.core[1]}</div>`,
+  bible: `<div style="font-size:150px">📖</div><div class="big">${TX.cards.bible[0]}</div><div class="mid">${TX.cards.bible[1]}</div>`,
+  end: `<img class="qr" src="assets/qr.png"><div class="link">ilhwan-moon.github.io/jungang-bulletin</div><div class="feat"><div>${TX.cards.end[0]}</div><div>${TX.cards.end[1]}</div></div>`,
 };
+// 모형 화면 문구 바꾸기
+(function () {
+  const m = TX.mock, q = (s) => document.querySelector(s), qa = (s) => document.querySelectorAll(s);
+  qa('#sheet .row').forEach((r, i) => { r.childNodes[0].nodeValue = m.rows[i] + ' '; });
+  qa('#sheet .head b, #confirm .name, #android .app b').forEach((e) => { e.textContent = TX.name; });
+  const tops = qa('#confirm .top > *'); tops[0].textContent = m.cancel; tops[1].textContent = m.addTitle; tops[2].textContent = m.add;
+  q('#confirm .note').textContent = m.note;
+  qa('#home .grid .app:not(.ours)').forEach((a, i) => { a.lastChild.nodeValue = m.apps[i]; });
+  q('#home .ours').lastChild.nodeValue = TX.name;
+  q('#android .t').textContent = m.install;
+  const ab = qa('#android .btns span'); ab[0].textContent = m.andCancel; ab[1].textContent = m.andInstall;
+  q('#foot').textContent = TX.foot;
+  document.documentElement.lang = LANG;
+})();
+
 
 const $ = (id) => document.getElementById(id);
 const ease = (x) => x < 0 ? 0 : x > 1 ? 1 : x * x * (3 - 2 * x);
@@ -202,6 +310,14 @@ function render(t) {
   if (i !== lastScene) {
     $('step').textContent = s.step || ''; $('title').textContent = s.title || ''; $('sub').textContent = s.sub || '';
     $('card').innerHTML = s.card ? CARDS[s.card] : '';
+    let fs = 64; $('title').style.fontSize = fs + 'px';
+    $('title').style.whiteSpace = 'nowrap';
+    while ($('title').scrollWidth > 960 && fs > 38) { fs -= 2; $('title').style.fontSize = fs + 'px'; }
+    $('title').style.whiteSpace = '';
+    let fs2 = 38; $('sub').style.fontSize = fs2 + 'px';
+    $('sub').style.whiteSpace = 'nowrap';
+    while ($('sub').scrollWidth > 960 && fs2 > 26) { fs2 -= 2; $('sub').style.fontSize = fs2 + 'px'; }
+    $('sub').style.whiteSpace = '';
     lastScene = i;
   }
   $('cap').style.transform = `translateY(${(1 - fadeIn) * 20}px)`;
