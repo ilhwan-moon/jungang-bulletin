@@ -36,6 +36,31 @@
   #safari .icons { position: absolute; left: 0; right: 0; top: 108px; display: flex; justify-content: space-around; color: #0a84ff; font-size: 44px; }
   #safari svg { width: 54px; height: 54px; fill: none; stroke: #0a84ff; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
 
+  /* 최신 사파리 하단 막대 (··· 버튼) */
+  #safari .bar2 { position: absolute; left: 0; right: 0; bottom: 0; height: 170px; background: rgba(246,246,248,.97); border-top: 1px solid #d6d6db; display: flex; align-items: center; gap: 18px; padding: 0 26px 40px; }
+  #safari .bar2 .b { flex: none; width: 74px; height: 74px; border-radius: 50%; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,.12); display: grid; place-items: center; color: #222; font-size: 40px; font-weight: 700; }
+  #safari .bar2 .u { flex: 1; height: 74px; border-radius: 37px; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,.12); display: grid; place-items: center; color: #333; font-size: 26px; }
+  /* ··· 메뉴 (모형) */
+  #more { background: rgba(0,0,0,.25); }
+  #more .menu { position: absolute; right: 26px; bottom: 190px; width: 470px; border-radius: 34px; background: rgba(250,250,252,.98); box-shadow: 0 20px 50px rgba(0,0,0,.3); overflow: hidden; }
+  #more .row { display: flex; justify-content: space-between; align-items: center; height: 92px; padding: 0 30px; font-size: 32px; color: #111; border-bottom: 1px solid #e5e5ea; }
+  #more .row:last-child { border-bottom: 0; }
+  #more .row.hl { background: #fff6dc; font-weight: 900; }
+  #more .row i { font-style: normal; color: #0a84ff; font-size: 34px; }
+  /* 안드로이드 크롬 메뉴 (모형) */
+  #chrome .top { position: absolute; left: 0; right: 0; top: 0; height: 160px; background: #f1f3f4; display: flex; align-items: flex-end; gap: 16px; padding: 0 22px 20px; }
+  #chrome .top .u { flex: 1; height: 70px; border-radius: 35px; background: #fff; display: grid; place-items: center; font-size: 26px; color: #333; }
+  #chrome .top .dots { width: 60px; height: 70px; display: grid; place-items: center; font-size: 44px; font-weight: 900; color: #333; }
+  #chrome .menu { position: absolute; right: 18px; top: 150px; width: 430px; background: #fff; border-radius: 22px; box-shadow: 0 16px 40px rgba(0,0,0,.3); padding: 10px 0; }
+  #chrome .row { height: 86px; display: flex; align-items: center; padding: 0 32px; font-size: 31px; color: #1b1b1b; }
+  #chrome .row.hl { background: #e8f0fe; font-weight: 900; color: #0b57d0; }
+  /* 비교 카드 */
+  #card .split { margin-top: 50px; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; text-align: left; }
+  #card .split > div { background: rgba(255,255,255,.1); border: 2px solid rgba(255,255,255,.25); border-radius: 36px; padding: 34px 30px; }
+  #card .split h3 { margin: 0 0 22px; font-size: 54px; font-weight: 900; }
+  #card .split ol { margin: 0; padding-left: 44px; font-size: 38px; line-height: 1.5; font-weight: 700; }
+  #card .split li::marker { color: #f3d9a4; }
+
   /* 공유 시트 (모형) */
   #sheet { background: rgba(0,0,0,.35); }
   #sheet .panel { position: absolute; left: 0; right: 0; bottom: 0; height: 900px; border-radius: 40px 40px 0 0; background: #f2f2f7; padding: 30px 28px; }
@@ -78,7 +103,7 @@
   #android .btns { display: flex; justify-content: flex-end; gap: 50px; font-size: 32px; font-weight: 700; color: #1a73e8; padding-right: 10px; }
 
   /* 소개 카드(휴대폰 대신) */
-  #card { position: absolute; left: 90px; right: 90px; top: 520px; text-align: center; opacity: 0; }
+  #card { position: absolute; left: 70px; right: 70px; top: 520px; text-align: center; opacity: 0; }
   #card img { width: 360px; height: 360px; border-radius: 80px; background: #fff; box-shadow: 0 30px 70px rgba(0,0,0,.35); }
   #card .big { margin-top: 60px; font-size: 92px; font-weight: 900; line-height: 1.15; letter-spacing: -2px; }
   #card .mid { margin-top: 26px; font-size: 44px; color: #f3d9a4; font-weight: 700; }
@@ -99,10 +124,17 @@
     <div class="notch"></div>
     <img class="shot" id="imgA"><img class="shot" id="imgB" style="opacity:0">
 
-    <div class="layer" id="safari"><div class="bar"><div class="url">ilhwan-moon.github.io</div>
-      <div class="icons"><span>‹</span><span>›</span>
-        <svg viewBox="0 0 24 24"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M7 10H5.5v10.5h13V10H17"/></svg>
-        <span>⧉</span><span>☰</span></div></div></div>
+    <div class="layer" id="safari"><div class="bar2"><div class="b">‹</div><div class="u">ilhwan-moon.github.io</div><div class="b" id="dotsBtn">···</div></div></div>
+
+    <div class="layer" id="more"><div class="menu">
+      <div class="row hl" id="rowShare"><span id="mShare">공유하기</span><i>⬆︎</i></div>
+      <div class="row"><span>북마크 추가</span><i>📖</i></div>
+      <div class="row"><span>즐겨찾기에 추가</span><i>☆</i></div>
+      <div class="row"><span>페이지에서 찾기</span><i>⌕</i></div>
+    </div></div>
+
+    <div class="layer" id="chrome"><div class="top"><div class="u">ilhwan-moon.github.io</div><div class="dots" id="cDots">⋮</div></div>
+      <div class="menu"><div class="row">새 탭</div><div class="row">북마크</div><div class="row">방문 기록</div><div class="row hl" id="cAdd">홈 화면에 추가</div><div class="row">설정</div></div></div>
 
     <div class="layer" id="sheet"><div class="panel">
       <div class="head"><img src="assets/icon.png"><div><b>LA 중앙교회</b><span>ilhwan-moon.github.io</span></div></div>
@@ -162,21 +194,25 @@ const TX = {
     name: 'LA 중앙교회', foot: 'LA 중앙교회 · LA Central Church',
     mock: { rows: ['복사', '읽기 목록에 추가', '북마크 추가', '홈 화면에 추가', '페이지에서 찾기'], cancel: '취소', addTitle: '홈 화면에 추가', add: '추가',
       note: '홈 화면에 아이콘이 추가되어 이 웹사이트에 빠르게 접근할 수 있습니다.', apps: ['전화', '메시지', '카메라', '캘린더', '사진', '시계', '날씨'],
-      install: '앱을 설치하시겠습니까?', andCancel: '취소', andInstall: '설치' },
+      install: '앱을 설치하시겠습니까?', andCancel: '취소', andInstall: '설치',
+      more: ['공유하기', '북마크 추가', '즐겨찾기에 추가', '페이지에서 찾기'], chrome: ['새 탭', '북마크', '방문 기록', '홈 화면에 추가', '설정'] },
     cards: {
       title: ['LA 중앙교회<br>모바일 소식지', '휴대폰으로 매주 소식지를 쉽고 크게'],
       core: ['홈 화면에<br>바로가기 만들기', '한 번만 해 두면, 아이콘 하나로 열려요'],
       bible: ['날짜별<br>성경 읽기', '요일을 누르면 그날 말씀이 바로'],
+      split: ['아이폰과 안드로이드는<br>방법이 달라요', ['🍎 아이폰', ['「···」', '「공유하기」', '「홈 화면에 추가」', '「추가」']], ['🤖 안드로이드', ['「설치」 창', '또는 ⋮ 메뉴', '「홈 화면에 추가」']]],
       end: ['📲 홈 화면에 추가하고', '📖 매일 말씀 읽어요'] },
     s: {
       open: ['시작', '링크를 누르면 바로 열려요', '카톡으로 받은 링크를 눌러 보세요'],
       btn: ['⭐ 바로가기 만들기', '맨 아래 이 버튼을 누르세요', '「휴대폰 홈 화면에 소식지 추가」', '여기!'],
-      guide: ['🍎 아이폰', '안내가 나와요', '3단계만 따라 하면 끝!'],
-      ios1: ['🍎 아이폰 ①', '아래 「공유」 버튼 누르기', '네모에 화살표 ↑ 모양', '공유'],
-      ios2: ['🍎 아이폰 ②', '「홈 화면에 추가」 누르기', '목록을 위로 올리면 보여요', '홈 화면에 추가'],
-      ios3: ['🍎 아이폰 ③', '오른쪽 위 「추가」 누르기', '이름은 「LA 중앙교회」', '추가'],
-      and: ['🤖 안드로이드', '버튼을 누르면 설치 창이 떠요', '「설치」만 누르면 끝!', '설치'],
-      done: ['✅ 완성', '홈 화면에 아이콘이 생겼어요', '이제 한 번만 누르면 열려요', '꾹!'],
+      guide: ['🍎 아이폰', '아이폰은 안내가 나와요', '사파리에서 4단계만 따라 하세요'],
+      ios1: ['🍎 아이폰 ①', '화면 아래 「···」 누르기', '점 3개 버튼 (공유 버튼이 보이면 그걸 눌러도 돼요)', '···'],
+      ios2: ['🍎 아이폰 ②', '「공유하기」 누르기', '메뉴 맨 위에 있어요', '공유하기'],
+      ios3: ['🍎 아이폰 ③', '「홈 화면에 추가」 누르기', '목록을 위로 올리면 보여요', '홈 화면에 추가'],
+      ios4: ['🍎 아이폰 ④', '오른쪽 위 「추가」 누르기', '이름은 「LA 중앙교회」', '추가'],
+      and: ['🤖 안드로이드', '같은 버튼을 누르면 설치 창이 떠요', '「설치」만 누르면 끝!', '설치'],
+      and2: ['🤖 안드로이드', '설치 창이 안 뜨면?', '크롬 오른쪽 위 ⋮ → 「홈 화면에 추가」', '홈 화면에 추가'],
+      done: ['✅ 완성', '홈 화면에 아이콘이 생겼어요', '아이폰·안드로이드 모두 한 번만 누르면 열려요', '꾹!'],
       sermon: ['주일 말씀', '설교 제목 · 본문 · 찬송', '설교 영상도 바로 볼 수 있어요', '영상 보기'],
       r1: ['📖 날짜별 성경 읽기', '오늘 요일을 누르세요', '매일 읽을 말씀이 정리되어 있어요', '오늘'],
       r2: ['📖 날짜별 성경 읽기', '읽을 장을 누르면 펼쳐져요', '개역한글 본문이 바로 나와요', '눌러서 읽기'],
@@ -189,21 +225,25 @@ const TX = {
     name: 'LA Central Church', foot: 'LA Central Church',
     mock: { rows: ['Copy', 'Add to Reading List', 'Add Bookmark', 'Add to Home Screen', 'Find on Page'], cancel: 'Cancel', addTitle: 'Add to Home Screen', add: 'Add',
       note: 'An icon will be added to your Home Screen so you can quickly access this website.', apps: ['Phone', 'Messages', 'Camera', 'Calendar', 'Photos', 'Clock', 'Weather'],
-      install: 'Install app?', andCancel: 'Cancel', andInstall: 'Install' },
+      install: 'Install app?', andCancel: 'Cancel', andInstall: 'Install',
+      more: ['Share', 'Add Bookmark', 'Add to Favorites', 'Find on Page'], chrome: ['New tab', 'Bookmarks', 'History', 'Add to Home screen', 'Settings'] },
     cards: {
       title: ['LA Central Church<br>Mobile Newsletter', 'Your weekly newsletter, easy to read on your phone'],
       core: ['Add it to your<br>Home Screen', 'Do it once, then open it with one tap'],
       bible: ['Daily<br>Bible Reading', 'Tap a day to read that day’s chapters'],
+      split: ['iPhone and Android<br>work differently', ['🍎 iPhone', ['“···”', '“Share”', '“Add to Home Screen”', '“Add”']], ['🤖 Android', ['“Install” window', 'or the ⋮ menu', '“Add to Home screen”']]],
       end: ['📲 Add it to your Home Screen', '📖 Read the Bible every day'] },
     s: {
       open: ['Start', 'Tap the link to open', 'Open the link you received by text'],
       btn: ['⭐ Home Screen shortcut', 'Tap this button at the bottom', '“Add newsletter to Home Screen”', 'Here!'],
-      guide: ['🍎 iPhone', 'A short guide appears', 'Just 3 easy steps!'],
-      ios1: ['🍎 iPhone ①', 'Tap the Share button', 'The square with an arrow ↑', 'Share'],
-      ios2: ['🍎 iPhone ②', 'Tap “Add to Home Screen”', 'Scroll up the list to find it', 'Add to Home Screen'],
-      ios3: ['🍎 iPhone ③', 'Tap “Add” at the top right', 'Name: “LA Central Church”', 'Add'],
-      and: ['🤖 Android', 'An install window appears', 'Just tap “Install”!', 'Install'],
-      done: ['✅ Done', 'The icon is on your Home Screen', 'Now it opens with one tap', 'Tap!'],
+      guide: ['🍎 iPhone', 'iPhone shows a short guide', 'Just 4 steps in Safari'],
+      ios1: ['🍎 iPhone ①', 'Tap “···” at the bottom', 'Three dots (or the Share button if you see it)', '···'],
+      ios2: ['🍎 iPhone ②', 'Tap “Share”', 'At the top of the menu', 'Share'],
+      ios3: ['🍎 iPhone ③', 'Tap “Add to Home Screen”', 'Scroll up the list to find it', 'Add to Home Screen'],
+      ios4: ['🍎 iPhone ④', 'Tap “Add” at the top right', 'Name: “LA Central Church”', 'Add'],
+      and: ['🤖 Android', 'The same button opens an install window', 'Just tap “Install”!', 'Install'],
+      and2: ['🤖 Android', 'No install window?', 'Chrome ⋮ menu → “Add to Home screen”', 'Add to Home screen'],
+      done: ['✅ Done', 'The icon is on your Home Screen', 'iPhone or Android: open it with one tap', 'Tap!'],
       sermon: ['Sunday Message', 'Sermon title · Scripture · Hymn', 'Watch the sermon video too', 'Watch'],
       r1: ['📖 Daily Bible Reading', 'Tap today’s day', 'Readings for every day of the week', 'Today'],
       r2: ['📖 Daily Bible Reading', 'All chapters on one page', 'NKJV, same as the memory verse'],
@@ -215,21 +255,25 @@ const TX = {
     name: 'LA Central Church', foot: 'LA Central Church',
     mock: { rows: ['Copiar', 'Añadir a la lista de lectura', 'Añadir marcador', 'Agregar a inicio', 'Buscar en la página'], cancel: 'Cancelar', addTitle: 'Agregar a inicio', add: 'Agregar',
       note: 'Se agregará un ícono a su pantalla de inicio para acceder rápidamente a este sitio web.', apps: ['Teléfono', 'Mensajes', 'Cámara', 'Calendario', 'Fotos', 'Reloj', 'Clima'],
-      install: '¿Instalar app?', andCancel: 'Cancelar', andInstall: 'Instalar' },
+      install: '¿Instalar app?', andCancel: 'Cancelar', andInstall: 'Instalar',
+      more: ['Compartir', 'Añadir marcador', 'Añadir a favoritos', 'Buscar en la página'], chrome: ['Nueva pestaña', 'Marcadores', 'Historial', 'Agregar a la pantalla principal', 'Configuración'] },
     cards: {
       title: ['LA Central Church<br>Boletín móvil', 'Su boletín semanal, fácil de leer en el teléfono'],
       core: ['Agréguelo a su<br>pantalla de inicio', 'Hágalo una vez y ábralo con un toque'],
       bible: ['Lectura bíblica<br>diaria', 'Toque un día para leer sus capítulos'],
+      split: ['iPhone y Android<br>son diferentes', ['🍎 iPhone', ['«···»', '«Compartir»', '«Agregar a inicio»', '«Agregar»']], ['🤖 Android', ['Ventana «Instalar»', 'o el menú ⋮', '«Agregar a inicio»']]],
       end: ['📲 Agréguelo a su pantalla de inicio', '📖 Lea la Biblia cada día'] },
     s: {
       open: ['Inicio', 'Toque el enlace para abrir', 'Abra el enlace que recibió por mensaje'],
       btn: ['⭐ Acceso directo', 'Toque este botón abajo', '«Agregar boletín a la pantalla de inicio»', '¡Aquí!'],
-      guide: ['🍎 iPhone', 'Aparece una guía', '¡Solo 3 pasos!'],
-      ios1: ['🍎 iPhone ①', 'Toque el botón Compartir', 'El cuadro con una flecha ↑', 'Compartir'],
-      ios2: ['🍎 iPhone ②', 'Toque «Agregar a inicio»', 'Deslice la lista hacia arriba', 'Agregar a inicio'],
-      ios3: ['🍎 iPhone ③', 'Toque «Agregar» arriba', 'Nombre: «LA Central Church»', 'Agregar'],
-      and: ['🤖 Android', 'Aparece una ventana para instalar', '¡Solo toque «Instalar»!', 'Instalar'],
-      done: ['✅ Listo', 'El ícono está en su pantalla', 'Ahora se abre con un toque', '¡Toque!'],
+      guide: ['🍎 iPhone', 'En iPhone aparece una guía', 'Solo 4 pasos en Safari'],
+      ios1: ['🍎 iPhone ①', 'Toque «···» abajo', 'Tres puntos (o el botón Compartir si lo ve)', '···'],
+      ios2: ['🍎 iPhone ②', 'Toque «Compartir»', 'Arriba en el menú', 'Compartir'],
+      ios3: ['🍎 iPhone ③', 'Toque «Agregar a inicio»', 'Deslice la lista hacia arriba', 'Agregar a inicio'],
+      ios4: ['🍎 iPhone ④', 'Toque «Agregar» arriba', 'Nombre: «LA Central Church»', 'Agregar'],
+      and: ['🤖 Android', 'El mismo botón abre la instalación', '¡Solo toque «Instalar»!', 'Instalar'],
+      and2: ['🤖 Android', '¿No aparece la ventana?', 'Menú ⋮ de Chrome → «Agregar a la pantalla principal»', 'Agregar'],
+      done: ['✅ Listo', 'El ícono está en su pantalla', 'iPhone o Android: se abre con un toque', '¡Toque!'],
       sermon: ['Mensaje dominical', 'Título · Texto · Himno', 'También puede ver el video del sermón', 'Ver video'],
       r1: ['📖 Lectura bíblica diaria', 'Toque el día de hoy', 'Lecturas para cada día de la semana', 'Hoy'],
       r2: ['📖 Lectura bíblica diaria', 'Todos los capítulos en una página', 'RVR1960, igual que el versículo para memorizar'],
@@ -247,11 +291,14 @@ const S = [
   sc('open', { d: 4.2, img: P + 'top' }),
   { d: 4.0, card: 'core' },
   sc('btn', { d: 4.8, img: P + 'install', tap: [1.6, C(B.installBtn)] }),
-  sc('guide', { d: 4.4, img: P + 'iosguide' }),
-  sc('ios1', { d: 4.4, img: P + 'top', layers: { safari: [0, 99] }, tap: [1.4, SAF_SHARE] }),
-  sc('ios2', { d: 4.6, img: P + 'top', layers: { safari: [0, 99], sheet: [0, 99] }, tap: [1.6, ROW_ADD] }),
-  sc('ios3', { d: 4.2, layers: { confirm: [0, 99] }, tap: [1.5, CONFIRM_ADD] }),
-  sc('and', { d: 4.6, img: P + 'install', layers: { android: [1.2, 99] }, tap: [2.6, AND_INSTALL] }),
+  { d: 5.6, card: 'split' },
+  sc('guide', { d: 4.8, img: P + 'iosguide' }),
+  sc('ios1', { d: 4.4, img: P + 'top', layers: { safari: [0, 99] }, tap: [1.5, '#dotsBtn'] }),
+  sc('ios2', { d: 4.2, img: P + 'top', layers: { safari: [0, 99], more: [0, 99] }, tap: [1.5, '#rowShare'] }),
+  sc('ios3', { d: 4.6, img: P + 'top', layers: { safari: [0, 99], sheet: [0, 99] }, tap: [1.6, ROW_ADD] }),
+  sc('ios4', { d: 4.2, layers: { confirm: [0, 99] }, tap: [1.5, CONFIRM_ADD] }),
+  sc('and', { d: 4.8, img: P + 'install', layers: { android: [1.2, 99] }, tap: [2.6, AND_INSTALL] }),
+  sc('and2', { d: 4.8, img: P + 'top', layers: { chrome: [0, 99] }, tap: [2.0, '#cAdd'] }),
   sc('done', { d: 4.8, layers: { home: [0, 3.4] }, img2: [P + 'top', 3.4], tap: [2.3, HOME_ICON] }),
   sc('sermon', { d: 4.8, img: P + 'sermon', tap: [2.4, C(B.video)] }),
   { d: 3.8, card: 'bible' },
@@ -275,6 +322,7 @@ const TOTAL = S.reduce((a, s) => a + s.d, 0);
 const CARDS = {
   title: `<img src="assets/icon.png"><div class="big">${TX.cards.title[0]}</div><div class="mid">${TX.cards.title[1]}</div>`,
   core: `<div style="font-size:150px">📲</div><div class="big">${TX.cards.core[0]}</div><div class="mid">${TX.cards.core[1]}</div>`,
+  split: `<div class="big" style="font-size:80px">${TX.cards.split[0]}</div><div class="split">${[TX.cards.split[1], TX.cards.split[2]].map((c) => `<div><h3>${c[0]}</h3><ol>${c[1].map((x) => `<li>${x}</li>`).join('')}</ol></div>`).join('')}</div>`,
   bible: `<div style="font-size:150px">📖</div><div class="big">${TX.cards.bible[0]}</div><div class="mid">${TX.cards.bible[1]}</div>`,
   end: `<img class="qr" src="assets/qr.png"><div class="link">ilhwan-moon.github.io/jungang-bulletin</div><div class="feat"><div>${TX.cards.end[0]}</div><div>${TX.cards.end[1]}</div></div>`,
 };
@@ -289,6 +337,8 @@ const CARDS = {
   q('#home .ours').lastChild.nodeValue = TX.name;
   q('#android .t').textContent = m.install;
   const ab = qa('#android .btns span'); ab[0].textContent = m.andCancel; ab[1].textContent = m.andInstall;
+  qa('#more .row span').forEach((r, i) => { r.textContent = m.more[i]; });
+  qa('#chrome .row').forEach((r, i) => { r.textContent = m.chrome[i]; });
   q('#foot').textContent = TX.foot;
   document.documentElement.lang = LANG;
 })();
@@ -344,12 +394,12 @@ function render(t) {
   A.style.transform = Bm.style.transform = `translateY(${pan}px)`;
 
   // 모형 화면
-  ['safari', 'sheet', 'confirm', 'home', 'android'].forEach((id) => {
+  ['safari', 'more', 'sheet', 'confirm', 'home', 'android', 'chrome'].forEach((id) => {
     const r = s.layers && s.layers[id];
     let o = 0;
     if (r) { o = ease((lt - r[0]) / 0.35) * (1 - ease((lt - r[1]) / 0.35)); }
     $(id).style.opacity = o;
-    if (id === 'sheet' || id === 'android') $(id).querySelector('.panel, .card').style.transform = `translateY(${(1 - ease((lt - (r ? r[0] : 0)) / 0.45)) * 120}px)`;
+    if (id === 'sheet' || id === 'android' || id === 'more') $(id).querySelector('.panel, .card, .menu').style.transform = `translateY(${(1 - ease((lt - (r ? r[0] : 0)) / 0.45)) * 120}px)`;
   });
 
   // 탭 표시: 누르기 전 0.9초 동안 나타나 맥박치고, 누르는 순간 눌림
