@@ -437,3 +437,4 @@ details.rc[open] .rc-close { display: inline; }
 .rc-next { flex: 1 1 auto; background: var(--primary); color: var(--primary-ink); }
 .rc-fold { background: var(--surface-2); color: var(--ink-2); border: 1px solid var(--line); }
 @media (max-width: 640px) { html[data-size="3"] details.rc > summary { flex-wrap: wrap; } }
+.ins-steps li small { display: block; font-size: .85em; color: var(--muted); font-weight: 500; margin-top: .15rem; }
