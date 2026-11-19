@@ -3,7 +3,7 @@
   "name": "LA 중앙교회 소식지",
   "short_name": "LA 중앙교회",
   "description": "LA Central Church · Sunday Newsletter",
-  "start_url": "./?source=home",
+  "start_url": "./?lang=ko&source=home",
   "scope": "./",
   "display": "standalone",
   "background_color": "#ffffff",

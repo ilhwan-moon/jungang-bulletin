@@ -130,9 +130,18 @@
   }
   // 우선순위: ① 언어 링크(/ko/ /en/ /es/ 또는 ?lang=) → ② 내가 전에 고른 언어 → ③ 설정 → ④ 휴대폰 언어
   // 언어 링크로 들어오면 그 언어를 기억합니다. 주소창의 lang 표시는 바로 지워서 북마크가 언어를 고정하지 않게 합니다.
+  // 홈 화면 앱으로 열었는지 (아이폰은 홈 화면 앱의 저장 공간이 사파리와 따로라서 주소의 lang으로 첫 언어를 정함)
+  function launchedFromHome() {
+    return params.get('source') === 'home' || (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true;
+  }
   function pickLang() {
     var p = params.get('lang');
-    if (LANGS.indexOf(p) !== -1) { saveLang(p); return p; }
+    if (LANGS.indexOf(p) !== -1) {
+      // 홈 화면 앱: 앱 안에서 고른 언어가 있으면 그것을 우선 (처음엔 추가할 때의 언어로 열림)
+      var sv = launchedFromHome() ? savedLang() : null;
+      if (sv) return sv;
+      saveLang(p); return p;
+    }
     var s = savedLang();
     if (s) { saveLang(s); return s; }
     if (CFG.DEFAULT_LANG && CFG.DEFAULT_LANG !== 'auto') return CFG.DEFAULT_LANG;
@@ -635,8 +644,10 @@
   }
 
   function syncUrl() {
+    // 보고 있는 언어를 주소에 남겨 둠: 카톡 → 사파리/크롬으로 열기, 홈 화면에 추가할 때 언어가 그대로 따라감
     var p = new URLSearchParams(location.search);
-    p.delete('lang');
+    p.set('lang', state.lang);
+    p.delete('source');
     if (state.week && state.weeks[0] !== state.week) p.set('week', state.week); else p.delete('week');
     p.delete('size');
     var q = p.toString();
