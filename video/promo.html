@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>LA 중앙교회 소식지 소개 영상</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 1080px; height: 1920px; overflow: hidden; font-family: 'Noto Sans KR', sans-serif; }
+  body { background: linear-gradient(165deg, #173f4d 0%, #1f4e5f 45%, #2c6a78 100%); color: #fff; position: relative; }
+  .glow { position: absolute; width: 900px; height: 900px; border-radius: 50%; background: radial-gradient(circle, rgba(243,217,164,.18), transparent 65%); left: 90px; top: 520px; }
+
+  /* 위 자막 */
+  #cap { position: absolute; left: 0; right: 0; top: 70px; height: 250px; text-align: center; padding: 0 60px; }
+  #step { display: inline-block; padding: 8px 26px; border-radius: 999px; background: #f3d9a4; color: #3b2a05; font-weight: 900; font-size: 34px; letter-spacing: -.5px; }
+  #title { margin-top: 18px; font-size: 64px; font-weight: 900; line-height: 1.2; letter-spacing: -1.5px; text-shadow: 0 4px 18px rgba(0,0,0,.25); }
+  #sub { margin-top: 10px; font-size: 38px; font-weight: 500; color: #d6e6ea; line-height: 1.35; }
+
+  /* 휴대폰 */
+  #phone { position: absolute; left: 190px; top: 360px; width: 700px; height: 1445px; border-radius: 92px; background: #0e1417; padding: 30px; box-shadow: 0 40px 90px rgba(0,0,0,.45), inset 0 0 0 3px #2a3439; }
+  #screen { position: relative; width: 640px; height: 1385px; border-radius: 64px; overflow: hidden; background: #fff; }
+  #screen .notch { position: absolute; top: 14px; left: 50%; transform: translateX(-50%); width: 190px; height: 48px; border-radius: 30px; background: #0e1417; z-index: 50; }
+  .shot { position: absolute; inset: 0; width: 640px; height: 1385px; object-fit: cover; object-position: top; }
+  .layer { position: absolute; inset: 0; z-index: 10; opacity: 0; pointer-events: none; }
+
+  /* 탭 표시 */
+  #tap { position: absolute; z-index: 60; width: 0; height: 0; opacity: 0; }
+  #tap .ring { position: absolute; left: -60px; top: -60px; width: 120px; height: 120px; border-radius: 50%; border: 8px solid #ffb703; background: rgba(255,183,3,.25); }
+  #tap .dot { position: absolute; left: -22px; top: -22px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255,183,3,.95); box-shadow: 0 0 0 6px rgba(255,255,255,.7); }
+  #tap.left .label { left: auto; right: 50px; }
+  #tap .label { position: absolute; left: 50px; top: -86px; white-space: nowrap; padding: 8px 18px; border-radius: 14px; background: #ffb703; color: #2b1d00; font-weight: 900; font-size: 34px; box-shadow: 0 6px 16px rgba(0,0,0,.3); }
+
+  /* 사파리 하단 도구 막대 (모형) */
+  #safari .bar { position: absolute; left: 0; right: 0; bottom: 0; height: 190px; background: rgba(246,246,248,.97); border-top: 1px solid #d6d6db; }
+  #safari .url { position: absolute; left: 34px; right: 34px; top: 20px; height: 66px; border-radius: 18px; background: #e4e4ea; color: #333; font-size: 28px; display: grid; place-items: center; }
+  #safari .icons { position: absolute; left: 0; right: 0; top: 108px; display: flex; justify-content: space-around; color: #0a84ff; font-size: 44px; }
+  #safari svg { width: 54px; height: 54px; fill: none; stroke: #0a84ff; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* 공유 시트 (모형) */
+  #sheet { background: rgba(0,0,0,.35); }
+  #sheet .panel { position: absolute; left: 0; right: 0; bottom: 0; height: 900px; border-radius: 40px 40px 0 0; background: #f2f2f7; padding: 30px 28px; }
+  #sheet .head { display: flex; gap: 22px; align-items: center; background: #fff; border-radius: 22px; padding: 20px; }
+  #sheet .head img { width: 86px; height: 86px; border-radius: 20px; }
+  #sheet .head b { font-size: 32px; color: #111; display: block; } #sheet .head span { font-size: 24px; color: #777; }
+  #sheet .rows { margin-top: 26px; background: #fff; border-radius: 22px; overflow: hidden; }
+  #sheet .row { display: flex; justify-content: space-between; align-items: center; height: 96px; padding: 0 28px; font-size: 32px; color: #111; border-bottom: 1px solid #e5e5ea; }
+  #sheet .row.hl { background: #fff6dc; font-weight: 900; }
+  #sheet .row i { font-style: normal; color: #555; font-size: 36px; }
+
+  /* 홈 화면에 추가 확인 (모형) */
+  #confirm { background: #f2f2f7; }
+  #confirm .top { display: flex; justify-content: space-between; align-items: center; height: 100px; margin-top: 70px; padding: 0 32px; font-size: 32px; color: #0a84ff; }
+  #confirm .top b { color: #111; } #confirm .top .add { font-weight: 900; }
+  #confirm .card { margin: 30px 28px; background: #fff; border-radius: 22px; padding: 28px; display: flex; gap: 26px; align-items: center; }
+  #confirm .card img { width: 130px; height: 130px; border-radius: 30px; box-shadow: 0 2px 8px rgba(0,0,0,.15); }
+  #confirm .name { font-size: 38px; color: #111; border-bottom: 2px solid #ddd; padding-bottom: 10px; font-weight: 700; }
+  #confirm .u { font-size: 24px; color: #888; margin-top: 10px; }
+  #confirm .note { margin: 0 40px; font-size: 26px; color: #777; line-height: 1.5; }
+
+  /* 홈 화면 (모형) */
+  #home { background: linear-gradient(160deg, #6a8caf 0%, #9db7c9 45%, #e7c9a8 100%); }
+  #home .clock { text-align: center; margin-top: 110px; font-size: 110px; font-weight: 700; color: #fff; letter-spacing: -2px; text-shadow: 0 2px 10px rgba(0,0,0,.2); }
+  #home .grid { position: absolute; left: 44px; right: 44px; top: 330px; display: grid; grid-template-columns: repeat(4, 1fr); row-gap: 52px; }
+  #home .app { display: grid; justify-items: center; gap: 10px; color: #fff; font-size: 24px; font-weight: 500; text-shadow: 0 1px 4px rgba(0,0,0,.35); }
+  #home .ic { width: 116px; height: 116px; border-radius: 28px; display: grid; place-items: center; font-size: 56px; background: rgba(255,255,255,.35); }
+  #home .ours .ic { background: #fff; overflow: hidden; box-shadow: 0 0 0 6px #ffb703, 0 0 40px 10px rgba(255,183,3,.8); }
+  #home .ours .ic img { width: 100%; height: 100%; }
+  #home .ours { font-weight: 900; }
+  #home .dock { position: absolute; left: 30px; right: 30px; bottom: 40px; height: 170px; border-radius: 50px; background: rgba(255,255,255,.3); display: flex; justify-content: space-around; align-items: center; }
+
+  /* 안드로이드 설치 창 (모형) */
+  #android { background: rgba(0,0,0,.45); }
+  #android .card { position: absolute; left: 50px; right: 50px; top: 470px; background: #fff; border-radius: 40px; padding: 44px 40px 30px; color: #1b1b1b; }
+  #android .t { font-size: 38px; font-weight: 700; }
+  #android .app { display: flex; gap: 24px; align-items: center; margin: 34px 0 40px; }
+  #android .app img { width: 110px; height: 110px; border-radius: 50%; box-shadow: 0 2px 8px rgba(0,0,0,.2); }
+  #android .app b { font-size: 34px; display: block; } #android .app span { font-size: 24px; color: #666; }
+  #android .btns { display: flex; justify-content: flex-end; gap: 50px; font-size: 32px; font-weight: 700; color: #1a73e8; padding-right: 10px; }
+
+  /* 소개 카드(휴대폰 대신) */
+  #card { position: absolute; left: 90px; right: 90px; top: 520px; text-align: center; opacity: 0; }
+  #card img { width: 360px; height: 360px; border-radius: 80px; background: #fff; box-shadow: 0 30px 70px rgba(0,0,0,.35); }
+  #card .big { margin-top: 60px; font-size: 92px; font-weight: 900; line-height: 1.15; letter-spacing: -2px; }
+  #card .mid { margin-top: 26px; font-size: 44px; color: #f3d9a4; font-weight: 700; }
+  #card .qr { width: 520px; height: 520px; border-radius: 40px; padding: 26px; background: #fff; }
+  #card .link { margin-top: 36px; font-size: 40px; font-weight: 700; color: #fff; word-break: break-all; }
+  #card .feat { margin: 50px auto 0; display: inline-grid; gap: 22px; text-align: left; font-size: 46px; font-weight: 700; }
+
+  /* 하단 자막 */
+  #foot { position: absolute; left: 0; right: 0; bottom: 34px; text-align: center; font-size: 30px; color: rgba(255,255,255,.75); font-weight: 500; }
+</style>
+</head>
+<body>
+<div class="glow"></div>
+<div id="cap"><div id="step"></div><div id="title"></div><div id="sub"></div></div>
+
+<div id="phone">
+  <div id="screen">
+    <div class="notch"></div>
+    <img class="shot" id="imgA"><img class="shot" id="imgB" style="opacity:0">
+
+    <div class="layer" id="safari"><div class="bar"><div class="url">ilhwan-moon.github.io</div>
+      <div class="icons"><span>‹</span><span>›</span>
+        <svg viewBox="0 0 24 24"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M7 10H5.5v10.5h13V10H17"/></svg>
+        <span>⧉</span><span>☰</span></div></div></div>
+
+    <div class="layer" id="sheet"><div class="panel">
+      <div class="head"><img src="assets/icon.png"><div><b>LA 중앙교회</b><span>ilhwan-moon.github.io</span></div></div>
+      <div class="rows">
+        <div class="row">복사 <i>⧉</i></div>
+        <div class="row">읽기 목록에 추가 <i>◯◯</i></div>
+        <div class="row">북마크 추가 <i>☆</i></div>
+        <div class="row hl" id="rowAdd">홈 화면에 추가 <i>⊞</i></div>
+        <div class="row">페이지에서 찾기 <i>⌕</i></div>
+      </div></div></div>
+
+    <div class="layer" id="confirm">
+      <div class="top"><span>취소</span><b>홈 화면에 추가</b><span class="add">추가</span></div>
+      <div class="card"><img src="assets/icon.png"><div style="flex:1"><div class="name">LA 중앙교회</div><div class="u">ilhwan-moon.github.io</div></div></div>
+      <div class="note">홈 화면에 아이콘이 추가되어 이 웹사이트에 빠르게 접근할 수 있습니다.</div>
+    </div>
+
+    <div class="layer" id="home"><div class="clock">9:41</div>
+      <div class="grid">
+        <div class="app"><div class="ic">📞</div>전화</div><div class="app"><div class="ic">💬</div>메시지</div>
+        <div class="app"><div class="ic">📷</div>카메라</div><div class="app"><div class="ic">🗓️</div>캘린더</div>
+        <div class="app"><div class="ic">🖼️</div>사진</div><div class="app"><div class="ic">⏰</div>시계</div>
+        <div class="app"><div class="ic">🌤️</div>날씨</div><div class="app ours"><div class="ic"><img src="assets/icon.png"></div>LA 중앙교회</div>
+      </div>
+      <div class="dock"><div class="ic" style="width:110px;height:110px;border-radius:26px;display:grid;place-items:center;font-size:52px;background:rgba(255,255,255,.4)">🧭</div><div class="ic" style="width:110px;height:110px;border-radius:26px;display:grid;place-items:center;font-size:52px;background:rgba(255,255,255,.4)">✉️</div><div class="ic" style="width:110px;height:110px;border-radius:26px;display:grid;place-items:center;font-size:52px;background:rgba(255,255,255,.4)">🎵</div></div>
+    </div>
+
+    <div class="layer" id="android"><div class="card">
+      <div class="t">앱을 설치하시겠습니까?</div>
+      <div class="app"><img src="assets/icon.png"><div><b>LA 중앙교회</b><span>ilhwan-moon.github.io</span></div></div>
+      <div class="btns"><span>취소</span><span>설치</span></div></div></div>
+
+    <div id="tap"><div class="ring"></div><div class="dot"></div><div class="label" id="tapLabel"></div></div>
+  </div>
+</div>
+
+<div id="card"></div>
+<div id="foot">LA 중앙교회 · LA Central Church</div>
+
+<script src="assets/boxes.js"></script>
+<script>
+// ───────── 장면 정의 ─────────
+const B = BOXES;                      // 실제 화면에서 잰 버튼 위치 (390×844 기준)
+const K = 640 / 390;                  // 화면 확대 비율
+const C = (b) => b ? { x: (b.x + b.w / 2) * K, y: (b.y + b.h / 2) * K } : { x: 320, y: 700 };
+// 모형 화면 안의 버튼은 실제 위치를 재서 씀
+const SAF_SHARE = '#safari svg', ROW_ADD = '#rowAdd', CONFIRM_ADD = '#confirm .add', HOME_ICON = '#home .ours .ic', AND_INSTALL = '#android .btns span:last-child';
+function posOf(sel) {
+  const sc = document.getElementById('screen').getBoundingClientRect(), r = document.querySelector(sel).getBoundingClientRect();
+  return { x: r.left - sc.left + r.width / 2, y: r.top - sc.top + r.height / 2 };
+}
+
+const S = [
+  { d: 4.6, card: 'title' },
+  { d: 4.2, step: '시작', title: '링크를 누르면 바로 열려요', sub: '카톡으로 받은 링크를 눌러 보세요', img: 'ko_top' },
+  { d: 4.0, card: 'core' },
+  { d: 4.8, step: '⭐ 바로가기 만들기', title: '맨 아래 이 버튼을 누르세요', sub: '「휴대폰 홈 화면에 소식지 추가」', img: 'ko_install', tap: [1.6, C(B.installBtn), '여기!'] },
+  { d: 4.4, step: '🍎 아이폰', title: '안내가 나와요', sub: '3단계만 따라 하면 끝!', img: 'ko_iosguide' },
+  { d: 4.4, step: '🍎 아이폰 ①', title: '아래 「공유」 버튼 누르기', sub: '네모에 화살표 ↑ 모양', img: 'ko_top', layers: { safari: [0, 99] }, tap: [1.4, SAF_SHARE, '공유'] },
+  { d: 4.6, step: '🍎 아이폰 ②', title: '「홈 화면에 추가」 누르기', sub: '목록을 위로 올리면 보여요', img: 'ko_top', layers: { safari: [0, 99], sheet: [0, 99] }, tap: [1.6, ROW_ADD, '홈 화면에 추가'] },
+  { d: 4.2, step: '🍎 아이폰 ③', title: '오른쪽 위 「추가」 누르기', sub: '이름은 「LA 중앙교회」', layers: { confirm: [0, 99] }, tap: [1.5, CONFIRM_ADD, '추가'] },
+  { d: 4.6, step: '🤖 안드로이드', title: '버튼을 누르면 설치 창이 떠요', sub: '「설치」만 누르면 끝!', img: 'ko_install', layers: { android: [1.2, 99] }, tap: [2.6, AND_INSTALL, '설치'] },
+  { d: 4.8, step: '✅ 완성', title: '홈 화면에 아이콘이 생겼어요', sub: '이제 한 번만 누르면 열려요', layers: { home: [0, 3.4] }, img2: ['ko_top', 3.4], tap: [2.3, HOME_ICON, '꾹!'] },
+  { d: 4.8, step: '주일 말씀', title: '설교 제목 · 본문 · 찬송', sub: '설교 영상도 바로 볼 수 있어요', img: 'ko_sermon', tap: [2.4, C(B.video), '영상 보기'] },
+  { d: 3.8, card: 'bible' },
+  { d: 4.8, step: '📖 날짜별 성경 읽기', title: '오늘 요일을 누르세요', sub: '매일 읽을 말씀이 정리되어 있어요', img: 'ko_readings', img2: ['ko_reader_list', 3.0], tap: [1.8, C(B.today), '오늘'] },
+  { d: 4.6, step: '📖 날짜별 성경 읽기', title: '읽을 장을 누르면 펼쳐져요', sub: '개역한글 본문이 바로 나와요', img: 'ko_reader_list', img2: ['ko_reader_ch1', 2.9], tap: [1.7, C(B.ch1), '눌러서 읽기'] },
+  { d: 4.6, step: '📖 날짜별 성경 읽기', title: '큰 글씨로 편하게 읽어요', sub: '한 장씩 펼쳐서 읽기', img: 'ko_reader_ch1', pan: [0, -60] },
+  { d: 4.8, step: '📖 날짜별 성경 읽기', title: '「다음 읽기」로 이어서', sub: '다 읽으면 다음 장으로 ▶', img: 'ko_reader_next', img2: ['ko_reader_ch2', 2.9], tap: [1.8, C(B.next), '다음 읽기'] },
+  { d: 4.6, step: '글씨 크기', title: '「가 가 가」로 글씨를 크게', sub: '어르신도 편하게 보세요', img: 'ko_top', img2: ['ko_big', 2.6], tap: [1.6, C(B.sizeBig), '크게'] },
+  { d: 5.4, step: '3개 언어', title: '한국어 · English · Español', sub: '고른 언어를 기억해요', img: 'ko_top', img2: ['en_top', 1.8], img3: ['es_top', 3.6] },
+  { d: 4.4, step: '봉사 안내', title: '이번 주 · 다음 주 봉사', sub: '봉사마다 색깔로 구분', img: 'ko_serve', pan: [0, -40] },
+  { d: 6.5, card: 'end' },
+];
+const TOTAL = S.reduce((a, s) => a + s.d, 0);
+
+const CARDS = {
+  title: `<img src="assets/icon.png"><div class="big">LA 중앙교회<br>모바일 소식지</div><div class="mid">휴대폰으로 매주 소식지를 쉽고 크게</div>`,
+  core: `<div style="font-size:150px">📲</div><div class="big">홈 화면에<br>바로가기 만들기</div><div class="mid">한 번만 해 두면, 아이콘 하나로 열려요</div>`,
+  bible: `<div style="font-size:150px">📖</div><div class="big">날짜별<br>성경 읽기</div><div class="mid">요일을 누르면 그날 말씀이 바로</div>`,
+  end: `<img class="qr" src="assets/qr.png"><div class="link">ilhwan-moon.github.io/jungang-bulletin</div><div class="feat"><div>📲 홈 화면에 추가하고</div><div>📖 매일 말씀 읽어요</div></div>`,
+};
+
+const $ = (id) => document.getElementById(id);
+const ease = (x) => x < 0 ? 0 : x > 1 ? 1 : x * x * (3 - 2 * x);
+let lastScene = -1;
+
+function render(t) {
+  let i = 0, acc = 0;
+  while (i < S.length - 1 && t >= acc + S[i].d) { acc += S[i].d; i++; }
+  const s = S[i], lt = t - acc;
+  const fadeIn = ease(lt / 0.45), fadeOut = 1 - ease((lt - (s.d - 0.35)) / 0.35);
+  const vis = Math.min(fadeIn, i === S.length - 1 ? 1 : fadeOut);
+
+  // 자막
+  $('cap').style.opacity = s.card ? 0 : vis;
+  if (i !== lastScene) {
+    $('step').textContent = s.step || ''; $('title').textContent = s.title || ''; $('sub').textContent = s.sub || '';
+    $('card').innerHTML = s.card ? CARDS[s.card] : '';
+    lastScene = i;
+  }
+  $('cap').style.transform = `translateY(${(1 - fadeIn) * 20}px)`;
+
+  // 카드 장면 / 휴대폰 장면
+  $('phone').style.opacity = s.card ? 0 : 1;
+  $('card').style.opacity = s.card ? vis : 0;
+  $('card').style.transform = `scale(${0.96 + 0.04 * fadeIn})`;
+  if (s.card) return;
+
+  // 화면 이미지 (전환: 0.35초 겹침)
+  const seq = [[0, s.img]];
+  if (s.img2) seq.push([s.img2[1], s.img2[0]]);
+  if (s.img3) seq.push([s.img3[1], s.img3[0]]);
+  let cur = seq[0], nxt = null, mix = 0;
+  for (let k = 0; k < seq.length; k++) if (lt >= seq[k][0]) cur = seq[k];
+  const ci = seq.indexOf(cur);
+  if (ci > 0 && lt - cur[0] < 0.35) { nxt = cur; cur = seq[ci - 1]; mix = ease((lt - nxt[0]) / 0.35); }
+  const A = $('imgA'), Bm = $('imgB');
+  const srcOf = (n) => n ? 'assets/' + n + '.png' : '';
+  if (cur[1]) { if (A.getAttribute('src') !== srcOf(cur[1])) A.setAttribute('src', srcOf(cur[1])); A.style.opacity = 1; } else A.style.opacity = 0;
+  if (nxt) { if (Bm.getAttribute('src') !== srcOf(nxt[1])) Bm.setAttribute('src', srcOf(nxt[1])); Bm.style.opacity = mix; } else Bm.style.opacity = 0;
+  const pan = s.pan ? s.pan[0] + (s.pan[1] - s.pan[0]) * ease(lt / s.d) : 0;
+  A.style.transform = Bm.style.transform = `translateY(${pan}px)`;
+
+  // 모형 화면
+  ['safari', 'sheet', 'confirm', 'home', 'android'].forEach((id) => {
+    const r = s.layers && s.layers[id];
+    let o = 0;
+    if (r) { o = ease((lt - r[0]) / 0.35) * (1 - ease((lt - r[1]) / 0.35)); }
+    $(id).style.opacity = o;
+    if (id === 'sheet' || id === 'android') $(id).querySelector('.panel, .card').style.transform = `translateY(${(1 - ease((lt - (r ? r[0] : 0)) / 0.45)) * 120}px)`;
+  });
+
+  // 탭 표시: 누르기 전 0.9초 동안 나타나 맥박치고, 누르는 순간 눌림
+  const tp = $('tap');
+  if (s.tap) {
+    const [ta, p0, label] = s.tap;
+    const pos = typeof p0 === 'string' ? posOf(p0) : p0;
+    tp.classList.toggle('left', pos.x > 400);
+    const a = lt - (ta - 0.9);
+    tp.style.left = pos.x + 'px'; tp.style.top = pos.y + 'px';
+    $('tapLabel').textContent = label;
+    const appear = ease(a / 0.3), gone = 1 - ease((lt - ta - 0.7) / 0.3);
+    tp.style.opacity = Math.max(0, Math.min(appear, gone));
+    const pulse = lt < ta ? 1 + 0.12 * Math.sin(a * 9) : 1 + 0.9 * ease((lt - ta) / 0.5);
+    tp.querySelector('.ring').style.transform = `scale(${pulse})`;
+    tp.querySelector('.ring').style.opacity = lt < ta ? 1 : 1 - ease((lt - ta) / 0.6);
+    tp.querySelector('.dot').style.transform = `scale(${lt >= ta && lt < ta + 0.25 ? 0.8 : 1})`;
+  } else tp.style.opacity = 0;
+}
+window.render = render; window.TOTAL = TOTAL;
+</script>
+</body>
+</html>
