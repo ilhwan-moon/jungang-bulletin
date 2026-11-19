@@ -6,7 +6,7 @@
 
   var T = {
     ko: {
-      bulletin: '주일 모바일 소식지', textSize: '글씨 크기', sizeHint: '글씨가 작으면 오른쪽 위 「가 가 가」에서 큰 글씨를 누르세요', ok: '알겠어요', themeN: { auto: '화면: 자동', light: '화면: 밝게', dark: '화면: 어둡게' }, textSizeN: ['보통 글씨', '큰 글씨', '아주 큰 글씨'],
+      bulletin: '주일 모바일 소식지', textSize: '글씨 크기', settings: '언어·글씨 설정', setTitle: '설정', welcome: '처음 오셨네요! 편한 언어와 글씨 크기를 골라 주세요.', langLbl: '언어', screenLbl: '화면', done: '완료', themeShort: { auto: '자동', light: '밝게', dark: '어둡게' }, sizeHint: '글씨가 작으면 오른쪽 위 「가 가 가」에서 큰 글씨를 누르세요', ok: '알겠어요', themeN: { auto: '화면: 자동', light: '화면: 밝게', dark: '화면: 어둡게' }, textSizeN: ['보통 글씨', '큰 글씨', '아주 큰 글씨'],
       prev: '지난주', next: '다음주', latest: '최신 소식지', thisWeek: '이번 주일',
       sermon: '주일 말씀', scripture: '본문', preacher: '설교', hymns: '찬양', order: '예배 순서 전체 보기',
       memory: '이번 주 암송 말씀', practice: '암송 연습', practiceHint: '가려진 단어를 눌러서 확인해 보세요.',
@@ -26,7 +26,7 @@
       inappTitle: '먼저 사파리/크롬으로 열어 주세요', inappSteps: ['오른쪽 위(또는 아래) <b>메뉴</b>를 누르세요', '<b>「다른 브라우저로 열기」</b> 또는 <b>「Safari로 열기」</b>를 누르세요', '열린 화면에서 이 버튼을 다시 누르세요'], watchVideo: '주일말씀 영상 보기', watchLive: '지금 라이브로 보기', ytChannel: '교회 유튜브 채널 보기', ytOpen: '누르면 유튜브로 연결됩니다', monthlyServe: '이달의 봉사', thisWeekServe: '이번 주', nextWeekServe: '다음 주', today: '오늘',
     },
     en: {
-      bulletin: 'Sunday Mobile Newsletter', textSize: 'Text size', sizeHint: 'Text too small? Tap a bigger “A” at the top right.', ok: 'Got it', themeN: { auto: 'Theme: Auto', light: 'Theme: Light', dark: 'Theme: Dark' }, textSizeN: ['Normal text', 'Large text', 'Extra large'],
+      bulletin: 'Sunday Mobile Newsletter', textSize: 'Text size', settings: 'Language & text size', setTitle: 'Settings', welcome: 'Welcome! Choose your language and text size.', langLbl: 'Language', screenLbl: 'Display', done: 'Done', themeShort: { auto: 'Auto', light: 'Light', dark: 'Dark' }, sizeHint: 'Text too small? Tap a bigger “A” at the top right.', ok: 'Got it', themeN: { auto: 'Theme: Auto', light: 'Theme: Light', dark: 'Theme: Dark' }, textSizeN: ['Normal text', 'Large text', 'Extra large'],
       prev: 'Prev', next: 'Next', latest: 'Latest newsletter', thisWeek: 'This Sunday',
       sermon: "Sunday Message", scripture: 'Scripture', preacher: 'Speaker', hymns: 'Hymns & Songs', order: 'Full order of worship',
       memory: 'Memory Verse of the Week', practice: 'Practice', practiceHint: 'Tap a hidden word to reveal it.',
@@ -46,7 +46,7 @@
       inappTitle: 'Please open in Safari/Chrome first', inappSteps: ['Tap the <b>menu</b> at the top (or bottom) right', 'Tap <b>“Open in browser”</b> or <b>“Open in Safari”</b>', 'Then tap this button again'], watchVideo: 'Watch the sermon', watchLive: 'Watch live now', ytChannel: 'Church YouTube channel', ytOpen: 'Opens in YouTube', monthlyServe: 'This month', thisWeekServe: 'This week', nextWeekServe: 'Next week', today: 'Today',
     },
     es: {
-      bulletin: 'Boletín Dominical Móvil', textSize: 'Tamaño de letra', sizeHint: '¿Letra pequeña? Toque una “A” más grande arriba a la derecha.', ok: 'Entendido', themeN: { auto: 'Tema: automático', light: 'Tema: claro', dark: 'Tema: oscuro' }, textSizeN: ['Letra normal', 'Letra grande', 'Letra muy grande'],
+      bulletin: 'Boletín Dominical Móvil', textSize: 'Tamaño de letra', settings: 'Idioma y letra', setTitle: 'Ajustes', welcome: '¡Bienvenido! Elija su idioma y tamaño de letra.', langLbl: 'Idioma', screenLbl: 'Pantalla', done: 'Listo', themeShort: { auto: 'Auto', light: 'Claro', dark: 'Oscuro' }, sizeHint: '¿Letra pequeña? Toque una “A” más grande arriba a la derecha.', ok: 'Entendido', themeN: { auto: 'Tema: automático', light: 'Tema: claro', dark: 'Tema: oscuro' }, textSizeN: ['Letra normal', 'Letra grande', 'Letra muy grande'],
       prev: 'Anterior', next: 'Siguiente', latest: 'Boletín más reciente', thisWeek: 'Este domingo',
       sermon: 'Mensaje Dominical', scripture: 'Texto', preacher: 'Predicador', hymns: 'Himnos y alabanzas', order: 'Orden del culto completo',
       memory: 'Versículo para memorizar', practice: 'Practicar', practiceHint: 'Toca una palabra oculta para verla.',
@@ -361,6 +361,9 @@
       bt.querySelector('.g').textContent = L === 'ko' ? '가' : 'A';
     });
     $('sizeHintText').textContent = T[L].sizeHint;
+    $('setFlag').innerHTML = FLAGS[L]; $('setG').textContent = L === 'ko' ? '가' : 'A';
+    $('setBtn').setAttribute('aria-label', T[L].settings); $('setBtn').title = T[L].settings;
+    if ($('setDialog').open) renderSettings();
     document.documentElement.setAttribute('data-size', String(state.size));
   }
 
@@ -670,28 +673,50 @@
   }
 
   /* ── 이벤트 ── */
+  /* ── 언어 · 글씨 크기 · 화면 설정 (위쪽 버튼과 설정 창이 함께 씀) ── */
+  var FLAGS = {"ko": "<svg class=\"flag\" width=\"26\" height=\"17\" viewBox=\"0 0 30 20\" aria-hidden=\"true\"><rect width=\"30\" height=\"20\" fill=\"#fff\"/><g transform=\"translate(15 10) rotate(33.7)\"><path d=\"M-5 0a5 5 0 0 1 10 0z\" fill=\"#cd2e3a\"/><path d=\"M-5 0a5 5 0 0 0 10 0z\" fill=\"#0047a0\"/><circle cx=\"-2.5\" r=\"2.5\" fill=\"#cd2e3a\"/><circle cx=\"2.5\" r=\"2.5\" fill=\"#0047a0\"/></g><g fill=\"#111\"><g transform=\"translate(6.3 4.3) rotate(-56.3)\"><rect x=\"-2.2\" y=\"-1.6\" width=\"4.4\" height=\".8\"/><rect x=\"-2.2\" y=\"-0.3\" width=\"4.4\" height=\".8\"/><rect x=\"-2.2\" y=\"1.0\" width=\"4.4\" height=\".8\"/></g><g transform=\"translate(23.7 15.7) rotate(-56.3)\"><rect x=\"-2.2\" y=\"-1.6\" width=\"1.9\" height=\".8\"/><rect x=\".3\" y=\"-1.6\" width=\"1.9\" height=\".8\"/><rect x=\"-2.2\" y=\"-0.3\" width=\"1.9\" height=\".8\"/><rect x=\".3\" y=\"-0.3\" width=\"1.9\" height=\".8\"/><rect x=\"-2.2\" y=\"1.0\" width=\"1.9\" height=\".8\"/><rect x=\".3\" y=\"1.0\" width=\"1.9\" height=\".8\"/></g><g transform=\"translate(23.7 4.3) rotate(56.3)\"><rect x=\"-2.2\" y=\"-1.6\" width=\"1.9\" height=\".8\"/><rect x=\".3\" y=\"-1.6\" width=\"1.9\" height=\".8\"/><rect x=\"-2.2\" y=\"-0.3\" width=\"4.4\" height=\".8\"/><rect x=\"-2.2\" y=\"1.0\" width=\"1.9\" height=\".8\"/><rect x=\".3\" y=\"1.0\" width=\"1.9\" height=\".8\"/></g><g transform=\"translate(6.3 15.7) rotate(56.3)\"><rect x=\"-2.2\" y=\"-1.6\" width=\"4.4\" height=\".8\"/><rect x=\"-2.2\" y=\"-0.3\" width=\"1.9\" height=\".8\"/><rect x=\".3\" y=\"-0.3\" width=\"1.9\" height=\".8\"/><rect x=\"-2.2\" y=\"1.0\" width=\"4.4\" height=\".8\"/></g></g></svg>", "en": "<svg class=\"flag\" width=\"26\" height=\"17\" viewBox=\"0 0 30 20\" aria-hidden=\"true\"><rect width=\"30\" height=\"20\" fill=\"#fff\"/><rect y=\"0.00\" width=\"30\" height=\"1.54\" fill=\"#b22234\"/><rect y=\"3.08\" width=\"30\" height=\"1.54\" fill=\"#b22234\"/><rect y=\"6.15\" width=\"30\" height=\"1.54\" fill=\"#b22234\"/><rect y=\"9.23\" width=\"30\" height=\"1.54\" fill=\"#b22234\"/><rect y=\"12.31\" width=\"30\" height=\"1.54\" fill=\"#b22234\"/><rect y=\"15.38\" width=\"30\" height=\"1.54\" fill=\"#b22234\"/><rect y=\"18.46\" width=\"30\" height=\"1.54\" fill=\"#b22234\"/><rect width=\"13\" height=\"10.77\" fill=\"#3c3b6e\"/><circle cx=\"1.6\" cy=\"1.4\" r=\".45\" fill=\"#fff\"/><circle cx=\"4.0\" cy=\"1.4\" r=\".45\" fill=\"#fff\"/><circle cx=\"6.4\" cy=\"1.4\" r=\".45\" fill=\"#fff\"/><circle cx=\"8.8\" cy=\"1.4\" r=\".45\" fill=\"#fff\"/><circle cx=\"11.2\" cy=\"1.4\" r=\".45\" fill=\"#fff\"/><circle cx=\"2.8\" cy=\"3.4\" r=\".45\" fill=\"#fff\"/><circle cx=\"5.2\" cy=\"3.4\" r=\".45\" fill=\"#fff\"/><circle cx=\"7.6\" cy=\"3.4\" r=\".45\" fill=\"#fff\"/><circle cx=\"10.0\" cy=\"3.4\" r=\".45\" fill=\"#fff\"/><circle cx=\"1.6\" cy=\"5.4\" r=\".45\" fill=\"#fff\"/><circle cx=\"4.0\" cy=\"5.4\" r=\".45\" fill=\"#fff\"/><circle cx=\"6.4\" cy=\"5.4\" r=\".45\" fill=\"#fff\"/><circle cx=\"8.8\" cy=\"5.4\" r=\".45\" fill=\"#fff\"/><circle cx=\"11.2\" cy=\"5.4\" r=\".45\" fill=\"#fff\"/><circle cx=\"2.8\" cy=\"7.4\" r=\".45\" fill=\"#fff\"/><circle cx=\"5.2\" cy=\"7.4\" r=\".45\" fill=\"#fff\"/><circle cx=\"7.6\" cy=\"7.4\" r=\".45\" fill=\"#fff\"/><circle cx=\"10.0\" cy=\"7.4\" r=\".45\" fill=\"#fff\"/><circle cx=\"1.6\" cy=\"9.4\" r=\".45\" fill=\"#fff\"/><circle cx=\"4.0\" cy=\"9.4\" r=\".45\" fill=\"#fff\"/><circle cx=\"6.4\" cy=\"9.4\" r=\".45\" fill=\"#fff\"/><circle cx=\"8.8\" cy=\"9.4\" r=\".45\" fill=\"#fff\"/><circle cx=\"11.2\" cy=\"9.4\" r=\".45\" fill=\"#fff\"/></svg>", "es": "<svg class=\"flag\" width=\"26\" height=\"17\" viewBox=\"0 0 30 20\" aria-hidden=\"true\"><rect width=\"10\" height=\"20\" fill=\"#006847\"/><rect x=\"10\" width=\"10\" height=\"20\" fill=\"#fff\"/><rect x=\"20\" width=\"10\" height=\"20\" fill=\"#ce1126\"/><circle cx=\"15\" cy=\"10\" r=\"2.7\" fill=\"#8c5a2b\"/><path d=\"M12.6 11.4q2.4 2.2 4.8 0\" fill=\"none\" stroke=\"#2e7d32\" stroke-width=\".7\"/></svg>"};
+  function setLang(l) {
+    state.lang = l; saveLang(l); store('bb_setup', '1');
+    if (goWithLang()) return;   // 카톡 등 앱 안 브라우저: 주소를 실제로 바꿔 다시 열기
+    render();
+  }
+  function setSize(n) {
+    state.size = n; store('bb_size', String(n)); store('bb_hint', '1'); store('bb_setup', '1');
+    $('sizeHint').hidden = true;
+    renderStatic(); measure();
+    if (!$('setDialog').open) toast(T[state.lang].textSizeN[n - 1]);
+  }
+  function setTheme(m) {
+    store('bb_theme', m);
+    try { document.cookie = 'bb_theme=' + m + '; max-age=31536000; path=/; SameSite=Lax'; } catch (e) {}
+    applyTheme(m); if ($('setDialog').open) renderSettings();
+  }
+  function renderSettings() {
+    var L = T[state.lang], g = state.lang === 'ko' ? '가' : 'A';
+    $('setTitle').textContent = L.setTitle; $('setWelcome').textContent = L.welcome;
+    $('setHLang').textContent = L.langLbl; $('setHSize').textContent = L.textSize; $('setHTheme').textContent = L.screenLbl;
+    $('setDone').textContent = L.done;
+    $('setLangs').innerHTML = LANGS.map(function (l) { return '<button type="button" data-lang="' + l + '" lang="' + l + '" aria-pressed="' + (l === state.lang) + '">' + FLAGS[l] + '<span>' + LANG_NAME[l] + '</span></button>'; }).join('');
+    $('setSizes').innerHTML = [1, 2, 3].map(function (n) { return '<button type="button" data-size="' + n + '" aria-pressed="' + (n === state.size) + '"><span class="sz" style="font-size:' + [18, 25, 33][n - 1] + 'px">' + g + '</span><span>' + esc(L.textSizeN[n - 1]) + '</span></button>'; }).join('');
+    var tm = themeMode();
+    $('setThemes').innerHTML = ['auto', 'light', 'dark'].map(function (m) { return '<button type="button" data-theme="' + m + '" aria-pressed="' + (m === tm) + '">' + ICONS[m === 'light' ? 'sun' : m === 'dark' ? 'moon' : 'auto'] + '<span>' + esc(L.themeShort[m]) + '</span></button>'; }).join('');
+  }
+  function openSettings(first) { $('setWelcome').hidden = !first; renderSettings(); if (!$('setDialog').open) $('setDialog').showModal(); }
+  $('setBtn').addEventListener('click', function () { openSettings(false); });
+  $('setDone').addEventListener('click', function () { $('setDialog').close(); });
+  $('setDialog').addEventListener('close', function () { store('bb_setup', '1'); store('bb_hint', '1'); });
+  $('setDialog').addEventListener('click', function (e) { if (e.target === $('setDialog')) $('setDialog').close(); });
+  $('setLangs').addEventListener('click', function (e) { var b = e.target.closest('[data-lang]'); if (b) setLang(b.getAttribute('data-lang')); });
+  $('setSizes').addEventListener('click', function (e) { var b = e.target.closest('[data-size]'); if (b) { setSize(Number(b.getAttribute('data-size'))); renderSettings(); } });
+  $('setThemes').addEventListener('click', function (e) { var b = e.target.closest('[data-theme]'); if (b) setTheme(b.getAttribute('data-theme')); });
   document.querySelectorAll('#langSeg button').forEach(function (b) {
-    b.addEventListener('click', function () {
-      state.lang = b.getAttribute('data-lang'); saveLang(state.lang);
-      if (goWithLang()) return;   // 카톡 등 앱 안 브라우저: 주소를 실제로 바꿔 다시 열기
-      render();
-    });
+    b.addEventListener('click', function () { setLang(b.getAttribute('data-lang')); });
   });
   document.querySelectorAll('#sizeSeg button').forEach(function (bt) {
-    bt.addEventListener('click', function () {
-      state.size = Number(bt.getAttribute('data-size'));
-      store('bb_size', String(state.size));
-      store('bb_hint', '1'); $('sizeHint').hidden = true;
-      renderStatic(); measure();
-      toast(T[state.lang].textSizeN[state.size - 1]);
-    });
+    bt.addEventListener('click', function () { setSize(Number(bt.getAttribute('data-size'))); });
   });
-  // 처음 방문한 분께만 글씨 크기 안내를 한 번 보여 줌
-  if (!store('bb_hint') && state.size === 1) {
-    $('sizeHint').hidden = false;
-    setTimeout(function () { store('bb_hint', '1'); }, 5000);   // 5초 이상 보였으면 읽은 것으로 기억
-    setTimeout(function () { $('sizeHint').hidden = true; }, 12000);
-  }
+  // 처음 방문한 분께만 설정 창을 한 번 열어 언어와 글씨 크기를 고르게 함 (예전 안내를 이미 본 분은 제외)
+  if (!store('bb_setup') && !store('bb_hint')) setTimeout(function () { openSettings(true); }, 700);
   $('sizeHintClose').addEventListener('click', function () { $('sizeHint').hidden = true; store('bb_hint', '1'); });
   $('prevWeek').addEventListener('click', function () { var i = state.weeks.indexOf(state.week); if (i < state.weeks.length - 1) load(state.weeks[i + 1]); });
   $('nextWeek').addEventListener('click', function () { var i = state.weeks.indexOf(state.week); if (i > 0) load(state.weeks[i - 1]); });
@@ -726,9 +751,7 @@
   $('readerDialog').addEventListener('click', function (e) { if (e.target === $('readerDialog')) $('readerDialog').close(); });
   $('themeBtn').addEventListener('click', function () {
     var next = { auto: 'light', light: 'dark', dark: 'auto' }[themeMode()];
-    store('bb_theme', next);
-    try { document.cookie = 'bb_theme=' + next + '; max-age=31536000; path=/; SameSite=Lax'; } catch (e) {}
-    applyTheme(next);
+    setTheme(next);
     toast(T[state.lang].themeN[next]);
   });
   if (window.matchMedia) { var mq = matchMedia('(prefers-color-scheme: dark)'); if (mq.addEventListener) mq.addEventListener('change', function () { applyTheme(themeMode()); }); }

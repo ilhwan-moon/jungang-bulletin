@@ -59,6 +59,7 @@
           <button type="button" data-size="3"><span class="g g3" aria-hidden="true">가</span></button>
         </div>
       </div>
+      <button type="button" class="set-btn" id="setBtn" aria-haspopup="dialog"><span class="set-flag" id="setFlag"></span><span class="set-g" id="setG">가</span><span class="set-gear" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></button>
     </div>
   </header>
 
@@ -218,6 +219,21 @@
       <button type="button" class="reader-close" id="readerClose"></button>
     </div>
     <div class="reader-body" id="readerBody"></div>
+  </dialog>
+
+  <dialog id="setDialog" class="sheet" aria-labelledby="setTitle">
+    <div class="sheet-box">
+      <div class="sheet-grip" aria-hidden="true"></div>
+      <p class="sheet-title" id="setTitle"></p>
+      <p class="sheet-welcome" id="setWelcome" hidden></p>
+      <h3 class="sheet-h" id="setHLang"></h3>
+      <div class="set-langs" id="setLangs"></div>
+      <h3 class="sheet-h" id="setHSize"></h3>
+      <div class="set-sizes" id="setSizes"></div>
+      <h3 class="sheet-h" id="setHTheme"></h3>
+      <div class="set-themes" id="setThemes"></div>
+      <button type="button" class="btn primary wide" id="setDone"></button>
+    </div>
   </dialog>
 
   <dialog id="installDialog">
