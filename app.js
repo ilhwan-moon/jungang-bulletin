@@ -21,7 +21,7 @@
       fromLang: '({lang})', sundayFmt: '{date} 주일',
       location: '장소', serviceTimes: '예배 시간', fellowship: '예배 후 교제', memoryNext: '다음 주 암송 미리 보기', memoryLast: '지난주 암송 다시 보기', readings: '이번 주 묵상 말씀', readHint: '요일을 누르면 그날 말씀 전체를 <b>개역한글</b>로 바로 읽을 수 있어요', readBtn: '읽기', readerClose: '닫기 ✕', readerSource: '성경전서 개역한글판 · 대한성서공회', readerFail: '말씀을 불러오지 못했습니다. 인터넷 연결을 확인해 주세요.', readerTip: '👇 읽을 장을 <b>누르면</b> 말씀이 펼쳐집니다', rcOpen: '눌러서 읽기', rcClose: '접기', rcNext: '다음 읽기', verses: '절', updatedReload: '새 내용으로 바뀌었습니다', loadingShort: '불러오는 중…',
       meetings: '정기 모임', installTitle: '휴대폰 홈 화면에 소식지 추가', installSub: '앱처럼 한 번에 열 수 있어요', installed: '홈 화면에 추가되었습니다',
-      iosTitle: '🍎 아이폰: 홈 화면에 추가하기', iosSteps: ['사파리 화면 아래 <b>「···」</b> 버튼을 누르세요<br><small>(공유 버튼 {share} 이 보이면 그것을 눌러도 돼요)</small>', '<b>「공유하기」</b>를 누르세요', '목록을 위로 올려 <b>「홈 화면에 추가」</b>를 누르세요', '오른쪽 위 <b>「추가」</b>를 누르면 끝!'],
+      iosTitle: '🍎 아이폰: 홈 화면에 추가하기', iosSteps: ['사파리 아래 <b>주소창 왼쪽 아이콘</b> {menu} 을 누르세요<br><small>(아이폰 버전에 따라 「···」 또는 공유 버튼 {share} 일 수 있어요)</small>', '메뉴에서 <b>「공유」</b>를 누르세요', '목록을 위로 올려 <b>「홈 화면에 추가」</b>를 누르세요', '오른쪽 위 <b>「추가」</b>를 누르면 끝!'],
       andTitle: '🤖 안드로이드: 홈 화면에 추가하기', andSteps: ['크롬 오른쪽 위 <b>⋮ (점 3개)</b> 를 누르세요', '<b>「홈 화면에 추가」</b> 또는 <b>「앱 설치」</b>를 누르세요', '<b>「설치」</b>(또는 「추가」)를 누르면 끝!'],
       inappTitle: '먼저 사파리/크롬으로 열어 주세요', inappSteps: ['오른쪽 위(또는 아래) <b>메뉴</b>를 누르세요', '<b>「다른 브라우저로 열기」</b> 또는 <b>「Safari로 열기」</b>를 누르세요', '열린 화면에서 이 버튼을 다시 누르세요'], watchVideo: '주일말씀 영상 보기', watchLive: '지금 라이브로 보기', ytChannel: '교회 유튜브 채널 보기', ytOpen: '누르면 유튜브로 연결됩니다', monthlyServe: '이달의 봉사', thisWeekServe: '이번 주', nextWeekServe: '다음 주', today: '오늘',
     },
@@ -41,7 +41,7 @@
       fromLang: '({lang})', sundayFmt: '{date}',
       location: 'Location', serviceTimes: 'Service times', fellowship: 'After service', memoryNext: 'Preview next week’s verse', memoryLast: 'Review last week’s verse', readings: 'This Week’s Meditation Chapters', readHint: 'Tap a day to read all of that day’s chapters (<b>NKJV</b>) on Bible Gateway', readBtn: 'Read', readerClose: 'Close ✕', readerSource: '', readerFail: 'Could not load the passage.', readerTip: '', rcOpen: 'Tap to read', rcClose: 'Close', rcNext: 'Next', verses: 'verses', updatedReload: 'Updated to the latest version', loadingShort: 'Loading…',
       meetings: 'Regular meetings', installTitle: 'Add newsletter to Home Screen', installSub: 'Open it like an app, in one tap', installed: 'Added to Home Screen',
-      iosTitle: '🍎 iPhone: Add to Home Screen', iosSteps: ['Tap <b>“···”</b> at the bottom of Safari<br><small>(or the Share button {share} if you see it)</small>', 'Tap <b>“Share”</b>', 'Scroll up and tap <b>“Add to Home Screen”</b>', 'Tap <b>“Add”</b> at the top right. Done!'],
+      iosTitle: '🍎 iPhone: Add to Home Screen', iosSteps: ['Tap the <b>icon on the left of the address bar</b> {menu} at the bottom of Safari<br><small>(on some versions it is “···” or the Share button {share})</small>', 'Tap <b>“Share”</b> in the menu', 'Scroll up and tap <b>“Add to Home Screen”</b>', 'Tap <b>“Add”</b> at the top right. Done!'],
       andTitle: '🤖 Android: Add to Home Screen', andSteps: ['Tap <b>⋮ (3 dots)</b> at the top right of Chrome', 'Tap <b>“Add to Home screen”</b> or <b>“Install app”</b>', 'Tap <b>“Install”</b> (or “Add”). Done!'],
       inappTitle: 'Please open in Safari/Chrome first', inappSteps: ['Tap the <b>menu</b> at the top (or bottom) right', 'Tap <b>“Open in browser”</b> or <b>“Open in Safari”</b>', 'Then tap this button again'], watchVideo: 'Watch the sermon', watchLive: 'Watch live now', ytChannel: 'Church YouTube channel', ytOpen: 'Opens in YouTube', monthlyServe: 'This month', thisWeekServe: 'This week', nextWeekServe: 'Next week', today: 'Today',
     },
@@ -61,7 +61,7 @@
       fromLang: '({lang})', sundayFmt: '{date}',
       location: 'Lugar', serviceTimes: 'Horario', fellowship: 'Después del culto', memoryNext: 'Ver versículo de la próxima semana', memoryLast: 'Repasar versículo de la semana pasada', readings: 'Lectura de la semana', readHint: 'Toque un día para leer todos los capítulos (<b>RVR1960</b>) en Bible Gateway', readBtn: 'Leer', readerClose: 'Cerrar ✕', readerSource: '', readerFail: 'No se pudo cargar el pasaje.', readerTip: '', rcOpen: 'Toque para leer', rcClose: 'Cerrar', rcNext: 'Siguiente', verses: 'versículos', updatedReload: 'Actualizado a la última versión', loadingShort: 'Cargando…',
       meetings: 'Reuniones regulares', installTitle: 'Agregar boletín a la pantalla de inicio', installSub: 'Ábralo como una app, con un toque', installed: 'Agregado a la pantalla de inicio',
-      iosTitle: '🍎 iPhone: Agregar a inicio', iosSteps: ['Toque <b>«···»</b> abajo en Safari<br><small>(o el botón Compartir {share} si lo ve)</small>', 'Toque <b>«Compartir»</b>', 'Deslice y toque <b>«Agregar a inicio»</b>', 'Toque <b>«Agregar»</b> arriba a la derecha. ¡Listo!'],
+      iosTitle: '🍎 iPhone: Agregar a inicio', iosSteps: ['Toque el <b>ícono a la izquierda de la barra de dirección</b> {menu} abajo en Safari<br><small>(en algunas versiones es «···» o el botón Compartir {share})</small>', 'Toque <b>«Compartir»</b> en el menú', 'Deslice y toque <b>«Agregar a inicio»</b>', 'Toque <b>«Agregar»</b> arriba a la derecha. ¡Listo!'],
       andTitle: '🤖 Android: Agregar a inicio', andSteps: ['Toque <b>⋮ (3 puntos)</b> arriba a la derecha en Chrome', 'Toque <b>«Agregar a la pantalla principal»</b> o <b>«Instalar app»</b>', 'Toque <b>«Instalar»</b> (o «Agregar»). ¡Listo!'],
       inappTitle: 'Primero ábralo en Safari/Chrome', inappSteps: ['Toque el <b>menú</b> arriba (o abajo) a la derecha', 'Toque <b>«Abrir en el navegador»</b> o <b>«Abrir en Safari»</b>', 'Luego toque este botón otra vez'], watchVideo: 'Ver el sermón', watchLive: 'Ver en vivo ahora', ytChannel: 'Canal de YouTube de la iglesia', ytOpen: 'Se abre en YouTube', monthlyServe: 'Este mes', thisWeekServe: 'Esta semana', nextWeekServe: 'Próxima semana', today: 'Hoy',
     },
@@ -85,6 +85,7 @@
     auto: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg>',
     play: '<svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor" stroke="none"/></svg>',
     phone: '<svg viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M12 8v6M9 11l3 3 3-3M10.5 18.5h3"/></svg>',
+    pageMenu: '<svg viewBox="0 0 24 24"><rect x="3" y="4.5" width="6.5" height="6.5" rx="1.2"/><path d="M13 6h8M13 9.5h8M3 14.5h18M3 19h12"/></svg>',
     iosShare: '<svg viewBox="0 0 24 24"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M7 10H5.5v10.5h13V10H17"/></svg>',
     up: '<svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>',
     ext: '<svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v4.5A1.5 1.5 0 0 1 16.5 20h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6H10"/></svg>',
@@ -787,7 +788,7 @@
     var L = T[state.lang];
     $('insTitle').textContent = L[kind + 'Title'];
     $('insSteps').innerHTML = L[kind + 'Steps'].map(function (s) {
-      return '<li>' + s.replace('{share}', '<span class="ins-ico">' + ICONS.iosShare + '</span>') + '</li>';
+      return '<li>' + s.replace('{share}', '<span class="ins-ico">' + ICONS.iosShare + '</span>').replace('{menu}', '<span class="ins-ico">' + ICONS.pageMenu + '</span>') + '</li>';
     }).join('');
     $('installDialog').showModal();
   }
