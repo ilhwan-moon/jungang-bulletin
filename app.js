@@ -671,7 +671,11 @@
 
   /* ── 이벤트 ── */
   document.querySelectorAll('#langSeg button').forEach(function (b) {
-    b.addEventListener('click', function () { state.lang = b.getAttribute('data-lang'); saveLang(state.lang); render(); });
+    b.addEventListener('click', function () {
+      state.lang = b.getAttribute('data-lang'); saveLang(state.lang);
+      if (goWithLang()) return;   // 카톡 등 앱 안 브라우저: 주소를 실제로 바꿔 다시 열기
+      render();
+    });
   });
   document.querySelectorAll('#sizeSeg button').forEach(function (bt) {
     bt.addEventListener('click', function () {
@@ -791,6 +795,16 @@
   var isIOS = /iPhone|iPad|iPod/.test(UA) || (/Macintosh/.test(UA) && navigator.maxTouchPoints > 1);
   var isKakao = /KAKAOTALK/i.test(UA);
   var isInApp = isKakao || /FBAN|FBAV|Instagram|Line\/|NAVER\(inapp|DaumApps|Band\//i.test(UA);
+  /* 카톡 등 앱 안 브라우저는 주소를 조용히 바꾸면(replaceState) 새 주소를 모릅니다.
+   * 「다른 브라우저로 열기」에 언어가 따라가도록, 주소의 lang이 지금 언어와 다르면 그 주소로 실제로 다시 엽니다. */
+  function goWithLang() {
+    if (!isInApp) return false;
+    var p = new URLSearchParams(location.search);
+    if (p.get('lang') === state.lang) return false;
+    p.set('lang', state.lang); p.delete('source');
+    location.replace(location.pathname + '?' + p.toString() + location.hash);
+    return true;
+  }
   function isStandalone() { return (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; }
   function updateInstallBtn() { $('installBtn').hidden = isStandalone(); }
   window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); deferredPrompt = e; updateInstallBtn(); });
@@ -821,6 +835,7 @@
     });
   }
 
+  if (goWithLang()) return;
   renderStatic();
   load(state.week);
   loadVideos();
