@@ -29,8 +29,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&family=Noto+Serif+KR:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script>
-    // 화면 깜빡임 없이 저장된 화면 모드(밝게/어둡게) 먼저 적용
-    (function () { try { var m = localStorage.getItem('bb_theme') || ((document.cookie.match(/(?:^|;\s*)bb_theme=(light|dark)/) || [])[1]); if (m === 'light' || m === 'dark') document.documentElement.setAttribute('data-theme', m); } catch (e) {} })();
+    // 화면 깜빡임 없이 화면 모드 먼저 적용 (기본: 밝게)
+    (function () { try { var m = localStorage.getItem('bb_theme') || ((document.cookie.match(/(?:^|;\s*)bb_theme=(light|dark|auto)/) || [])[1]); if (m !== 'auto') document.documentElement.setAttribute('data-theme', m === 'dark' ? 'dark' : 'light'); } catch (e) {} })();
   </script>
   <script src="config.js"></script>
 </head>

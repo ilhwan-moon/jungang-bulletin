@@ -260,7 +260,8 @@
 
   /* ── 화면 그리기 ── */
   /* ── 화면 모드: 자동(휴대폰 설정 따름) → 밝게 → 어둡게 ── */
-  function themeMode() { var m = store('bb_theme') || ((document.cookie.match(/(?:^|;\s*)bb_theme=(light|dark|auto)/) || [])[1]); return m === 'light' || m === 'dark' ? m : 'auto'; }
+  // 기본은 「밝게」. 설정에서 「자동」이나 「어둡게」를 고르면 그 선택을 기억
+  function themeMode() { var m = store('bb_theme') || ((document.cookie.match(/(?:^|;\s*)bb_theme=(light|dark|auto)/) || [])[1]); return m === 'dark' || m === 'auto' ? m : 'light'; }
   function applyTheme(m) {
     if (m === 'auto') document.documentElement.removeAttribute('data-theme'); else document.documentElement.setAttribute('data-theme', m);
     var dark = m === 'dark' || (m === 'auto' && window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches);
