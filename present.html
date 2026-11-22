@@ -17,7 +17,7 @@
     html, body { margin: 0; height: 100%; background: var(--bg1); color: var(--ink); font-family: 'Noto Sans KR', system-ui, sans-serif; overflow: hidden; }
     #deck { height: 100vh; overflow-y: auto; scroll-snap-type: y mandatory; scroll-behavior: smooth; scrollbar-width: none; }
     #deck::-webkit-scrollbar { display: none; }
-    .slide { position: relative; height: 100vh; scroll-snap-align: start; display: flex; flex-direction: column; padding: 4.5vh 6vw 5vh;
+    .slide { position: relative; height: 100vh; scroll-snap-align: start; display: flex; flex-direction: column; padding: 3vh 4.5vw 6vh;
       background: radial-gradient(ellipse at 80% 10%, rgba(243,217,164,.10), transparent 55%), linear-gradient(160deg, var(--bg1) 0%, var(--bg2) 100%); }
     .slide + .slide { border-top: 1px solid rgba(255,255,255,.06); }
     .top { display: flex; align-items: center; justify-content: space-between; gap: 2vw; }
@@ -25,18 +25,18 @@
     .brand img { width: 5.2vh; height: 5.2vh; border-radius: 1vh; background: #fff; padding: .35vh; }
     .lang { display: inline-flex; align-items: center; gap: .9vw; padding: .8vh 1.6vw; border-radius: 99px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); font-size: clamp(14px, 2.6vh, 32px); font-weight: 900; }
     .lang svg { width: 4.4vh; height: 2.95vh; border-radius: .3vh; box-shadow: 0 0 0 1px rgba(0,0,0,.25); }
-    .body { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; min-height: 0; }
+    .body { flex: 1; display: flex; flex-direction: column; justify-content: flex-start; align-items: center; text-align: center; min-height: 0; }
     .inner { display: flex; flex-direction: column; align-items: center; max-width: 100%; }
-    .label { font-size: clamp(16px, 3.2vh, 40px); font-weight: 900; color: var(--gold); letter-spacing: .02em; }
+    .label { font-size: clamp(14px, 2.6vh, 34px); font-weight: 900; color: var(--gold); letter-spacing: .02em; }
     .slide[data-w="last"] .label, .slide[data-w="next"] .label { color: #bcd6dd; }
-    .theme { margin-top: 1.4vh; display: inline-block; padding: .5vh 1.6vw; border-radius: 99px; background: rgba(243,217,164,.16); color: var(--gold); font-weight: 700; font-size: clamp(14px, 2.4vh, 30px); }
-    .verse { margin: 3.5vh 0 0; max-width: 88vw; font-family: 'Noto Serif KR', Georgia, serif; font-weight: 700; line-height: 1.55; word-break: keep-all; text-wrap: balance; text-shadow: 0 2px 18px rgba(0,0,0,.35); }
-    .ref { margin-top: 3vh; font-size: clamp(18px, 4.2vh, 56px); font-weight: 900; color: var(--gold); }
+    .theme { margin-left: .8vw; display: inline-block; padding: .2vh 1.1vw; border-radius: 99px; background: rgba(243,217,164,.16); color: var(--gold); font-weight: 700; font-size: .85em; vertical-align: .05em; }
+    .verse { margin: 1.6vh 0 0; max-width: 92vw; font-family: 'Noto Serif KR', Georgia, serif; font-weight: 700; line-height: 1.55; word-break: keep-all; text-wrap: balance; text-shadow: 0 2px 18px rgba(0,0,0,.35); }
+    .ref { margin-top: 2.2vh; font-size: clamp(18px, 4.2vh, 56px); font-weight: 900; color: var(--gold); }
     .ref::before { content: "— "; }
     .empty { font-size: 4vh; color: var(--ink2); }
     /* 페이지 번호 · 안내 */
     #pager { position: fixed; right: 2.2vw; bottom: 2.4vh; font-size: clamp(12px, 2vh, 22px); color: rgba(255,255,255,.55); font-weight: 700; z-index: 5; }
-    #hint { position: fixed; left: 50%; top: 2.6vh; transform: translateX(-50%); font-size: clamp(12px, 2vh, 22px); color: rgba(255,255,255,.7); transition: opacity .6s; z-index: 5; }
+    #hint { position: fixed; left: 50%; bottom: 2.4vh; transform: translateX(-50%); font-size: clamp(12px, 2vh, 22px); color: rgba(255,255,255,.7); transition: opacity .6s; z-index: 5; }
     /* 조작 버튼 (움직임이 없으면 숨김) */
     #ctrl { position: fixed; bottom: 2vh; left: 1.6vw; display: flex; gap: 8px; z-index: 10; transition: opacity .4s; }
     #ctrl.hide { opacity: 0; pointer-events: none; }
@@ -109,10 +109,8 @@
       if (!f.text) return '';
       var which = w;
       return '<section class="slide" lang="' + l + '" data-w="' + w + '">' +
-        '<div class="top"><div class="brand"><img src="logo.png" alt=""><span>' + esc(T[l].name) + '</span></div>' +
-        '<div class="lang">' + FLAGS[l] + '<span>' + esc(T[l].lang) + '</span></div></div>' +
-        '<div class="body"><div class="inner"><div class="label">' + esc(T[l].label[which]) + '</div>' +
-        (f.theme ? '<div class="theme">' + esc(f.theme) + '</div>' : '') +
+
+        '<div class="body"><div class="inner"><div class="label">' + esc(T[l].label[which]) + (f.theme ? ' <span class="theme">' + esc(f.theme) + '</span>' : '') + '</div>' +
         '<p class="verse">' + esc(f.text) + '</p>' + (f.ref ? '<div class="ref">' + esc(f.ref) + '</div>' : '') + '</div></div></section>';
   }
 
@@ -121,9 +119,9 @@
     document.querySelectorAll('.slide').forEach(function (sl) {
       var v = sl.querySelector('.verse'), body = sl.querySelector('.body'), inner = sl.querySelector('.inner');
       if (!v || !inner) return;
-      var size = Math.min(window.innerHeight * 0.11, window.innerWidth * 0.072);
+      var size = Math.min(window.innerHeight * 0.13, window.innerWidth * 0.08);
       v.style.fontSize = size + 'px';
-      var room = body.clientHeight * 0.97, guard = 0;
+      var room = body.clientHeight * 0.98, guard = 0;
       while (inner.offsetHeight > room && size > 12 && guard++ < 80) { size *= 0.95; v.style.fontSize = size + 'px'; }
     });
   }
