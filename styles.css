@@ -483,3 +483,73 @@ dialog.sheet[open] { animation: sheetUp .22s ease-out; }
 .mem-btns { flex-wrap: nowrap; }
 .present-btn { padding: 0; width: 44px; justify-content: center; font-size: 1.15rem; display: inline-grid; place-items: center; }
 #sec-memory .card-head .eyebrow { margin-bottom: .4rem; }
+
+/* ───────── 글씨 굵기 정리: 중요한 것만 굵게 ─────────
+   700 = 꼭 눈에 띄어야 할 것 (설교 제목·본문·찬송 번호·암송 장절·날짜·제목·이번 주 봉사자)
+   500~600 = 보조 (이름표·버튼·작은 설명)
+   400 = 본문 (소식·일정 내용·이름 목록·읽을 범위) */
+body { font-weight: 400; }
+.brand-name { font-weight: 700; }
+.wk-date { font-weight: 700; }
+.wk-tag { font-weight: 600; }
+.eyebrow { font-weight: 700; }
+.seg button, .tabs button, .chip-btn, .btn, .set-btn { font-weight: 600; }
+.bottomnav a, .quicknav a { font-weight: 600; }
+/* 주일 말씀 */
+.sermon-title { font-weight: 700; }
+.meta-k { font-weight: 500; }
+.meta-v { font-weight: 500; }
+.meta-v.scripture { font-weight: 700; }
+.hero .sub { font-weight: 600; }
+.hymn-list li { font-weight: 500; }
+.hymn-num { font-weight: 700; }
+.order summary { font-weight: 500; }
+.order-list .o-k { font-weight: 500; }
+.t-k { font-weight: 500; }
+.t-v { font-weight: 600; }
+.fellow-k { font-weight: 500; }
+#fellowship { font-weight: 500; }
+.yt-text b { font-weight: 700; }
+.yt-title { font-weight: 500; }
+.yt-text small { font-weight: 500; }
+.yt-link { font-weight: 500; }
+/* 암송 */
+.verse { font-weight: 500; }
+.verse-ref { font-weight: 700; }
+.verse-theme { font-weight: 600; }
+.next-verse summary { font-weight: 500; }
+.next-text { font-weight: 400; }
+/* 묵상 */
+.read-hint b { font-weight: 600; }
+.r-day { font-weight: 700; }
+.r-day em { font-weight: 500; }
+.r-txt { font-weight: 400; }
+.r-go { font-weight: 600; }
+/* 소식 · 일정 */
+.news-list li { font-weight: 400; }
+.news-list li::before { font-weight: 700; }
+.sched-when { font-weight: 600; }
+.sched-what { font-weight: 400; }
+.sub2 { font-weight: 600; }
+.m-name { font-weight: 500; }
+.m-time { font-weight: 500; }
+/* 봉사 */
+.si-role { font-weight: 700; }
+.si-row .wk { font-weight: 500; }
+.si-row .wk b { font-weight: 700; }
+.si-row.cur .si-names { font-weight: 700; }
+.si-row.nxt .si-names { font-weight: 400; }
+.serve-role, .serve-month li .serve-role { font-weight: 600; }
+.serve-names { font-weight: 400; }
+/* 읽기 화면 · 설정 · 안내 */
+.rc-name { font-weight: 700; }
+.rc-name small { font-weight: 500; }
+.rc-act, .rc-next, .rc-fold, .reader-close { font-weight: 600; }
+.vn { font-weight: 600; }
+.reader-tip, .sheet-welcome { font-weight: 500; }
+.sheet-title, .ins-title, .qr-title { font-weight: 700; }
+.set-langs button, .set-sizes button, .set-themes button { font-weight: 500; }
+.set-sizes .sz { font-weight: 700; }
+.install-txt b { font-weight: 700; }
+.install-txt small { font-weight: 400; }
+.size-hint, .size-hint button { font-weight: 600; }
