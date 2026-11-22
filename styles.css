@@ -473,3 +473,10 @@ dialog.sheet[open] { animation: sheetUp .22s ease-out; }
 .set-langs button[aria-pressed="true"], .set-sizes button[aria-pressed="true"], .set-themes button[aria-pressed="true"] { border-color: var(--primary); background: color-mix(in srgb, var(--primary) 10%, var(--surface)); box-shadow: 0 0 0 1px var(--primary); }
 .btn.wide { width: 100%; margin-top: 1rem; min-height: 54px; font-size: 1.05rem; }
 .btn.primary { background: var(--primary); color: var(--primary-ink); border-color: var(--primary); }
+
+/* ── 성구암송: 지난주 → 이번 주 → 다음 주, 발표 버튼 ── */
+.mem-btns { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+.present-btn { padding: .35rem .75rem; }
+.next-verse.last { margin: .2rem 0 .7rem; border-top: 0; border-bottom: 1px dashed var(--line); padding: 0 0 .4rem; }
+.verse-when { margin: .2rem 0 .3rem; font-size: .82rem; font-weight: 800; color: var(--primary); letter-spacing: .02em; }
+.verse-when + .verse-theme { margin-left: 0; }

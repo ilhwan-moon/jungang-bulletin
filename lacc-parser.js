@@ -400,7 +400,22 @@
         if (!res[lang]) res[lang] = o;
       });
     });
+    if (found) fixRefNumbers(res);
     return found ? res : null;
+  }
+
+  /* 소식지 오타 보정: 한국어와 영어의 장:절이 같은데 스페인어만 다르면 스페인어 숫자를 맞춤
+     (예: 2026-11-22 소식지 스페인어 「Juan 4:4」 → 「Juan 1:1」) */
+  function fixRefNumbers(res) {
+    var NUM = /\d{1,3}\s*:\s*\d{1,3}(?:\s*[-–~]\s*\d{1,3})?(?:\s*,\s*\d{1,3})*/;
+    var norm = function (x) { return x ? x.replace(/\s+/g, '').replace(/[–~]/g, '-') : ''; };
+    ['memoryVerseRef', 'memoryNextRef', 'memoryLastRef'].forEach(function (k) {
+      if (!res.ko || !res.en || !res.es) return;
+      var a = (res.ko[k] || '').match(NUM), b = (res.en[k] || '').match(NUM), c = (res.es[k] || '').match(NUM);
+      if (a && b && c && norm(a[0]) === norm(b[0]) && norm(c[0]) !== norm(a[0])) {
+        res.es[k] = res.es[k].replace(NUM, b[0]);
+      }
+    });
   }
 
   var api = { parse: parse, fromBulletin: fromBulletin, detect: detect };

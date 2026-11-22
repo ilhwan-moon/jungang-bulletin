@@ -9,7 +9,7 @@
       bulletin: '주일 모바일 소식지', textSize: '글씨 크기', settings: '언어·글씨 설정', setTitle: '설정', welcome: '처음 오셨네요! 편한 언어와 글씨 크기를 골라 주세요.', langLbl: '언어', screenLbl: '화면', done: '완료', themeShort: { auto: '자동', light: '밝게', dark: '어둡게' }, sizeHint: '글씨가 작으면 오른쪽 위 「가 가 가」에서 큰 글씨를 누르세요', ok: '알겠어요', themeN: { auto: '화면: 자동', light: '화면: 밝게', dark: '화면: 어둡게' }, textSizeN: ['보통 글씨', '큰 글씨', '아주 큰 글씨'],
       prev: '지난주', next: '다음주', latest: '최신 소식지', thisWeek: '이번 주일',
       sermon: '주일 말씀', scripture: '본문', preacher: '설교', hymns: '찬양', order: '예배 순서 전체 보기',
-      memory: '이번 주 암송 말씀', practice: '암송 연습', practiceHint: '가려진 단어를 눌러서 확인해 보세요.',
+      memory: '성구암송', present: '발표', practice: '암송 연습', practiceHint: '가려진 단어를 눌러서 확인해 보세요.',
       news: '교회 소식', schedule: '일정', serve: '봉사 안내', prayer: '기도 제목', original: '원본 소식지',
       openOriginal: '{lang} 원본 보기', rawText: '소식지 전체 글 보기', findName: '내 이름 찾기', findPh: '이름으로 찾기 (예: 김영희)',
       share: '공유하기', qr: 'QR 코드', qrTitle: '휴대폰 카메라로 찍으면 소식지가 열립니다', close: '닫기', toTop: '맨 위로',
@@ -19,7 +19,7 @@
       fallback: '{lang} 소식지가 아직 없어 {other}(으)로 보여 드립니다.', demo: '예시 화면입니다. 실제 소식지가 연결되면 자동으로 바뀝니다.',
       offline: '인터넷 연결이 없어 저장된 소식지를 보여 드립니다.', loading: '불러오는 중…', noName: '찾는 이름이 없습니다.',
       fromLang: '({lang})', sundayFmt: '{date} 주일',
-      location: '장소', serviceTimes: '예배 시간', fellowship: '예배 후 교제', memoryNext: '다음 주 암송 미리 보기', memoryLast: '지난주 암송 다시 보기', readings: '이번 주 묵상 말씀', readHint: '요일을 누르면 그날 말씀 전체를 <b>개역한글</b>로 바로 읽을 수 있어요', readBtn: '읽기', readerClose: '닫기 ✕', readerSource: '성경전서 개역한글판 · 대한성서공회', readerFail: '말씀을 불러오지 못했습니다. 인터넷 연결을 확인해 주세요.', readerTip: '👇 읽을 장을 <b>누르면</b> 말씀이 펼쳐집니다', rcOpen: '눌러서 읽기', rcClose: '접기', rcNext: '다음 읽기', verses: '절', updatedReload: '새 내용으로 바뀌었습니다', loadingShort: '불러오는 중…',
+      location: '장소', serviceTimes: '예배 시간', fellowship: '예배 후 교제', memoryNext: '다음 주 암송 미리 보기', memoryLast: '지난주 암송 보기', readings: '이번 주 묵상 말씀', readHint: '요일을 누르면 그날 말씀 전체를 <b>개역한글</b>로 바로 읽을 수 있어요', readBtn: '읽기', readerClose: '닫기 ✕', readerSource: '성경전서 개역한글판 · 대한성서공회', readerFail: '말씀을 불러오지 못했습니다. 인터넷 연결을 확인해 주세요.', readerTip: '👇 읽을 장을 <b>누르면</b> 말씀이 펼쳐집니다', rcOpen: '눌러서 읽기', rcClose: '접기', rcNext: '다음 읽기', verses: '절', updatedReload: '새 내용으로 바뀌었습니다', loadingShort: '불러오는 중…',
       meetings: '정기 모임', installTitle: '휴대폰 홈 화면에 소식지 추가', installSub: '앱처럼 한 번에 열 수 있어요', installed: '홈 화면에 추가되었습니다',
       iosTitle: '🍎 아이폰: 홈 화면에 추가하기', iosSteps: ['사파리 아래 <b>주소창 왼쪽 아이콘</b> {menu} 을 누르세요', '메뉴에서 <b>「공유」</b>를 누르세요', '목록을 위로 올려 <b>「홈 화면에 추가」</b>를 누르세요', '오른쪽 위 <b>「추가」</b>를 누르면 끝!'],
       andTitle: '🤖 안드로이드: 홈 화면에 추가하기', andSteps: ['크롬 오른쪽 위 <b>⋮ (점 3개)</b> 를 누르세요', '<b>「홈 화면에 추가」</b> 또는 <b>「앱 설치」</b>를 누르세요', '<b>「설치」</b>(또는 「추가」)를 누르면 끝!'],
@@ -29,7 +29,7 @@
       bulletin: 'Sunday Mobile Newsletter', textSize: 'Text size', settings: 'Language & text size', setTitle: 'Settings', welcome: 'Welcome! Choose your language and text size.', langLbl: 'Language', screenLbl: 'Display', done: 'Done', themeShort: { auto: 'Auto', light: 'Light', dark: 'Dark' }, sizeHint: 'Text too small? Tap a bigger “A” at the top right.', ok: 'Got it', themeN: { auto: 'Theme: Auto', light: 'Theme: Light', dark: 'Theme: Dark' }, textSizeN: ['Normal text', 'Large text', 'Extra large'],
       prev: 'Prev', next: 'Next', latest: 'Latest newsletter', thisWeek: 'This Sunday',
       sermon: "Sunday Message", scripture: 'Scripture', preacher: 'Speaker', hymns: 'Hymns & Songs', order: 'Full order of worship',
-      memory: 'Memory Verse of the Week', practice: 'Practice', practiceHint: 'Tap a hidden word to reveal it.',
+      memory: 'Memory Verse', present: 'Present', practice: 'Practice', practiceHint: 'Tap a hidden word to reveal it.',
       news: 'Announcements', schedule: 'Schedule', serve: 'Volunteers', prayer: 'Prayer Requests', original: 'Original Newsletter',
       openOriginal: 'Open {lang} original', rawText: 'Show full newsletter text', findName: 'Find my name', findPh: 'Search by name',
       share: 'Share', qr: 'QR code', qrTitle: 'Scan with your phone camera to open', close: 'Close', toTop: 'Top',
@@ -49,7 +49,7 @@
       bulletin: 'Boletín Dominical Móvil', textSize: 'Tamaño de letra', settings: 'Idioma y letra', setTitle: 'Ajustes', welcome: '¡Bienvenido! Elija su idioma y tamaño de letra.', langLbl: 'Idioma', screenLbl: 'Pantalla', done: 'Listo', themeShort: { auto: 'Auto', light: 'Claro', dark: 'Oscuro' }, sizeHint: '¿Letra pequeña? Toque una “A” más grande arriba a la derecha.', ok: 'Entendido', themeN: { auto: 'Tema: automático', light: 'Tema: claro', dark: 'Tema: oscuro' }, textSizeN: ['Letra normal', 'Letra grande', 'Letra muy grande'],
       prev: 'Anterior', next: 'Siguiente', latest: 'Boletín más reciente', thisWeek: 'Este domingo',
       sermon: 'Mensaje Dominical', scripture: 'Texto', preacher: 'Predicador', hymns: 'Himnos y alabanzas', order: 'Orden del culto completo',
-      memory: 'Versículo para memorizar', practice: 'Practicar', practiceHint: 'Toca una palabra oculta para verla.',
+      memory: 'Versículo para memorizar', present: 'Presentar', practice: 'Practicar', practiceHint: 'Toca una palabra oculta para verla.',
       news: 'Anuncios', schedule: 'Calendario', serve: 'Voluntarios', prayer: 'Peticiones de oración', original: 'Boletín original',
       openOriginal: 'Ver original en {lang}', rawText: 'Ver todo el texto del boletín', findName: 'Buscar mi nombre', findPh: 'Buscar por nombre',
       share: 'Compartir', qr: 'Código QR', qrTitle: 'Escanea con la cámara del teléfono', close: 'Cerrar', toTop: 'Arriba',
@@ -435,7 +435,7 @@
     $('sec-memory').hidden = !showMem;
     renderVerse(mt.v || '');
     $('memoryRef').innerHTML = has(mr.v) ? '— ' + esc(nbh(mr.v)) + fromTag(mr.from || mt.from) : '';
-    $('practiceBtn').hidden = !has(mt.v);
+    $('practiceBtn').hidden = !has(mt.v); $('presentBtn').hidden = !has(mt.v);
     var th = field('memoryVerseTheme');
     $('memoryTheme').textContent = th.v || '';
     $('memoryTheme').hidden = !has(th.v);
@@ -720,6 +720,12 @@
   $('sizeHintClose').addEventListener('click', function () { $('sizeHint').hidden = true; store('bb_hint', '1'); });
   $('prevWeek').addEventListener('click', function () { var i = state.weeks.indexOf(state.week); if (i < state.weeks.length - 1) load(state.weeks[i + 1]); });
   $('nextWeek').addEventListener('click', function () { var i = state.weeks.indexOf(state.week); if (i > 0) load(state.weeks[i - 1]); });
+  // 대강당 스크린용 발표 화면 (새 창): 한국어 → 스페인어 → 영어
+  $('presentBtn').addEventListener('click', function () {
+    var p = new URLSearchParams(); if (state.week) p.set('week', state.week); p.set('which', 'this'); p.set('lang', state.lang);
+    var w = window.open('present.html?' + p.toString(), 'lacc-present');
+    if (!w) location.href = 'present.html?' + p.toString();
+  });
   $('practiceBtn').addEventListener('click', function () { state.practice = !state.practice; renderVerse(field('memoryVerseText').v || ''); });
   $('memoryText').addEventListener('click', function (e) { if (e.target.classList.contains('h')) e.target.classList.remove('h'); });
   $('memoryText').addEventListener('keydown', function (e) { if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('h')) { e.preventDefault(); e.target.classList.remove('h'); } });
