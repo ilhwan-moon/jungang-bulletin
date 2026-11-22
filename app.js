@@ -264,7 +264,7 @@
   function applyTheme(m) {
     if (m === 'auto') document.documentElement.removeAttribute('data-theme'); else document.documentElement.setAttribute('data-theme', m);
     var dark = m === 'dark' || (m === 'auto' && window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches);
-    var meta = document.querySelector('meta[name="theme-color"]'); if (meta) meta.setAttribute('content', dark ? '#17394a' : '#1f4e5f');
+    var meta = document.querySelector('meta[name="theme-color"]'); if (meta) meta.setAttribute('content', dark ? '#08294a' : '#005599');
     $('themeIco').innerHTML = ICONS[m === 'light' ? 'sun' : m === 'dark' ? 'moon' : 'auto'];
     $('themeLabel').textContent = T[state.lang].themeN[m];
     $('themeBtn').setAttribute('title', T[state.lang].themeN[m]);

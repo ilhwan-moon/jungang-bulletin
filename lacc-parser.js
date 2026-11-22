@@ -308,7 +308,12 @@
         body.forEach(function (x) { cur.push(x); if (!/,$/.test(x)) { groups.push({ en: cur.join(' ') }); cur = []; } });
       } else {
         body.forEach(function (x) {
-          if (isKo(x)) groups.push({ ko: x, es: [] });
+          if (isKo(x)) {
+            // 한국어 줄 뒤에 스페인어가 붙어 오는 경우 (예: "단 6-7,시 27, 복습/묵상 Daniel 6-7,") 나눔
+            var m = x.match(/[A-Za-zÀ-ÿ]{2,}/);
+            if (m && m.index > 0 && /[가-힣]/.test(x.slice(0, m.index))) groups.push({ ko: clean(x.slice(0, m.index)), es: [x.slice(m.index)] });
+            else groups.push({ ko: x, es: [] });
+          }
           else if (groups.length) groups[groups.length - 1].es.push(x);
         });
         groups = groups.map(function (g) { return { ko: g.ko, es: g.es.join(' ') }; });

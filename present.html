@@ -12,13 +12,13 @@
   <script src="config.js"></script>
   <script src="lacc-parser.js"></script>
   <style>
-    :root { --bg1: #0c2430; --bg2: #16404f; --ink: #ffffff; --ink2: #cfe1e6; --gold: #f3d9a4; --accent: #ffb703; }
+    :root { --bg1: #04213f; --bg2: #00427a; --ink: #ffffff; --ink2: #cfe4f6; --gold: #7fd3f7; --accent: #ffb703; }
     * { box-sizing: border-box; }
     html, body { margin: 0; height: 100%; background: var(--bg1); color: var(--ink); font-family: 'Noto Sans KR', system-ui, sans-serif; overflow: hidden; }
     #deck { height: 100vh; overflow-y: auto; scroll-snap-type: y mandatory; scroll-behavior: smooth; scrollbar-width: none; }
     #deck::-webkit-scrollbar { display: none; }
     .slide { position: relative; height: 100vh; scroll-snap-align: start; display: flex; flex-direction: column; padding: 3vh 4.5vw 6vh;
-      background: radial-gradient(ellipse at 80% 10%, rgba(243,217,164,.10), transparent 55%), linear-gradient(160deg, var(--bg1) 0%, var(--bg2) 100%); }
+      background: radial-gradient(ellipse at 80% 10%, rgba(34,178,233,.14), transparent 55%), linear-gradient(160deg, var(--bg1) 0%, var(--bg2) 100%); }
     .slide + .slide { border-top: 1px solid rgba(255,255,255,.06); }
     .top { display: flex; align-items: center; justify-content: space-between; gap: 2vw; }
     .brand { display: flex; align-items: center; gap: 1.2vw; font-size: clamp(14px, 2.4vh, 30px); font-weight: 700; color: var(--ink2); }
@@ -29,7 +29,7 @@
     .inner { display: flex; flex-direction: column; align-items: center; max-width: 100%; }
     .label { font-size: clamp(14px, 2.6vh, 34px); font-weight: 900; color: var(--gold); letter-spacing: .02em; }
     .slide[data-w="last"] .label, .slide[data-w="next"] .label { color: #bcd6dd; }
-    .theme { margin-left: .8vw; display: inline-block; padding: .2vh 1.1vw; border-radius: 99px; background: rgba(243,217,164,.16); color: var(--gold); font-weight: 700; font-size: .85em; vertical-align: .05em; }
+    .theme { margin-left: .8vw; display: inline-block; padding: .2vh 1.1vw; border-radius: 99px; background: rgba(34,178,233,.18); color: var(--gold); font-weight: 700; font-size: .85em; vertical-align: .05em; }
     .verse { margin: 1.6vh 0 0; max-width: 92vw; font-family: 'Noto Serif KR', Georgia, serif; font-weight: 700; line-height: 1.55; word-break: keep-all; text-wrap: balance; text-shadow: 0 2px 18px rgba(0,0,0,.35); }
     .ref { margin-top: 2.2vh; font-size: clamp(18px, 4.2vh, 56px); font-weight: 900; color: var(--gold); }
     .ref::before { content: "— "; }

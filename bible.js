@@ -62,7 +62,7 @@
   /* "겔 34-35, 시 17, 빌 3" → [{book, c1, c2, v1, v2}] */
   function parse(str) {
     var out = [];
-    String(str || '').split(/[,;，]/).forEach(function (part) {
+    String(str || '').split(/[,;，\/]/).forEach(function (part) {
       part = part.trim();
       if (!part) return;
       var m = part.match(/^((?:[1-3]\s*)?[^\d]+?)\s*(\d{1,3})(?:\s*(?:장|편))?(?:\s*[:：]\s*(\d{1,3}))?(?:\s*(?:절)?\s*[-~–—]\s*(\d{1,3})(?:\s*[:：]\s*(\d{1,3}))?)?\s*(?:장|편|절)?$/);
