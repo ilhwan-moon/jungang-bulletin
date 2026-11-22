@@ -26,7 +26,9 @@
     .lang { display: inline-flex; align-items: center; gap: .9vw; padding: .8vh 1.6vw; border-radius: 99px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); font-size: clamp(14px, 2.6vh, 32px); font-weight: 900; }
     .lang svg { width: 4.4vh; height: 2.95vh; border-radius: .3vh; box-shadow: 0 0 0 1px rgba(0,0,0,.25); }
     .body { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; min-height: 0; }
+    .inner { display: flex; flex-direction: column; align-items: center; max-width: 100%; }
     .label { font-size: clamp(16px, 3.2vh, 40px); font-weight: 900; color: var(--gold); letter-spacing: .02em; }
+    .slide[data-w="last"] .label, .slide[data-w="next"] .label { color: #bcd6dd; }
     .theme { margin-top: 1.4vh; display: inline-block; padding: .5vh 1.6vw; border-radius: 99px; background: rgba(243,217,164,.16); color: var(--gold); font-weight: 700; font-size: clamp(14px, 2.4vh, 30px); }
     .verse { margin: 3.5vh 0 0; max-width: 88vw; font-family: 'Noto Serif KR', Georgia, serif; font-weight: 700; line-height: 1.55; word-break: keep-all; text-wrap: balance; text-shadow: 0 2px 18px rgba(0,0,0,.35); }
     .ref { margin-top: 3vh; font-size: clamp(18px, 4.2vh, 56px); font-weight: 900; color: var(--gold); }
@@ -49,9 +51,9 @@
   <div id="loading">…</div>
   <main id="deck" aria-live="polite"></main>
   <div id="ctrl">
-    <button type="button" data-which="last"></button>
-    <button type="button" data-which="this"></button>
-    <button type="button" data-which="next"></button>
+    <button type="button" data-jump="ko">🇰🇷 한국어</button>
+    <button type="button" data-jump="es">🇲🇽 Español</button>
+    <button type="button" data-jump="en">🇺🇸 English</button>
     <span class="sep"></span>
     <button type="button" id="fsBtn"></button>
     <button type="button" id="closeBtn"></button>
@@ -88,45 +90,53 @@
   var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
   var view = null;
 
-  function field(o) {
+  function field(o, w) {
     if (!o) return { text: '', ref: '', theme: '' };
-    if (which === 'last') return { text: o.memoryLastText, ref: o.memoryLastRef, theme: '' };
-    if (which === 'next') return { text: o.memoryNextText, ref: o.memoryNextRef, theme: '' };
+    if (w === 'last') return { text: o.memoryLastText, ref: o.memoryLastRef, theme: o.memoryVerseTheme };
+    if (w === 'next') return { text: o.memoryNextText, ref: o.memoryNextRef, theme: o.memoryVerseTheme };
     return { text: o.memoryVerseText, ref: o.memoryVerseRef, theme: o.memoryVerseTheme };
   }
 
+  // 언어마다 지난주 → 이번 주 → 다음 주 (한국어 3장 → 스페인어 3장 → 영어 3장)
   function build() {
-    var slides = ORDER.map(function (l) {
-      var f = field(view && view[l]);
+    var slides = [];
+    ORDER.forEach(function (l) { ['last', 'this', 'next'].forEach(function (w) { slides.push(slideHtml(l, w)); }); });
+    $('deck').innerHTML = slides.join('') || '<section class="slide"><div class="body"><p class="empty">' + esc(C.none) + '</p></div></section>';
+    fitAll(); $('deck').scrollTop = 0; updatePager();
+  }
+  function slideHtml(l, w) {
+      var f = field(view && view[l], w);
       if (!f.text) return '';
-      return '<section class="slide" lang="' + l + '">' +
+      var which = w;
+      return '<section class="slide" lang="' + l + '" data-w="' + w + '">' +
         '<div class="top"><div class="brand"><img src="logo.png" alt=""><span>' + esc(T[l].name) + '</span></div>' +
         '<div class="lang">' + FLAGS[l] + '<span>' + esc(T[l].lang) + '</span></div></div>' +
-        '<div class="body"><div class="label">' + esc(T[l].label[which]) + '</div>' +
+        '<div class="body"><div class="inner"><div class="label">' + esc(T[l].label[which]) + '</div>' +
         (f.theme ? '<div class="theme">' + esc(f.theme) + '</div>' : '') +
-        '<p class="verse">' + esc(f.text) + '</p>' + (f.ref ? '<div class="ref">' + esc(f.ref) + '</div>' : '') + '</div></section>';
-    }).join('');
-    $('deck').innerHTML = slides || '<section class="slide"><div class="body"><p class="empty">' + esc(C.none) + '</p></div></section>';
-    document.querySelectorAll('#ctrl [data-which]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-which') === which)); });
-    fitAll(); $('deck').scrollTop = 0; updatePager();
+        '<p class="verse">' + esc(f.text) + '</p>' + (f.ref ? '<div class="ref">' + esc(f.ref) + '</div>' : '') + '</div></div></section>';
   }
 
   // 글씨를 화면에 꽉 차게 (넘치면 줄임)
   function fitAll() {
     document.querySelectorAll('.slide').forEach(function (sl) {
-      var v = sl.querySelector('.verse'), body = sl.querySelector('.body');
-      if (!v) return;
+      var v = sl.querySelector('.verse'), body = sl.querySelector('.body'), inner = sl.querySelector('.inner');
+      if (!v || !inner) return;
       var size = Math.min(window.innerHeight * 0.11, window.innerWidth * 0.072);
       v.style.fontSize = size + 'px';
-      var guard = 0;
-      while (body.scrollHeight > body.clientHeight && size > 12 && guard++ < 80) { size *= 0.95; v.style.fontSize = size + 'px'; }
+      var room = body.clientHeight * 0.97, guard = 0;
+      while (inner.offsetHeight > room && size > 12 && guard++ < 80) { size *= 0.95; v.style.fontSize = size + 'px'; }
     });
   }
 
   function slides() { return Array.prototype.slice.call(document.querySelectorAll('.slide')); }
   function current() { var h = window.innerHeight; return Math.round($('deck').scrollTop / h); }
   function go(i) { var s = slides(); if (!s.length) return; i = Math.max(0, Math.min(s.length - 1, i)); s[i].scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-  function updatePager() { var n = slides().length; $('pager').textContent = n > 1 ? (current() + 1) + ' / ' + n : ''; }
+  function updatePager() {
+    var s = slides(), n = s.length, i = current();
+    $('pager').textContent = n > 1 ? (i + 1) + ' / ' + n : '';
+    var l = s[i] && s[i].lang;
+    document.querySelectorAll('#ctrl [data-jump]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-jump') === l)); });
+  }
   $('deck').addEventListener('scroll', function () { clearTimeout(updatePager.t); updatePager.t = setTimeout(updatePager, 80); });
 
   document.addEventListener('keydown', function (e) {
@@ -146,11 +156,11 @@
   document.addEventListener('fullscreenchange', function () { $('fsBtn').textContent = document.fullscreenElement ? C.exitFs : C.fs; setTimeout(function () { fitAll(); go(current()); }, 250); });
   $('fsBtn').addEventListener('click', toggleFs);
   $('closeBtn').addEventListener('click', function () { window.close(); });
-  document.querySelectorAll('#ctrl [data-which]').forEach(function (b) {
+  // 언어 바로가기: 그 언어의 「지난주」 화면으로
+  document.querySelectorAll('#ctrl [data-jump]').forEach(function (b) {
     b.addEventListener('click', function () {
-      which = b.getAttribute('data-which');
-      var p = new URLSearchParams(location.search); p.set('which', which); history.replaceState(null, '', '?' + p.toString());
-      build();
+      var s = slides(), l = b.getAttribute('data-jump');
+      for (var i = 0; i < s.length; i++) if (s[i].lang === l) { go(i); break; }
     });
   });
   window.addEventListener('resize', function () { clearTimeout(fitAll.t); fitAll.t = setTimeout(function () { fitAll(); go(current()); }, 150); });
@@ -160,7 +170,6 @@
   ['mousemove', 'touchstart'].forEach(function (ev) { document.addEventListener(ev, poke, { passive: true }); });
 
   // 글자
-  document.querySelectorAll('#ctrl [data-which]').forEach(function (b) { b.textContent = C[b.getAttribute('data-which')]; });
   $('fsBtn').textContent = C.fs; $('closeBtn').textContent = C.close; $('hint').textContent = C.hint;
   setTimeout(function () { $('hint').style.opacity = 0; }, 6000);
   poke();
@@ -171,8 +180,18 @@
     var b = d.bulletin || (d.bulletins && d.bulletins[week || d.weeks[0]]);
     view = window.LACCParser ? window.LACCParser.fromBulletin(b) : null;
     $('loading').remove(); build();
+    if (document.fonts && document.fonts.load) {
+      // 슬라이드에 쓰인 글꼴을 미리 불러온 뒤 다시 맞춤
+      Promise.all(['700 40px "Noto Serif KR"', '900 40px "Noto Sans KR"'].map(function (f) { return document.fonts.load(f, 'Aa가'); })).then(refit, refit);
+    }
   }).catch(function () { $('loading').textContent = C.none; });
-  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(function () { setTimeout(fitAll, 50); });
+  // 웹 글꼴이 늦게 도착하면 글자 크기가 바뀌므로 글꼴이 다 오면 다시 맞춤
+  function refit() { fitAll(); updatePager(); }
+  if (document.fonts) {
+    document.fonts.addEventListener && document.fonts.addEventListener('loadingdone', refit);
+    document.fonts.ready.then(refit);
+  }
+  [600, 1500, 3000].forEach(function (ms) { setTimeout(refit, ms); });
 })();
 </script>
 </body>
